@@ -10,12 +10,12 @@ permalink:        pretty
 title:            Shoreditch
 tagline:          'A Jekyll theme'
 description:      'A clean jekyll theme optimised for the tech blogger'
-url:              https://github.com/MEHColeman/shoreditch
+url:              https://shoreditch-example.mehcoleman.com/
 baseurl:          /
 
 author:
   name:           'Mark Coleman'
-  url:            'https://mehcoleman.com'
+  url:            'https://blog.mehcoleman.com'
   github:         MEHColeman
   twitter:        MEHColeman
   linkedin:       MEHColeman

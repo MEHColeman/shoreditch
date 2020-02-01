@@ -18,7 +18,7 @@ Welcome! This is *Shoreditch*. A clean, responsive, two-column
 [Jekyll](http://jekyllrb.com) theme optimised for technical blogging.
 
 See an example of this site at
-[shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/){:target='_blank'},
+[shoreditch-example.mehcoleman.com](https://shoreditch-example.mehcoleman.com/){:target='_blank'},
 or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/){:target='_blank'}
 
 Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
