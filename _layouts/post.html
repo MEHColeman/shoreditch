@@ -40,3 +40,9 @@ layout: default
   </ul>
 </div>
 {% include credit.html %}
+{% if page.comments %}
+
+  <hr>
+
+  {% include disqus.html %}
+{% endif %}

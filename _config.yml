@@ -82,6 +82,7 @@ defaults:
       include_sticky: TRUE
       include_logo:  FALSE
       include_details: FALSE
+      comments: FALSE
   -
     scope:
       path: ""
@@ -90,6 +91,7 @@ defaults:
       include_sticky: TRUE
       include_logo:  FALSE
       include_details: FALSE
+      comments: FALSE
 
 # Custom vars
 version:          1.0.0

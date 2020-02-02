@@ -69,8 +69,14 @@ also a toggle (`flashy_logo`) to briefly flash the message a few times, to
 highlight it's importance.
 
   These options can be set in the `_config.yml` for the whole site, and also
-overidden for individual pages by overwriting the parameters in the page's
+overridden for individual pages by overwriting the parameters in the page's
 front matter.
+
+comments
+: By default, comments are turned off, but you can change this default for
+pages and posts in the `_config` file, or add `comments: TRUE` in the front
+matter of a page. This will insert disqus comment section at the bottom of the
+page. You will need to register and configure your disqus account separately
 
 # Other Configuration Options
 
@@ -119,7 +125,6 @@ class: cv
   }
 ~~~
 
-disqus
 google analytics
 
 &nbsp;
