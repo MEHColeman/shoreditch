@@ -29,7 +29,7 @@ author:
   phone:          '555-0123'
   file_url:       'https://library.oapen.org/bitstream/id/370818a1-e744-4785-8ef4-6ece5ef7474c/UWP-035-REVISED.pdf'
   file_link_text: 'Brochure'
-  # please split email betweed two variables. This is used as a form of
+  # please split email between two variables. This is used as a form of
   # basic spambot webcrawler protection.
   email_1:        'shoreditch@protec'
   email_2:        'ted.mehcoleman.com'
