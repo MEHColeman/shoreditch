@@ -4,14 +4,24 @@ title: About This Theme
 cover: /public/images/shoreditch/shoreditch_cover.png
 ---
 
-Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+Hey there! This page is included as an example. Feel free to customize it for
+your own use upon downloading, or delete it entirely. Carry on!
 {:.message}
 
-Welcome! This is *Shoreditch*. A clean, responsive, two-column jekyll theme optimised for technical blogging.
+Welcome! This is *Shoreditch*. A clean, responsive, two-column jekyll theme
+optimised for technical blogging.
 
-*Shoreditch* is adapted from the very excellent [Hyde](http://hyde.getpoole.com) theme by [@mdo](https://twitter.com/mdo). Check it out.
+*Shoreditch* has blog post content, stored in the `_posts` directory, and
+viewable via the [index page](/), or [tag indexes](/tag/info). It also has
+static pages, like this one, which are automatically added to the sidebar
+(unless you choose to exclude them, like the quick-reference page.
 
-It is also heavily inspired by the [Flexible Jekyll](https://github.com/artemsheludko/flexible-jekyll) theme by Artem Sheludko. Also check that out!
+Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
+theme by [@mdo](https://twitter.com/mdo). Check it out.
+
+It is also heavily inspired by the [Flexible
+Jekyll](https://github.com/artemsheludko/flexible-jekyll) theme by Artem
+Sheludko. Also check that out!
 
 ## Features
 * Updated for Jekyll 4.0.

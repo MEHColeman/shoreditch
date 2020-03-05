@@ -10,7 +10,7 @@ credits:
     via_link: https://www.wallpaperflare.com/adore-and-endure-street-art-captured-in-shoreditch-east-london-wallpaper-woypo
 last_updated: 2022-03-31
 last_verified: 2022-04-02
-tags: [blogging, config, shoreditch]
+tags: [blogging, config, info, shoreditch]
 ---
 
 Here is a quick guide to configuring your Shoreditch blog. <!--more-->
