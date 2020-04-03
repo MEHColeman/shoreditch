@@ -1,10 +1,10 @@
 # Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+markdown:         kramdown
+highlighter:      rouge
+plugins:          [jekyll-paginate]
 
 # Permalinks
 permalink:        pretty
-relative_permalinks: true
 
 # Setup
 title:            Hyde
@@ -16,6 +16,9 @@ baseurl:          /
 author:
   name:           'Mark Otto'
   url:            https://twitter.com/mdo
+
+lsi:              TRUE
+strict_front_matter: TRUE
 
 paginate:         5
 
