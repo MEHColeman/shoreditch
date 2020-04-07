@@ -10,17 +10,12 @@ credits:
     via_link: https://www.flickr.com/MEHColeman
 ---
 
-ABOUT PAGE ONLY
-
 Hey there! This page is included as an example. Feel free to customize it for
 your own use upon downloading, or delete it entirely. Carry on!
 {:.message}
 
 Welcome! This is *Shoreditch*. A clean, responsive, two-column
 [Jekyll](http://jekyllrb.com) theme optimised for technical blogging.
-
-README ONLY
-![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
 
 See an example of this site at
 [shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/){:target='_blank'},
@@ -45,8 +40,7 @@ Sheludko. Also check that out!
 * Easily Configurable Google analytics.
 * Optional Disqus comments.
 
-![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
-![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
+![Shoreditch Custom Colour](/public/images/shoreditch/shoreditch_index_screen.png) ![Shoreditch Custom Colour](/public/images/shoreditch/shoreditch_post_screen.png)
 
 Learn more and contribute on [GitHub](https://github.com/MEHColeman/shoreditch).
 

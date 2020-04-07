@@ -1,7 +1,7 @@
 Welcome! This is *Shoreditch*. A clean, responsive, two-column
 [Jekyll](http://jekyllrb.com) theme optimised for technical blogging.
 
-![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
+![Shoreditch Screenshot](/public/images/shoreditch/shoreditch_index_screen.png)
 
 See an example of this site at
 [shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/)
@@ -26,8 +26,7 @@ Sheludko. Also check that out!
 * Easily Configurable Google analytics.
 * Optional Disqus comments.
 
-![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
-![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
+![Shoreditch Custom Colour](/public/images/shoreditch/shoreditch_post_screen.png)
 
 Learn more and contribute on [GitHub](https://github.com/MEHColeman/shoreditch).
 
@@ -141,33 +140,20 @@ Shoreditch inherits eight optional themes based on the [base16 color
 scheme](https://github.com/chriskempson/base16). Apply a theme to change the
 color scheme (mostly applies to sidebar and links).
 
-![Hyde in red](https://f.cloud.github.com/assets/98681/1831229/42b0b354-7384-11e3-8462-31b8df193fe5.png)
+Simply define a new accent colour in the `public/css/shoreditch.sass` file.
 
-There are eight themes available at this time.
+![Shoreditch Custom Colour](/public/images/shoreditch/shoreditch_red_index_screen.png)
 
-![Hyde theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
-
-To use a theme, add anyone of the available theme classes to the `<body>`
-element in the `default.html` layout, like so:
-
-```html
-<body class="theme-base-08">
-  ...
-</body>
-```
-
-To customise CSS to your heart's content, add custom CSS to the `/public/css/custom.css` file.
-
-********
+To customise any other CSS to your heart's content, add custom CSS to the `/public/css/custom.css` file.
 
 ### Reverse layout
 
-![Hyde with reverse layout](https://f.cloud.github.com/assets/98681/1831230/42b0d3ac-7384-11e3-8d54-2065afd03f9e.png)
+![Shoreditch Reverse Layout](/public/images/shoreditch/shoreditch_reverse_layout.png)
 
-Hyde's page orientation can be reversed with a single class.
+The page orientation can be reversed with a single class.
 
 ```html
-<body class="layout-reverse">
+<body class="reverse-layout">
   ...
 </body>
 ```
