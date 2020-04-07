@@ -6,24 +6,63 @@ title: About
 Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
 {:.message}
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+Welcome! This is *Shoreditch*. A clean, two-column jekyll theme optimised for technical blogging.
 
-There are currently two themes built on Poole:
+*Shoreditch* is adapted from the very excellent [Hyde](http://hyde.getpoole.com) theme by [@mdo](https://twitter.com/mdo). Check it out.
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+It is also heavily inspired by the [Flexible Jekyll](https://github.com/artemsheludko/flexible-jekyll) theme by Artem Sheludko. Also check that out!
+
+
+## Features
+* Updated for Jekyll 4.0
+* Content section wider, so that code samples fit 80 characters across.
+* Beautiful looking index, tag, and category pages.
+* Optional cover images on all layouts.
+* Extra date options for indicating how up-to-date your blogs posts are.
+* Contact and social media links for other professional resources.
+* Easily Configurable google analytics
+* Optional Disqus comments
 
 Learn more and contribute on [GitHub](https://github.com/poole).
 
 ## Setup
 
-Some fun facts about the setup of this project include:
+### Config options
 
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
+### Common styles
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
+Jekyll 4.0 uses kramdown by default. See [this
+reference](https://kramdown.gettalong.org/syntax.html) for more info.
 
-Thanks for reading!
+Code sample blocks span 80 characters.
+~~~ markdown
+Hey, there! This is a message.
+{:.message}
+
+Hello again. This is a callout.
+{:.callout}
+
+Warning! This is an alert!
+{:.alert}
+
+DANGER! This is an alarm!
+{:.alarm}
+~~~
+
+Code samples can also be ```inline``` using backticks ``` ``` ```
+
+### Extra Front Matter
+
+### Extra Styles
+
+Hey, there! This is a message.
+{:.message}
+
+Hello again. This is a callout.
+{:.callout}
+
+Warning! This is an alert!
+{:.alert}
+
+DANGER! This is an alarm!
+{:.alarm}

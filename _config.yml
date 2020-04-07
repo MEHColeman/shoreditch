@@ -7,15 +7,15 @@ plugins:          [jekyll-paginate]
 permalink:        pretty
 
 # Setup
-title:            Hyde
+title:            Shoreditch
 tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
-url:              http://hyde.getpoole.com
+description:      'A clean jekyll theme optimised for the tech blogger'
+url:              https://github.com/MEHColeman/shoreditch
 baseurl:          /
 
 author:
-  name:           'Mark Otto'
-  url:            https://twitter.com/mdo
+  name:           'Mark Coleman'
+  url:            'https://mehcoleman.com'
 
 lsi:              TRUE
 strict_front_matter: TRUE
@@ -23,7 +23,7 @@ strict_front_matter: TRUE
 paginate:         5
 
 # Custom vars
-version:          2.1.0
+version:          1.0.0
 
 github:
-  repo:           https://github.com/poole/hyde
+  repo:           https://github.com/MEHColeman/shoreditch
