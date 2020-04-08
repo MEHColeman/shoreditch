@@ -177,12 +177,12 @@ To customise CSS to your heart's content, add custom CSS to the `/public/css/cus
 
 ### Reverse layout
 
-![Hyde with reverse layout](https://f.cloud.github.com/assets/98681/1831230/42b0d3ac-7384-11e3-8d54-2065afd03f9e.png)
+![Shoreditch Reverse Layout](/public/images/shoreditch/shoreditch_reverse_layout.png)
 
-Hyde's page orientation can be reversed with a single class.
+The page orientation can be reversed with a single class.
 
 ```html
-<body class="layout-reverse">
+<body class="reverse-layout">
   ...
 </body>
 ```

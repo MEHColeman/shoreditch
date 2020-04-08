@@ -89,9 +89,12 @@ a.sidebar
  * Reverse layout
  *
  * Flip the orientation of the page by placing the `.sidebar` on the right.
+ * Use `.reverse-layout`.
+ * The `.layout-reverse` version is deprecated, and will be removed in a future
+ * release.
 
 @media (min-width: 48em)
-  .layout-reverse
+  .layout-reverse, .reverse-layout
     .sidebar
       left: auto
       right: 0
@@ -101,6 +104,6 @@ a.sidebar
       margin-right: 20rem
 
 @media (min-width: 64em)
-  .layout-reverse .content
+  .layout-reverse .content, .reverse-layout .content
     margin-left: 4rem
     margin-right: 22rem
