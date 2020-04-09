@@ -60,6 +60,31 @@ Code samples can also be `inline` using backticks `` ` ``
 
 ### Extra Front Matter
 
+The following front matter variables are supported by this theme.
+~~~ yaml
+last_modified: 2020-04-20
+last_verified: 2020-05-20
+cover: images/cover.png
+thumbnail: images/thumbnail.png
+~~~
+
+```last_modified``` and ```last_verified``` give extra information about how
+up-to-date the page is. See [my blog post](https://mehcoleman.com/) for more
+info.
+
+```cover``` indicates that the page should be rendered with the specified
+header image.
+```thumnail``` indicates that the specified thumbnail should be used for
+index pages.
+
+The thumbnail image can be the same as the cover image - it will be scaled to
+fit a smaller frame. It might also be any other image used on the page.
+
+All these variables will work on both pages and posts, and are entirely
+optional.
+
+
+
 ### Extra Styles
 
 Hey, there! This is a message.
