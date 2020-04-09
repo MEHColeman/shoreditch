@@ -79,6 +79,24 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
 }
 
+.post-dates {
+  text-align: justify;
+  text-align-last: justify;
+}
+/* safari refuses to implement text-align-last */
+.post-dates:after {
+  display: inline-block;
+  width: 100%;
+  content: '';
+}
+.post-date {
+  display: inline-block;
+  font-size: 0.8rem;
+  width: auto;
+  text-align: center;
+  color: #999;
+}
+
 .language-markdown {
   overflow-x: auto;
 }
