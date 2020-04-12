@@ -12,7 +12,6 @@ Welcome! This is *Shoreditch*. A clean, two-column jekyll theme optimised for te
 
 It is also heavily inspired by the [Flexible Jekyll](https://github.com/artemsheludko/flexible-jekyll) theme by Artem Sheludko. Also check that out!
 
-
 ## Features
 * Updated for Jekyll 4.0
 * Content section wider, so that code samples fit 80 characters across.
