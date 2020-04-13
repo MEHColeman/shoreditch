@@ -1,0 +1,48 @@
+/*
+ * Contents
+ *
+ * Messages
+ * Posts
+ */
+
+/*
+ * Messages
+ *
+ * Show alert messages to users. You may add it to single elements like a `<p>`,
+ * or to a parent if there are multiple elements to show.
+ */
+
+.callout {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  color: #717171;
+  background-color: #f9f9f9;
+  font-style: italic
+}
+
+.alert {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  color: #555;
+  background-color: #fff8d4;
+  font-style: italic
+}
+
+.alarm {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  color: #555;
+  background-color: #ffd4d4;
+  font-style: italic
+}
+
+/*
+ * Posts
+ * Additional styling for posts or pages
+ *
+ */
+
+.footnotes {
+    font-size: 0.8rem;
+}
+
