@@ -35,6 +35,22 @@ reference](https://kramdown.gettalong.org/syntax.html) for more info.
 
 Code sample blocks span 80 characters.
 ~~~ markdown
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+Hey, there! This is a message.
+{:.message}
+
+Hello again. This is a callout.
+{:.callout}
+
+Warning! This is an alert!
+{:.alert}
+
+DANGER! This is an alarm!
+{:.alarm}
+~~~
+
+
+~~~ markdown
 Hey, there! This is a message.
 {:.message}
 

@@ -17,34 +17,11 @@
 /*
  * Contents
  *
- * Global resets
  * Sidebar
  * Container
  * Reverse layout
  * Themes
  */
-
-
-/*
- * Global resets
- *
- * Update the foundational and global aspects of the page.
- */
-
-html {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
-}
-@media (min-width: 48em) {
-  html {
-    font-size: 16px;
-  }
-}
-@media (min-width: 58em) {
-  html {
-    font-size: 20px;
-  }
-}
-
 
 /*
  * Sidebar
