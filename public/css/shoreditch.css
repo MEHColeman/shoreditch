@@ -38,6 +38,18 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 
+li li {
+  list-style-type: lower-alpha;
+}
+
+li li li {
+  list-style-type: lower-roman;
+}
+
+ol ol ol {
+  margin-bottom: 0
+}
+
 /*
  * Messages
  *
