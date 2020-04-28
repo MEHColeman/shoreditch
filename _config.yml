@@ -27,3 +27,7 @@ version:          1.0.0
 
 github:
   repo:           https://github.com/MEHColeman/shoreditch
+
+exclude:
+  - bundle
+  - bundler
