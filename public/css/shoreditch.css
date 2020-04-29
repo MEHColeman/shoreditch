@@ -109,6 +109,14 @@ ol ol ol {
   color: #999;
 }
 
+/* code title */
+.code-title {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-size: 0.7rem;
+  color: gray;
+}
+
 .language-markdown {
   overflow-x: auto;
 }
