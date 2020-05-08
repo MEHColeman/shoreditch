@@ -4,8 +4,8 @@ Welcome! This is *Shoreditch*. A clean, responsive, two-column
 ![Shoreditch Screenshot](/public/images/shoreditch/shoreditch_index_screen.png)
 
 See an example of this site at
-[shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/)
-or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/)
+[shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/){:target='_blank'},
+or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/){:target='_blank'}
 
 Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
 theme by [@mdo](https://twitter.com/mdo). Check it out. <br>
@@ -136,9 +136,9 @@ See [2022-02-23-shoreditch-configuration](_posts/2022-02-23-shoreditch-configura
 
 ### Themes
 
-Shoreditch inherits eight optional themes based on the [base16 color
-scheme](https://github.com/chriskempson/base16). Apply a theme to change the
-color scheme (mostly applies to sidebar and links).
+Shoreditch allows configuration of the accent colour to any colour you choose, with
+8 suggestions based on the [base16 color
+scheme](https://github.com/chriskempson/base16) provided.
 
 Simply define a new accent colour in the `public/css/shoreditch.sass` file.
 

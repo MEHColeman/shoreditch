@@ -32,7 +32,7 @@ the front matter.
 Etiam porta **sem malesuada magna** mollis euismod. Cras mattis consectetur
 purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
 
-To get nicer quotations, you'll need to do a bit more work, as markdown by
+To get even nicer quotations, you'll need to do a bit more work, as markdown by
 itself can't handle it.
 
 ~~~html
@@ -82,16 +82,25 @@ condimentum nibh, ut fermentum massa.
 
 ### Gists via GitHub Pages
 
-Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna
-mollis ornare vel eu leo. Donec sed odio dui.
-
 This requires adding the jekyll-gist gem - then uncomment, and it should work.
 {% comment %} {% gist 5555251 gist.md %} {% endcomment %}
 
-Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
-Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque
-penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed
-odio dui. Vestibulum id ligula porta felis euismod semper.
+Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna
+mollis ornare vel eu leo. Donec sed odio dui.
+
+### Extra Styles
+
+Hey, there! This is a message.
+{:.message}
+
+Hello again. This is a callout.
+{:.callout}
+
+Warning! This is an alert!
+{:.alert}
+
+DANGER! This is an alarm!
+{:.alarm}
 
 ### Lists
 
@@ -132,14 +141,7 @@ If you want to insert HTML not supported by a markdown shorthand, you can
 simply insert it into the document.
 </textarea>
 
-Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo
-risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna
-mollis ornare vel eu leo.
-
 ### Images
-
-Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus.
-Aliquam aliquam metus erat, a pulvinar turpis suscipit at.
 
 ![placeholder](https://via.placeholder.com/800x400 "Large example image")
 ![placeholder](https://via.placeholder.com/400x200 "Medium example image")

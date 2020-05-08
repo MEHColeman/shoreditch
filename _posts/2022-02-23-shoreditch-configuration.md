@@ -45,20 +45,20 @@ full blog post page.
 
 contact info
 : A section for social media links is available under the author section. Feel
-free to raise a guthub issue or submit a pull request if you wish to add another
+free to raise a github issue or submit a pull request if you wish to add another
 site to the template.
 
   This whole section can be enabled for every page in the
-config file, or toggled individually via the page's front matter See the various
-examples [
-[1]({% link _posts/2022-01-20-example-configuration-full-sidebar.md %}),
-[2]({% link _posts/2022-01-21-example-configuration-square-logo.md %}),
-[3]({% link _posts/2022-01-22-example-configuration-cv.md %})
+config file, or toggled individually via the page's front matter.
+See the various examples [
+[1]({% post_url 2022-01-20-example-configuration-full-sidebar %}),
+[2]({% post_url 2022-01-21-example-configuration-square-logo %}),
+[3]({% post_url 2022-01-22-example-configuration-cv %})
 ] for more info.
 
   The email address info is split into two sections these are combined with
 javascript when the page is rendered to make it a little more difficult for
-spambot crawlers to extraxct your email address from the page.
+spambot crawlers to extract your email address from the page.
 
 logo
 : The logo section can be used to add a logo or portrait to the top of the page.

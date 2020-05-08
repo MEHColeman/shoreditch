@@ -154,26 +154,15 @@ See [2022-02-23-shoreditch-configuration]({% post_url
 
 ### Themes
 
-Shoreditch inherits eight optional themes based on the [base16 color
-scheme](https://github.com/chriskempson/base16). Apply a theme to change the
-color scheme (mostly applies to sidebar and links).
+Shoreditch allows configuration of the accent colour to any colour you choose, with
+8 suggestions based on the [base16 color
+scheme](https://github.com/chriskempson/base16) provided.
 
-![Hyde in red](https://f.cloud.github.com/assets/98681/1831229/42b0b354-7384-11e3-8462-31b8df193fe5.png)
+Simply define a new accent colour in the `public/css/shoreditch.sass` file.
 
-There are eight themes available at this time.
+![Shoreditch Custom Colour](/public/images/shoreditch/shoreditch_red_index_screen.png)
 
-![Hyde theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
-
-To use a theme, add anyone of the available theme classes to the `<body>`
-element in the `default.html` layout, like so:
-
-```html
-<body class="theme-base-08">
-  ...
-</body>
-```
-
-To customise CSS to your heart's content, add custom CSS to the `/public/css/custom.css` file.
+To customise any other CSS to your heart's content, add custom CSS to the `/public/css/custom.css` file.
 
 ### Reverse layout
 
