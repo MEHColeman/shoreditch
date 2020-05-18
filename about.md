@@ -33,9 +33,16 @@ Learn more and contribute on [GitHub](https://github.com/poole).
 Jekyll 4.0 uses kramdown by default. See [this
 reference](https://kramdown.gettalong.org/syntax.html) for more info.
 
-Code sample blocks span 80 characters.
+Code sample blocks span 80 characters. A `code-title` css
+class can be used to give a code section a nice looking
+title.
+
+directory/filename.txt
+{:.code-title}
+
 ~~~ markdown
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
+
 Hey, there! This is a message.
 {:.message}
 
@@ -49,22 +56,7 @@ DANGER! This is an alarm!
 {:.alarm}
 ~~~
 
-
-~~~ markdown
-Hey, there! This is a message.
-{:.message}
-
-Hello again. This is a callout.
-{:.callout}
-
-Warning! This is an alert!
-{:.alert}
-
-DANGER! This is an alarm!
-{:.alarm}
-~~~
-
-Code samples can also be ```inline``` using backticks ``` ``` ```
+Code samples can also be `inline` using backticks `` ` ``
 
 ### Extra Front Matter
 
