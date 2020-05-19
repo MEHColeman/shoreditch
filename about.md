@@ -14,14 +14,15 @@ Welcome! This is *Shoreditch*. A clean, two-column jekyll theme optimised for te
 It is also heavily inspired by the [Flexible Jekyll](https://github.com/artemsheludko/flexible-jekyll) theme by Artem Sheludko. Also check that out!
 
 ## Features
-* Updated for Jekyll 4.0
+* Updated for Jekyll 4.0.
+* Responsive layout for small, medium and large screens.
 * Content section wider, so that code samples fit 80 characters across.
 * Beautiful looking index, tag, and category pages.
-* Optional cover images on all layouts.
+* Optional cover images along the top of the page on all layouts.
 * Extra date options for indicating how up-to-date your blogs posts are.
 * Contact and social media links for other professional resources.
-* Easily Configurable google analytics
-* Optional Disqus comments
+* Easily Configurable google analytics.
+* Optional Disqus comments.
 
 Learn more and contribute on [GitHub](https://github.com/poole).
 
