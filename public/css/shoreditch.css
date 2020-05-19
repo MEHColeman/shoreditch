@@ -23,7 +23,7 @@ html {
     font-size: 16px;
   }
 }
-@media (min-width: 58em) {
+@media (min-width: 64em) {
   html {
     font-size: 20px;
   }
@@ -135,14 +135,14 @@ ol ol ol {
   .content {
     max-width: 43rem;
     margin-left: 20rem;
-    margin-right: 2rem;
+    margin-right: 1rem;
   }
 }
 
 @media (min-width: 64em) {
   .content {
     margin-left: 22rem;
-    margin-right: 4rem;
+    margin-right: 3rem;
   }
 }
 
@@ -162,9 +162,52 @@ ol ol ol {
 /*
  * Sidebar
  */
+.sidebar-about h1 {
+  font-size: 2.5rem;
+}
+.sidebar .lead {
+  font-size: 1.1rem;
+}
+.sidebar-nav-item {
+  line-height: 1.4rem;
+}
 
 @media (min-width: 48em) {
   .sidebar {
     width: 19rem;
+  }
+}
+
+/*
+ * Cover
+ */
+
+.top {
+  margin-bottom: -2rem;
+}
+.top img {
+  object-position: 50% 50%;
+  object-fit: cover;
+  border-radius: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+@media (min-width: 48em) {
+  .top {
+    margin-left:17rem;
+    height:12rem;
+    width: auto;
+    max-width:44rem;
+  }
+}
+@media (min-width: 64em) {
+  .top {
+    margin-left:19rem;
+    height:14rem;
+    width: auto;
+    max-width:49rem;
+    margin-bottom: -1.5rem;
   }
 }

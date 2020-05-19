@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About This Theme
+cover: /public/images/shoreditch/shoreditch_cover.png
 ---
 
 Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!

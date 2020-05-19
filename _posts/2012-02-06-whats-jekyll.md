@@ -5,6 +5,7 @@ last_updated: 2020-04-14
 last_verified: 2020-04-15
 cover: images/jekyll.png
 thumbnail: images/jekyll.png
+tags: [ jekyll, info ]
 ---
 
 [Jekyll](http://jekyllrb.com) is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From [the project's readme](https://github.com/mojombo/jekyll/blob/master/README.markdown):
