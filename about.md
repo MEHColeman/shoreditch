@@ -19,6 +19,7 @@ It is also heavily inspired by the [Flexible Jekyll](https://github.com/artemshe
 * Content section wider, so that code samples fit 80 characters across.
 * Beautiful looking index, tag, and category pages.
 * Optional cover images along the top of the page on all layouts.
+* Optional thumbnail images (with a configurable default) for each post.
 * Extra date options for indicating how up-to-date your blogs posts are.
 * Contact and social media links for other professional resources.
 * Easily Configurable google analytics.
