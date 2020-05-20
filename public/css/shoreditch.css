@@ -92,7 +92,8 @@ article.post {
   font-size: 0.9em;
 }
 h1.post-title {
-  font-size: 1.8em;
+  font-size: 1.5em;
+  line-height: 1;
 }
 
 h1.post-title > a {
