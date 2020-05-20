@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Example Content
 last_updated: 2020-05-18
 last_verified: 2020-05-18

@@ -1,10 +1,8 @@
 ---
-layout: post
 title: What's Jekyll?
 last_updated: 2020-04-14
-last_verified: 2020-04-15
-cover: images/jekyll.png
-thumbnail: images/jekyll.png
+last_verified: 2020-05-15
+cover: /public/images/jekyll.png
 tags: [ jekyll, info ]
 ---
 

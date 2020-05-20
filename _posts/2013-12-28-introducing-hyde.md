@@ -1,9 +1,7 @@
 ---
-layout: post
 title: Introducing Hyde
 last_updated: 2020-05-18
 last_verified: 2020-05-18
-thumbnail: images/jekyll.png
 tags: [ hyde, info ]
 ---
 

@@ -22,6 +22,15 @@ strict_front_matter: TRUE
 
 paginate:         7
 
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      excerpt_separator: <!--more-->
+      thumbnail: /public/images/shoreditch/notes.svg
 # Custom vars
 version:          1.0.0
 
