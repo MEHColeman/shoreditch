@@ -14,11 +14,29 @@
  *
  * Update the foundational and global aspects of the page.
  */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: black;
+  background-color: white;
+}
 
 html {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
 }
 
+@media (min-width: 38em) {
+  html {
+    font-size: 20px;
+  }
+}
 @media (min-width: 48em) {
   html {
     font-size: 16px;
@@ -77,6 +95,10 @@ h1.post-title {
   font-size: 1.8em;
 }
 
+h1.post-title > a {
+  color: black;
+}
+
 article.post > .post-thumbnail {
   min-height: 10rem;
   width: 30%;
@@ -109,9 +131,7 @@ article.post > .post-thumbnail {
 }
 /*
  * Messages
- *
- * Show alert messages to users. You may add it to single elements like a `<p>`,
- * or to a parent if there are multiple elements to show.
+ * Extra levels of messaging.
  */
 
 .callout {

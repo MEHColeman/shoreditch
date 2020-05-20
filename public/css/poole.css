@@ -17,51 +17,15 @@
 /*
  * Contents
  *
- * Body resets
  * Custom type
  * Messages
  * Container
- * Masthead
  * Posts and pages
  * Pagination
  * Reverse layout
  * Themes
  */
 
-
-/*
- * Body resets
- *
- * Update the foundational and global aspects of the page.
- */
-
-* {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  line-height: 1.5;
-}
-@media (min-width: 38em) {
-  html {
-    font-size: 20px;
-  }
-}
-
-body {
-  color: #515151;
-  background-color: #fff;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-}
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
@@ -82,8 +46,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-weight: bold;
   line-height: 1.25;
-  color: #313131;
-  text-rendering: optimizeLegibility;
 }
 h1 {
   font-size: 2rem;
@@ -106,11 +68,6 @@ p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
-
-strong {
-  color: #303030;
-}
-
 
 /* Lists */
 ul, ol, dl {
@@ -146,10 +103,6 @@ abbr[title] {
 }
 
 /* Code */
-code,
-pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
-}
 code {
   padding: .25em .5em;
   font-size: 85%;
@@ -261,7 +214,6 @@ tbody tr:nth-child(odd) th {
   font-weight: 300;
 }
 
-
 /*
  * Messages
  *
@@ -274,30 +226,6 @@ tbody tr:nth-child(odd) th {
   padding: 1rem;
   color: #717171;
   background-color: #f9f9f9;
-}
-
-.callout {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  color: #717171;
-  background-color: #f9f9f9;
-  font-style: italic
-}
-
-.alert {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  color: #555;
-  background-color: #fff8d4;
-  font-style: italic
-}
-
-.alarm {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  color: #555;
-  background-color: #ffd4d4;
-  font-style: italic
 }
 
 /*
@@ -314,34 +242,6 @@ tbody tr:nth-child(odd) th {
   margin-right: auto;
 }
 
-
-/*
- * Masthead
- *
- * Super small header above the content for site name and short description.
- */
-
-.masthead {
-  padding-top:    1rem;
-  padding-bottom: 1rem;
-  margin-bottom: 3rem;
-}
-.masthead-title {
-  margin-top: 0;
-  margin-bottom: 0;
-  color: #505050;
-}
-.masthead-title a {
-  color: #505050;
-}
-.masthead-title small {
-  font-size: 75%;
-  font-weight: 400;
-  color: #c0c0c0;
-  letter-spacing: 0;
-}
-
-
 /*
  * Posts and pages
  *
@@ -354,12 +254,6 @@ tbody tr:nth-child(odd) th {
   margin-bottom: 4em;
 }
 
-/* Blog post or page title */
-.page-title,
-.post-title,
-.post-title a {
-  color: #303030;
-}
 .page-title,
 .post-title {
   margin-top: 0;
@@ -367,10 +261,8 @@ tbody tr:nth-child(odd) th {
 
 /* Meta data line below post title */
 .post-date {
-  display: block;
   margin-top: -.5rem;
   margin-bottom: 1rem;
-  color: #9a9a9a;
 }
 
 /* Related posts */
@@ -397,7 +289,6 @@ tbody tr:nth-child(odd) th {
 .related-posts li a:hover small {
   color: inherit;
 }
-
 
 /*
  * Pagination
