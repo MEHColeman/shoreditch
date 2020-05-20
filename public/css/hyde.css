@@ -42,7 +42,6 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 18rem;
     text-align: left;
   }
 }
@@ -56,7 +55,6 @@
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;
-  font-size: 3.25rem;
 }
 
 /* Sidebar nav */
@@ -90,7 +88,6 @@ a.sidebar-nav-item:focus {
   }
 }
 
-
 /* Container
  *
  * Align the contents of the site above the proper threshold with some margin-fu
@@ -101,22 +98,6 @@ a.sidebar-nav-item:focus {
   padding-top:    4rem;
   padding-bottom: 4rem;
 }
-
-@media (min-width: 48em) {
-  .content {
-    max-width: 43rem;
-    margin-left: 20rem;
-    margin-right: 2rem;
-  }
-}
-
-@media (min-width: 64em) {
-  .content {
-    margin-left: 22rem;
-    margin-right: 4rem;
-  }
-}
-
 
 /*
  * Reverse layout
@@ -141,8 +122,6 @@ a.sidebar-nav-item:focus {
     margin-right: 22rem;
   }
 }
-
-
 
 /*
  * Themes

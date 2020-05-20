@@ -1,6 +1,7 @@
 ---
 layout: page
 title: About This Theme
+cover: /public/images/shoreditch/shoreditch_cover.png
 ---
 
 Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
@@ -13,14 +14,16 @@ Welcome! This is *Shoreditch*. A clean, two-column jekyll theme optimised for te
 It is also heavily inspired by the [Flexible Jekyll](https://github.com/artemsheludko/flexible-jekyll) theme by Artem Sheludko. Also check that out!
 
 ## Features
-* Updated for Jekyll 4.0
+* Updated for Jekyll 4.0.
+* Responsive layout for small, medium and large screens.
 * Content section wider, so that code samples fit 80 characters across.
 * Beautiful looking index, tag, and category pages.
-* Optional cover images on all layouts.
+* Optional cover images along the top of the page on all layouts.
+* Optional thumbnail images (with a configurable default) for each post.
 * Extra date options for indicating how up-to-date your blogs posts are.
 * Contact and social media links for other professional resources.
-* Easily Configurable google analytics
-* Optional Disqus comments
+* Easily Configurable google analytics.
+* Optional Disqus comments.
 
 Learn more and contribute on [GitHub](https://github.com/poole).
 
@@ -59,6 +62,31 @@ DANGER! This is an alarm!
 Code samples can also be `inline` using backticks `` ` ``
 
 ### Extra Front Matter
+
+The following front matter variables are supported by this theme.
+~~~ yaml
+last_modified: 2020-04-20
+last_verified: 2020-05-20
+cover: images/cover.png
+thumbnail: images/thumbnail.png
+~~~
+
+```last_modified``` and ```last_verified``` give extra information about how
+up-to-date the page is. See [my blog post](https://mehcoleman.com/) for more
+info.
+
+```cover``` indicates that the page should be rendered with the specified
+header image.
+```thumnail``` indicates that the specified thumbnail should be used for
+index pages.
+
+The thumbnail image can be the same as the cover image - it will be scaled to
+fit a smaller frame. It might also be any other image used on the page.
+
+All these variables will work on both pages and posts, and are entirely
+optional.
+
+
 
 ### Extra Styles
 
