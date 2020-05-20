@@ -20,7 +20,7 @@ author:
 lsi:              TRUE
 strict_front_matter: TRUE
 
-paginate:         5
+paginate:         7
 
 # Custom vars
 version:          1.0.0
