@@ -2,6 +2,12 @@
 title: Configuring Your Shoreditch Blog
 cover: /public/images/shoreditch/adore_and_endure_cover.png
 thumbnail: /public/images/shoreditch/adore_and_endure_cover.png
+credits:
+  -
+    label: "Cover Image"
+    name: "Caroline Bishop"
+    via: "via wallpaper flare"
+    via_link: https://www.wallpaperflare.com/adore-and-endure-street-art-captured-in-shoreditch-east-london-wallpaper-woypo
 last_updated: 2022-03-31
 last_verified: 2022-04-02
 tags: [blogging, config, shoreditch]
@@ -119,7 +125,6 @@ google analytics
 
 &nbsp;
 
-The cover image on this page is (c) Caroline Bishop. via [wallpaper flare](https://www.wallpaperflare.com/adore-and-endure-street-art-captured-in-shoreditch-east-london-wallpaper-woypo)
 
 * Beautiful looking index, tag, and category pages.
 * Optional cover images along the top of the page on all layouts.

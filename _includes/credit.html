@@ -1,0 +1,7 @@
+{% if page.credits %}
+<div class="image-credits">
+  {% for credit in page.credits %}
+  {{ credit.label }}: {{ credit.name }}{% if credit.via %}, <a
+    href="{{credit.via_link}}">{{credit.via}}</a>{% endif %}
+  {% endfor %}
+{% endif %}
