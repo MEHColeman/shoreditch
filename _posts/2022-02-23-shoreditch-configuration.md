@@ -78,6 +78,10 @@ pages and posts in the `_config` file, or add `comments: TRUE` in the front
 matter of a page. This will insert disqus comment section at the bottom of the
 page. You will need to register and configure your disqus account separately
 
+google_analytics_4_measurement_id
+: If defined with a google analytics 4 measurement ID, this will add google
+analytics 4 functionalily to all pages.
+
 # Other Configuration Options
 
 Apart from the general config file, you can add your own custom CSS. An empty
@@ -124,7 +128,5 @@ class: cv
   font-family: "Very Professional", Helvetica, sans-serif;
   }
 ~~~
-
-google analytics
 
 &nbsp;

@@ -13,6 +13,9 @@ description:      'A clean jekyll theme optimised for the tech blogger'
 url:              https://shoreditch-example.mehcoleman.com/
 baseurl:          /
 
+# Uncomment and populate with a GA4 id for Google Analytics integration
+# google_analytics_4_measurement_id: 'G-XXXXXXXXXX'
+
 author:
   name:           'Mark Coleman'
   url:            'https://blog.mehcoleman.com'
