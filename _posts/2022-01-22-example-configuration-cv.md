@@ -19,9 +19,9 @@ small logo, the details, but no blog navigation section.
 
 I find that the details section is too verbose to have on every page, and prefer
 to switch it off for a cleaner look. I do switch it on for my [professional
-blog](https://textificated.com/) for my CV page. I also have the logo section as
-a profile picture, and if I am currently looking for work, then the logo text
-will say "FOR HIRE", otherwise it is turned off.
+blog](https://blog.mehcoleman.com/) for my [CV page](/cv){:target="_blank"}. I
+also have the logo section as a profile picture, and if I am currently looking
+for work, then the logo text will say "FOR HIRE", otherwise it is turned off.
 
 For my CV page, I switch ON the details section, but switch OFF the navigation
 section. This is because I want the extra contact details to be displayed on my

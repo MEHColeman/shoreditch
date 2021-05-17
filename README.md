@@ -21,6 +21,7 @@ Sheludko. Also check that out!
 * Optional thumbnail images (with a configurable default) for each post.
 * Extra date options for indicating how up-to-date your blogs posts are.
 * Wider content section, so that code samples fit 80 characters across.
+* CV / Résumé mode.
 * Contact and social media links for other professional resources.
 * Social media sharing buttons
 * Easily Configurable Google analytics.
@@ -157,6 +158,11 @@ The page orientation can be reversed with a single class.
   ...
 </body>
 ```
+
+### CV / Résumé mode.
+
+Additional styles to support a well-presented online CV are available. See the
+[example cv](/cv.md){:target="_blank"} for details.
 
 ## License
 
