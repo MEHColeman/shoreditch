@@ -7,7 +7,7 @@ cover: /public/images/shoreditch/shoreditch_cover.png
 Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
 {:.message}
 
-Welcome! This is *Shoreditch*. A clean, two-column jekyll theme optimised for technical blogging.
+Welcome! This is *Shoreditch*. A clean, responsive, two-column jekyll theme optimised for technical blogging.
 
 *Shoreditch* is adapted from the very excellent [Hyde](http://hyde.getpoole.com) theme by [@mdo](https://twitter.com/mdo). Check it out.
 
@@ -77,7 +77,7 @@ info.
 
 ```cover``` indicates that the page should be rendered with the specified
 header image.
-```thumnail``` indicates that the specified thumbnail should be used for
+```thumbnail``` indicates that the specified thumbnail should be used for
 index pages.
 
 The thumbnail image can be the same as the cover image - it will be scaled to
