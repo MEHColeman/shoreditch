@@ -3,6 +3,7 @@ title: What's Jekyll?
 last_updated: 2020-04-14
 last_verified: 2020-05-15
 cover: /public/images/jekyll.png
+thumbnail: /public/images/jekyll.png
 tags: [ jekyll, info ]
 ---
 
