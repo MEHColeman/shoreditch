@@ -224,6 +224,15 @@ article.post > .post-thumbnail {
   }
 }
 
+/* Content
+ *
+ * Improve the default checkbox design
+ */
+.task-list-item-checkbox {
+  transform: scale(1.4);
+  margin-right: 1em;
+}
+
 /*
  * Pagination
  */

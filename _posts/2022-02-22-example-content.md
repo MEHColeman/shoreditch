@@ -80,6 +80,9 @@ Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a p
 
 Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
 
+- [ ] Item needs to be done.
+- [x] Item has been done.
+
 ### Definitions
 HyperText Markup Language (HTML)
 : The language used to describe and define the content of a Web page
