@@ -1,7 +1,7 @@
 ---
 title: Example Content
-last_updated: 2020-05-18
-last_verified: 2020-05-18
+last_updated: 2021-11-14
+last_verified: 2021-11-14
 cover: /public/images/shoreditch/shoreditch_cover.png
 thumbnail: /public/images/shoreditch/shoreditch_cover.png
 tags: [ info ]
