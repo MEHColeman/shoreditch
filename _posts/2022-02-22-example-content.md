@@ -80,16 +80,21 @@ Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a p
 
 Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
 
-<dl>
-  <dt>HyperText Markup Language (HTML)</dt>
-  <dd>The language used to describe and define the content of a Web page</dd>
+### Definitions
+HyperText Markup Language (HTML)
+: The language used to describe and define the content of a Web page
 
-  <dt>Cascading Style Sheets (CSS)</dt>
-  <dd>Used to describe the appearance of Web content</dd>
+Cascading Style Sheets (CSS)
+: Used to describe the appearance of Web content
 
-  <dt>JavaScript (JS)</dt>
-  <dd>The programming language used to build advanced Web sites and applications</dd>
-</dl>
+JavaScript (JS)
+: The programming language used to build advanced Web sites and applications
+
+### Arbitrary HTML
+<textarea>
+If you want to insert HTML not supported by a markdown shorthand, you can
+simply insert it into the document.
+</textarea>
 
 Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.
 
