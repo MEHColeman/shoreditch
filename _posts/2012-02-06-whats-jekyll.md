@@ -1,10 +1,10 @@
 ---
 title: What's Jekyll?
 last_updated: 2020-04-14
-last_verified: 2020-05-15
+last_verified: 2022-01-15
 cover: /public/images/jekyll.png
 thumbnail: /public/images/jekyll.png
-tags: [ jekyll, info ]
+tags: [ jekyll, jamstack, info ]
 ---
 
 [Jekyll](http://jekyllrb.com) is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes.<!--more--> From [the project's readme](https://github.com/mojombo/jekyll/blob/master/README.markdown):

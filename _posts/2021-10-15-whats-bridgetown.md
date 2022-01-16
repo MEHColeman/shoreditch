@@ -1,7 +1,7 @@
 ---
 title: What's Bridgetown?
 last_updated: 2021-10-15
-last_verified: 2021-10-15
+last_verified: 2022-01-15
 cover: /public/images/bridgetown.png
 thumbnail: /public/images/bridgetown.png
 tags: [ bridgetown, jamstack, info ]
