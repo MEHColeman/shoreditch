@@ -70,6 +70,38 @@ ol ol ol {
 }
 
 /*
+ * Global Settings
+ */
+.sidebar-logo-message {
+  color: rgba(255,255,255,0.5);
+}
+
+.sidebar-logo-message.ab {
+  text-shadow: gold 0px 0px 5px;
+}
+
+@keyframes pulsar {
+  0% {
+    color: rgba(255,255,255,0.5);
+    text-shadow: gold 0px 0px 5px;
+  }
+ 10% {
+    color: rgba(255,255,255,0.9);
+    text-shadow: rgb(255, 232, 107) 0px 0px 10px, rgb(255, 232, 107) 0px 0px 10px, rgb(255, 232, 107) 0px 0px 10px;
+  }
+  20% {
+    color: rgba(255,255,255,0.5);
+    text-shadow: gold 0px 0px 5px;
+  }
+}
+.sidebar-logo-message.ab.animate {
+  animation-name: pulsar;
+  animation-duration: 7s;
+  animation-delay: 5s;
+  animation-iteration-count: 3;
+}
+
+/*
  * Index Pages
  */
 .post-detail {
