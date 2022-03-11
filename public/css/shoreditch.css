@@ -72,6 +72,25 @@ ol ol ol {
 /*
  * Global Settings
  */
+
+.sidebar-logo {
+  text-align: center;
+  display: block;
+}
+
+.sidebar-logo .logo {
+  width: 3em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar-logo .logo img {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .sidebar-logo-message {
   color: rgba(255,255,255,0.5);
 }
