@@ -79,7 +79,8 @@ ol ol ol {
 }
 
 .sidebar-logo .logo {
-  width: 3em;
+  width: 6em;
+  height: 6em;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -88,11 +89,19 @@ ol ol ol {
 .sidebar-logo .logo img {
   display: block;
   width: 100%;
+  height: 100%;
+  border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
 }
+
 .sidebar-logo-message {
   color: rgba(255,255,255,0.5);
+  position: relative;
+  top: -3em;
+}
+
+.sidebar-logo-message svg{
 }
 
 .sidebar-logo-message.ab {
