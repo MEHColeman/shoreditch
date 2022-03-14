@@ -98,7 +98,19 @@ ol ol ol {
 .sidebar-logo-message {
   color: rgba(255,255,255,0.5);
   position: relative;
-  top: -3em;
+  top: -7em;
+}
+
+@media (min-width: 38em) {
+  .sidebar-logo-message {
+   top: -6em;
+  }
+}
+
+@media (min-width: 48em) {
+  .sidebar-logo-message {
+   top: -3em;
+  }
 }
 
 .sidebar-logo-message svg{
@@ -122,6 +134,7 @@ ol ol ol {
     text-shadow: gold 0px 0px 5px;
   }
 }
+
 .sidebar-logo-message.ab.animate {
   animation-name: pulsar;
   animation-duration: 7s;
