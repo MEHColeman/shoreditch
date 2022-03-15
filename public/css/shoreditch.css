@@ -98,19 +98,10 @@ ol ol ol {
 .sidebar-logo-message {
   color: rgba(255,255,255,0.5);
   position: relative;
-  top: -7em;
-}
-
-@media (min-width: 38em) {
-  .sidebar-logo-message {
-   top: -6em;
-  }
-}
-
-@media (min-width: 48em) {
-  .sidebar-logo-message {
-   top: -3em;
-  }
+  top: -2.5em;
+  width: 10em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sidebar-logo-message svg{
