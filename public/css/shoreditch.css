@@ -98,16 +98,15 @@ ol ol ol {
 .sidebar-logo-message {
   color: rgba(255,255,255,0.5);
   position: relative;
-  top: -2.5em;
-  width: 10em;
+  top: -3.5em;
+  width: 9em;
   margin-left: auto;
   margin-right: auto;
 }
 
-.sidebar-logo-message svg{
 }
 
-.sidebar-logo-message.ab {
+.sidebar-logo-message{
   text-shadow: gold 0px 0px 5px;
 }
 
@@ -126,7 +125,7 @@ ol ol ol {
   }
 }
 
-.sidebar-logo-message.ab.animate {
+.sidebar-logo-message.animate {
   animation-name: pulsar;
   animation-duration: 7s;
   animation-delay: 5s;
