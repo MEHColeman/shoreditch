@@ -17,6 +17,11 @@ author:
   name:           'Mark Coleman'
   url:            'https://mehcoleman.com'
 
+configs:
+  flashy_logo:    TRUE
+  round_logo:     TRUE
+  logo_legend:    'Shoreditch: More Light, More Power'
+
 lsi:              TRUE
 strict_front_matter: TRUE
 

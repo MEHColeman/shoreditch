@@ -1,4 +1,24 @@
 <div class="sidebar">
+  <div class="container sidebar-logo">
+    <div class="logo {% if site.configs.round_logo %} round{% endif %}">
+      <img src="/public/images/shoreditch/logo.png">
+      </div>
+    <div class="sidebar-logo-message {% if site.configs.flashy_logo %} animate{% endif %} {% if site.configs.round_logo %} round{% endif %}"">
+      {% if site.configs.round_logo %}
+      <svg viewBox="0 0 200 140">
+        <defs>
+					<path id="curve" d="m 15 8 a 92 92 0 1 0 170 0" />
+				</defs>
+			<text width="160" fill="rgba(255,255,255,0.5)" stroke="rgba(255,255,255,0.5)" text-anchor="middle">
+        <textPath startOffset="50%" alignment-baseline="top" xlink:href="#curve">
+      {% endif %}
+          {{ site.configs.logo_legend }}
+      {% if site.configs.round_logo %}
+			</textPath> </text> </svg>
+      {% endif %}
+
+    </div>
+  </div>
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <h1>
