@@ -116,21 +116,22 @@ ol ol ol {
 }
 
 .sidebar-logo-message{
-  text-shadow: gold 0px 0px 5px;
+  text-shadow: gold 0px 0px 3px;
 }
 
 @keyframes pulsar {
   0% {
     color: rgba(255,255,255,0.5);
-    text-shadow: gold 0px 0px 5px;
+    text-shadow: gold 0px 0px 3px;
   }
  10% {
-    color: rgba(255,255,255,0.9);
-    text-shadow: rgb(255, 232, 107) 0px 0px 10px, rgb(255, 232, 107) 0px 0px 10px, rgb(255, 232, 107) 0px 0px 10px;
+    color: rgba(255,255,255,0.8);
+    text-shadow:
+    rgb(255, 232, 107) 0px 0px 15px;
   }
   20% {
     color: rgba(255,255,255,0.5);
-    text-shadow: gold 0px 0px 5px;
+    text-shadow: gold 0px 0px 3px;
   }
 }
 
