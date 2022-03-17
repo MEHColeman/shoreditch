@@ -18,9 +18,9 @@ author:
   url:            'https://mehcoleman.com'
 
 configs:
-  flashy_logo:    TRUE
+  flashy_logo:    FALSE
   round_logo:     TRUE
-  logo_legend:    'Shoreditch: More Light, More Power'
+  logo_legend:    'Shoreditch: Something for Everyone'
 
 lsi:              TRUE
 strict_front_matter: TRUE

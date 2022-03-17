@@ -98,7 +98,7 @@ ol ol ol {
 }
 
 .sidebar-logo-message {
-  color: rgba(255,255,255,0.8);
+  color: white;
   position: relative;
   width: 9em;
   margin-left: auto;
@@ -115,23 +115,39 @@ ol ol ol {
   border-color:white;
 }
 
-.sidebar-logo-message{
-  text-shadow: gold 0px 0px 3px;
+.sidebar-logo-messager{
+  text-shadow:
+  red 0px 0px 5px,
+  red 0px 0px 10px;
+}
+
+.sidebar-logo-message svg {
+  filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red);
+}
+
+.sidebar-logo-message svg text{
+  fill: white;
+  stroke: white;
+  width: 160px;
 }
 
 @keyframes pulsar {
   0% {
-    color: rgba(255,255,255,0.5);
-    text-shadow: gold 0px 0px 3px;
+  text-shadow:
+    red 0px 0px 5px,
+    red 0px 0px 10px;
   }
  10% {
-    color: rgba(255,255,255,0.8);
     text-shadow:
-    rgb(255, 232, 107) 0px 0px 15px;
+    red 0px 0px 5px,
+    red 0px 0px 10px,
+    red 0px 0px 15px,
+    red 0px 0px 20px;
   }
   20% {
-    color: rgba(255,255,255,0.5);
-    text-shadow: gold 0px 0px 3px;
+  text-shadow:
+    red 0px 0px 5px,
+    red 0px 0px 10px;
   }
 }
 
