@@ -18,7 +18,7 @@ author:
   url:            'https://mehcoleman.com'
 
 configs:
-  flashy_logo:    FALSE
+  flashy_logo:    TRUE
   round_logo:     TRUE
   logo_legend:    'Shoreditch: Something for Everyone'
 

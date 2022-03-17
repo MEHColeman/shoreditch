@@ -116,16 +116,14 @@ ol ol ol {
 }
 
 .sidebar-logo-messager{
-  text-shadow:
-  red 0px 0px 5px,
-  red 0px 0px 10px;
+  text-shadow: red 0px 0px 5px, red 0px 0px 10px;
 }
 
 .sidebar-logo-message svg {
-  filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red);
+  filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent);
 }
 
-.sidebar-logo-message svg text{
+.sidebar-logo-message svg text {
   fill: white;
   stroke: white;
   width: 160px;
@@ -151,8 +149,26 @@ ol ol ol {
   }
 }
 
-.sidebar-logo-message.animate {
+@keyframes pulsar-svg {
+  0% {
+  filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent);
+  }
+ 10% {
+  filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px red);
+  }
+  20% {
+  filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent);
+  }
+}
+
+.sidebar-logo-message.ainimate {
   animation-name: pulsar;
+  animation-duration: 7s;
+  animation-delay: 5s;
+  animation-iteration-count: 3;
+}
+.sidebar-logo-message.animate svg {
+  animation-name: pulsar-svg;
   animation-duration: 7s;
   animation-delay: 5s;
   animation-iteration-count: 3;
