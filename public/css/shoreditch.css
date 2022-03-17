@@ -115,8 +115,10 @@ ol ol ol {
   border-color:white;
 }
 
-.sidebar-logo-messager{
+.sidebar-logo-message.square {
   text-shadow: red 0px 0px 5px, red 0px 0px 10px;
+  margin-top: 0.5em;
+  width: 11em;
 }
 
 .sidebar-logo-message svg {
@@ -132,8 +134,7 @@ ol ol ol {
 @keyframes pulsar {
   0% {
   text-shadow:
-    red 0px 0px 5px,
-    red 0px 0px 10px;
+    red 0px 0px 5px, red 0px 0px 10px;
   }
  10% {
     text-shadow:
@@ -144,8 +145,7 @@ ol ol ol {
   }
   20% {
   text-shadow:
-    red 0px 0px 5px,
-    red 0px 0px 10px;
+    red 0px 0px 5px, red 0px 0px 10px;
   }
 }
 
@@ -161,7 +161,7 @@ ol ol ol {
   }
 }
 
-.sidebar-logo-message.ainimate {
+.sidebar-logo-message.animate.square{
   animation-name: pulsar;
   animation-duration: 7s;
   animation-delay: 5s;

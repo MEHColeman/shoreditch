@@ -1,23 +1,33 @@
 <div class="sidebar">
   <div class="container sidebar-logo">
-    <div class="logo {% if site.configs.round_logo %} round{% endif %}">
+
+    {% if site.configs.round_logo %}
+    <div class="logo round">
       <img src="/public/images/shoreditch/logo.png">
-      </div>
-    <div class="sidebar-logo-message {% if site.configs.flashy_logo %} animate{% endif %} {% if site.configs.round_logo %} round{% endif %}"">
-      {% if site.configs.round_logo %}
+    </div>
+    <div class="sidebar-logo-message round {% if site.configs.flashy_logo %} animate{% endif %}">
       <svg viewBox="0 0 200 140">
         <defs>
 					<path id="curve" d="m 15 8 a 92 92 0 1 0 170 0" />
 				</defs>
-			<text text-anchor="middle">
-        <textPath startOffset="50%" alignment-baseline="top" xlink:href="#curve">
-      {% endif %}
-          {{ site.configs.logo_legend }}
-      {% if site.configs.round_logo %}
-			</textPath> </text> </svg>
-      {% endif %}
-
+        <text text-anchor="middle">
+          <textPath startOffset="50%" alignment-baseline="top" xlink:href="#curve">
+            {{ site.configs.logo_legend }}
+          </textPath>
+        </text>
+      </svg>
     </div>
+
+    {% else %}
+
+    <div class="logo square">
+      <img src="/public/images/shoreditch/logo.png">
+    </div>
+    <div class="sidebar-logo-message square {% if site.configs.flashy_logo %} animate{% endif %}">
+          {{ site.configs.logo_legend }}
+    </div>
+    {% endif %}
+
   </div>
 
   <div class="container sidebar-sticky">
