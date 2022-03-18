@@ -21,6 +21,7 @@ configs:
   flashy_logo:    TRUE
   round_logo:     TRUE
   logo_legend:    'Shoreditch: Something for Everyone'
+  logo_location:  '/public/images/shoreditch/logo.png'
 
 lsi:              TRUE
 strict_front_matter: TRUE
