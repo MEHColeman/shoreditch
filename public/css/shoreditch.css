@@ -78,6 +78,10 @@ ol ol ol {
   display: block;
 }
 
+.sidebar-logo-area a:hover {
+  text-decoration: none;
+}
+
 .logo-space {
   width: 6em;
   height: 6em;

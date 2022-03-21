@@ -22,6 +22,7 @@ configs:
   round_logo:     TRUE
   logo_legend:    'Shoreditch: Something for Everyone'
   logo_location:  '/public/images/shoreditch/logo.png'
+  logo_link:      'https://github.com/MEHColeman/shoreditch'
 
 lsi:              TRUE
 strict_front_matter: TRUE
