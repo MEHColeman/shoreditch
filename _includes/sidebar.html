@@ -34,37 +34,14 @@
   </div>
 
   <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <h1>
-        <a href="{{ site.baseurl }}">
-          {{ site.title }}
-        </a>
-      </h1>
-      <p class="lead">{{ site.description }}</p>
-    </div>
+    {% if page.include_details %}
+      {% include details.html %}
+    {% endif %}
 
-    <nav class="sidebar-nav">
-      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+    {% if page.include_about %}
+      {% include about.html %}
+    {% endif %}
 
-      {% comment %}
-        The code below dynamically generates a sidebar nav of pages with
-        `layout: page` in the front-matter. See readme for usage.
-      {% endcomment %}
-
-      {% for page in site.pages %}
-        {% unless page.title == null %}
-          {% unless page.exclude %}
-            {% if page.layout == "page" %}
-              <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ page.url }}">{{ page.title }}</a>
-            {% endif %}
-          {% endunless %}
-        {% endunless %}
-      {% endfor %}
-
-      <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
-      <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
-    </nav>
 
     <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
   </div>

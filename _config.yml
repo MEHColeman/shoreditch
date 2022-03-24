@@ -38,6 +38,14 @@ defaults:
       layout: post
       excerpt_separator: <!--more-->
       thumbnail: /public/images/shoreditch/notes.svg
+      include_about: TRUE
+      include_details: FALSE
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      include_about: TRUE
 
 # Custom vars
 version:          1.0.0

@@ -1,0 +1,26 @@
+<div class="personal-details">
+  {% if site.author.github %}
+    <span class="github label">github:</span><a href="https://github.com/{{site.author.github }}">{{ site.author.github }}</a>
+  {% endif %}
+  {% if site.author.linkedin %}
+    <span class="linkedin label">linkedin:</span><a href="https://linkedin.com/{{site.author.linkedin }}">{{ site.author.linkedin }}</a>
+  {% endif %}
+  {% if site.author.instagram %}
+    <span class="instagram label">instagram:</span><a href="https://instagram.com/{{site.author.instagram }}">{{ site.author.instagram }}</a>
+  {% endif %}
+  {% if site.author.reddit %}
+    <span class="reddit label">reddit:</span><a href="https://reddit.com/{{site.author.reddit }}">{{ site.author.reddit }}</a>
+  {% endif %}
+  {% if site.author.phone %}
+    <span class="phone label">phone:</span>{{ site.author.phone }}</a>
+  {% endif %}
+  {% if site.author.twitter %}
+    <span class="twitter label">twitter:</span><a href="https://twitter.com/{{site.author.twitter }}">@{{ site.author.twitter }}</a>
+  {% endif %}
+  {% if site.author.tiktok %}
+    <span class="tiktok label">tiktok:</span><a href="https://tiktok.com/{{site.author.tiktok }}">@{{ site.author.tiktok }}</a>
+  {% endif %}
+  {% if site.author.email_1 %}
+    <span class="email label">email:</span><a href="mailto:{{site.author.email_1 }}">@{{ site.author.email_1 }}</a>
+  {% endif %}
+</div>
