@@ -16,6 +16,23 @@ baseurl:          /
 author:
   name:           'Mark Coleman'
   url:            'https://mehcoleman.com'
+  github:         MEHColeman
+  twitter:        MEHColeman
+  linkedin:       MEHColeman
+  instagram:      MEHColeman
+  reddit:         MEHColeman
+  youtube:        MEHColeman
+  tiktok:         MEHColeman
+  lastfm:
+  dribble:
+  pinterest:
+  phone:          '555-0123'
+  file_url:       'https://library.oapen.org/bitstream/id/370818a1-e744-4785-8ef4-6ece5ef7474c/UWP-035-REVISED.pdf'
+  file_link_text: 'Brochure'
+  # please split email betweed two variables. This is used as a form of
+  # basic spambot protection.
+  email_1:        'shoreditch@protec'
+  email_2:        'ted.mehcoleman.com'
 
 configs:
   flashy_logo:    TRUE
