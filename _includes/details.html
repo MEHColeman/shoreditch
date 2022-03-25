@@ -17,6 +17,22 @@
       </a>
     </li>
     {% endif %}
+    {% if site.author.deviantart %}
+    <li class="deviantart">
+      <a href="https://deviantart.com/{{ site.author.deviantart }}">
+        <i class="fa-brands fa-deviantart"></i>
+        {{ site.author.deviantart }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.artstation %}
+    <li class="artstation">
+      <a href="https://artstation.com/{{ site.author.artstation }}">
+        <i class="fa-brands fa-artstation"></i>
+        {{ site.author.artstation }}
+      </a>
+    </li>
+    {% endif %}
     {% if site.author.instagram %}
     <li class="instagram">
       <a href="https://instagram.com/{{ site.author.instagram }}">
@@ -46,6 +62,14 @@
       <a href="https://tiktok.com/{{ site.author.tiktok }}">
         <i class="fa-brands fa-tiktok"></i>
         {{ site.author.tiktok }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.lastfm %}
+    <li class="lastfm">
+      <a href="https://lastfm.com/{{ site.author.lastfm}}">
+        <i class="fa-brands fa-lastfm"></i>
+        {{ site.author.lastfm}}
       </a>
     </li>
     {% endif %}
