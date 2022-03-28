@@ -1,0 +1,33 @@
+<div class="container sidebar-logo-area">
+  <a href="{{ site.configs.logo_link }}">
+
+    {% if site.configs.round_logo %}
+
+    <div class="logo-space round">
+      <img src="{{ site.configs.logo_location }}" alt="Site logo">
+    </div>
+    <div class="sidebar-logo-message round {% if site.configs.flashy_logo %} animate{% endif %}">
+      <svg viewBox="0 0 200 140">
+        <defs>
+          <path id="curve" d="m 15 8 a 92 92 0 1 0 170 0" />
+        </defs>
+        <text text-anchor="middle">
+          <textPath startOffset="50%" alignment-baseline="top" xlink:href="#curve">
+            {{ site.configs.logo_legend }}
+          </textPath>
+        </text>
+      </svg>
+    </div>
+
+    {% else %}
+
+    <div class="logo-space square">
+      <img src="/public/images/shoreditch/logo.png">
+    </div>
+    <div class="sidebar-logo-message square {% if site.configs.flashy_logo %} animate{% endif %}">
+          {{ site.configs.logo_legend }}
+    </div>
+    {% endif %}
+
+  </a>
+</div>
