@@ -58,167 +58,164 @@ ol ol ol
 
 /*
  * Global Settings
+ * - General Styling
+ * - Sidebar:
+ *   - logo area
+ *   - details
+ *   - about
+ *   - final
 
-.sidebar-area
+.content
+  padding-top: 4rem
+  padding-bottom: 2rem
 
 .sidebar
-  display: flex
-  flex-flow: column nowrap
-  justify-content: space-between safe
-  align-items: stretch
+  background-color: $accent-color
 
-.sidebar-area .final
-  position: absolute
-  bottom: 0
-  right: 1rem
-  left: 1rem
-  flex-grow: 1
-  width: 19rem
-
-.sidebar-sticky
-  flex-grow: 4
-
-.sidebar-details
-  align-content: flex-start
-  flex-grow: 5
-  margin-right: 0
-  margin-left: 0
-
-.sidebar-logo-area
-  text-align: center
-  display: block
-  flex-grow: 1
-
-  a:hover
-    text-decoration: none
-
-.logo-space
-  width: 6em
-  height: 6em
-  display: block
-  margin-left: auto
-  margin-right: auto
-
-  &.round img
-    border-radius: 50%
-    object-fit: cover
-    width: 6em
-    height: 6em
-
-.sidebar-logo-message
-  color: white
-  position: relative
-  width: 9em
-  margin-left: auto
-  margin-right: auto
-
-  &.round
-    top: -5em
+.content a, .related-posts li a:hover
+  color: #accent-color
 
 .debug
   border-width: 1px
   border-style: solid
   border-color: white
 
-.sidebar-logo-message
-  &.square
-    text-shadow: red 0px 0px 5px, red 0px 0px 10px
-    margin-top: 0.5em
-    width: 11em
+.sidebar-area
+  .final
+    position: absolute
+    bottom: 0
+    right: 1rem
+    left: 1rem
+    flex-grow: 1
+    width: 19rem
 
-  svg
-    filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent)
+.sidebar
+  padding: 2rem 1rem
+  color: rgba(255, 255, 255, 0.5)
 
-    text
-      fill: white
-      stroke: white
-      width: 160px
+  display: flex
+  flex-flow: column nowrap
+  justify-content: space-between safe
+  align-items: stretch
+  a
+    color: #fff
 
-  &.animate
-    &.square
-      animation-name: pulsar
-      animation-duration: 7s
-      animation-delay: 5s
-      animation-iteration-count: 3
+  .logo-area
+    text-align: center
+    display: block
+    flex-grow: 1
 
-    svg
-      animation-name: pulsar-svg
-      animation-duration: 7s
-      animation-delay: 5s
-      animation-iteration-count: 3
+    a:hover
+      text-decoration: none
+
+    .logo-space
+      width: 6em
+      height: 6em
+      display: block
+      margin-left: auto
+      margin-right: auto
+
+      &.round img
+        border-radius: 50%
+        object-fit: cover
+        width: 6em
+        height: 6em
+
+    .logo-message
+      color: white
+      position: relative
+      width: 9em
+      margin-left: auto
+      margin-right: auto
+
+      &.round
+        top: -5em
+      &.square
+        text-shadow: red 0px 0px 5px, red 0px 0px 10px
+        margin-top: 0.5em
+        width: 11em
+
+      svg
+        filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent)
+        text
+          fill: white
+          stroke: white
+          width: 160px
+
+      &.animate
+        &.square
+          animation-name: pulsar
+          animation-duration: 7s
+          animation-delay: 5s
+          animation-iteration-count: 3
+        svg
+          animation-name: pulsar-svg
+          animation-duration: 7s
+          animation-delay: 5s
+          animation-iteration-count: 3
+
+  .details
+    align-content: flex-start
+    flex-grow: 5
+    margin-right: 0
+    margin-left: 0
+
+    ul
+      padding-left: 0
+      list-style: none
+      font-size: 0.8em
+      color: #fff
+      a
+        text-decoration: none
+      li
+        margin-bottom: 0.5em
+        i
+          margin-right: 0.5em
+          width: 1em
+        &:hover
+          transition-duration: 0.3s
+
+        &.github:hover
+          filter: drop-shadow(0 0 1px #6e5494) drop-shadow(0 0 5px #6e5494)
+        &.linkedin:hover
+          filter: drop-shadow(0 0 1px #0077b5) drop-shadow(0 0 5px #0077b5)
+        &.deviantart:hover
+          filter: drop-shadow(0 0 1px #05cc47) drop-shadow(0 0 5px #05cc47)
+        &.artstation:hover
+          filter: drop-shadow(0 0 1px rgb(19, 175, 240)) drop-shadow(0 0 5px rgb(19, 175, 240))
+        &.instagram:hover
+          filter: drop-shadow(0 0 1px #405de6) drop-shadow(0 0 5px #405de6)
+        &.reddit:hover
+          filter: drop-shadow(0 0 1px #ff4500) drop-shadow(0 0 5px #ff4500)
+        &.youtube:hover
+          filter: drop-shadow(0 0 1px #ff0000) drop-shadow(0 0 5px #ff0000)
+        &.tiktok:hover
+          filter: drop-shadow(0 0 1px #ff0050) drop-shadow(0 0 5px #ff0050)
+        &.lastfm:hover
+          filter: drop-shadow(0 0 1px #d51007) drop-shadow(0 0 5px #d51007)
+        &.twitter:hover
+          filter: drop-shadow(0 0 1px #00ACEE) drop-shadow(0 0 5px #00ACEE)
+        &.phone:hover, &.email:hover, &.file:hover
+          filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.8))
+  .sticky
+    flex-grow: 4
 
 @keyframes pulsar
   0%
     text-shadow: red 0px 0px 5px, red 0px 0px 10px
-
   10%
     text-shadow: red 0px 0px 5px, red 0px 0px 10px, red 0px 0px 15px, red 0px 0px 20px
-
   20%
     text-shadow: red 0px 0px 5px, red 0px 0px 10px
 
 @keyframes pulsar-svg
   0%
     filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent)
-
   10%
     filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px red)
-
   20%
     filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent)
 
-.sidebar-details .details-list
-  padding-left: 0
-  list-style: none
-  font-size: 0.8em
-  color: #fff
-
-  li
-    margin-bottom: 0.5em
-
-  a
-    text-decoration: none
-
-  li
-    i
-      margin-right: 0.5em
-      width: 1em
-
-    &:hover
-      transition-duration: 0.3s
-
-    &.github:hover
-      filter: drop-shadow(0 0 1px #6e5494) drop-shadow(0 0 5px #6e5494)
-
-    &.linkedin:hover
-      filter: drop-shadow(0 0 1px #0077b5) drop-shadow(0 0 5px #0077b5)
-
-    &.deviantart:hover
-      filter: drop-shadow(0 0 1px #05cc47) drop-shadow(0 0 5px #05cc47)
-
-    &.artstation:hover
-      filter: drop-shadow(0 0 1px rgb(19, 175, 240)) drop-shadow(0 0 5px rgb(19, 175, 240))
-
-    &.instagram:hover
-      filter: drop-shadow(0 0 1px #405de6) drop-shadow(0 0 5px #405de6)
-
-    &.reddit:hover
-      filter: drop-shadow(0 0 1px #ff4500) drop-shadow(0 0 5px #ff4500)
-
-    &.youtube:hover
-      filter: drop-shadow(0 0 1px #ff0000) drop-shadow(0 0 5px #ff0000)
-
-    &.tiktok:hover
-      filter: drop-shadow(0 0 1px #ff0050) drop-shadow(0 0 5px #ff0050)
-
-    &.lastfm:hover
-      filter: drop-shadow(0 0 1px #d51007) drop-shadow(0 0 5px #d51007)
-
-    &.twitter:hover
-      filter: drop-shadow(0 0 1px #00ACEE) drop-shadow(0 0 5px #00ACEE)
-
-    &.phone:hover, &.email:hover, &.file:hover
-      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.8))
 
 /*
  * Index Pages
@@ -381,14 +378,21 @@ article.post > .post-thumbnail
 /*
  * Sidebar
 
-.sidebar-about h1
-  font-size: 2.5rem
+.sidebar
+  about h1
+    font-size: 2.5rem
 
 .sidebar .lead
   font-size: 1.1rem
 
-.sidebar-nav-item
-  line-height: 1.4rem
+.sidebar
+  nav
+    a.nav-item
+      line-height: 1.4rem
+      display: block
+
+      &.active
+        font-weight: bold
 
 @media (min-width: 48em)
   .sidebar

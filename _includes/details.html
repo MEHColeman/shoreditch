@@ -1,6 +1,5 @@
-<div class="container sidebar-details">
-  <div class="personal-details">
-    <ul class="details-list">
+<div class="container details">
+  <ul>
 
       {% if site.author.github %}
       <li class="github">
@@ -99,17 +98,16 @@
   </script>
   <noscript>My e-mail address has been obfuscated to avoid being scanned by spam-bots... Please enable JavaScript to view my e-mail address!</noscript>
 
-      </li>
-      {% endif %}
-      {% if site.author.file_url %}
-      <li class="file">
-        <a href="{{ site.author.file_url }}">
-          <i class="fa-solid fa-file-pdf"></i>
-          {{ site.author.file_link_text }}
-        </a>
-      </li>
-      {% endif %}
+    </li>
+    {% endif %}
+    {% if site.author.file_url %}
+    <li class="file">
+      <a href="{{ site.author.file_url }}">
+        <i class="fa-solid fa-file-pdf"></i>
+        {{ site.author.file_link_text }}
+      </a>
+    </li>
+    {% endif %}
 
-    </ul>
-  </div>
+  </ul>
 </div>

@@ -1,15 +1,16 @@
-<div class="sidebar">
-  {% if page.include_logo %}
-      {% include logo.html %}
-  {% endif %}
+<div class="sidebar-area">
+  <div class="sidebar">
+    {% if page.include_logo %}
+        {% include logo.html %}
+    {% endif %}
 
-  {% if page.include_details %}
-    {% include details.html %}
-  {% endif %}
+    {% if page.include_details %}
+      {% include details.html %}
+    {% endif %}
 
-  {% if page.include_about %}
-    {% include about.html %}
-  {% endif %}
-
+    {% if page.include_about %}
+      {% include about.html %}
+    {% endif %}
+  </div>
   <div class="container final"><p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p></div>
 </div>

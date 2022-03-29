@@ -28,9 +28,6 @@
 
 .sidebar
   text-align: center
-  padding: 2rem 1rem
-  color: rgba(255, 255, 255, 0.5)
-  background-color: #202020
 
   a
     color: #fff
@@ -47,25 +44,29 @@
 
 /* About section
 
-.sidebar-about h1
-  color: #fff
-  margin-top: 0
+.sidebar
+  about h1
+    color: #fff
+    margin-top: 0
 
 /* Sidebar nav
 
-.sidebar-nav
-  margin-bottom: 1rem
+.sidebar
+  nav
+    margin-bottom: 1rem
 
-.sidebar-nav-item
-  display: block
-  line-height: 1.75
+    nav-item
+      display: block
+      line-height: 1.75
 
-a.sidebar-nav-item
-  &:hover, &:focus
-    text-decoration: underline
+a.sidebar
+  nav-item
+    &:hover, &:focus
+      text-decoration: underline
 
-.sidebar-nav-item.active
-  font-weight: bold
+.sidebar
+  nav-item.active
+    font-weight: bold
 
 /* Sticky sidebar
  *
@@ -73,20 +74,17 @@ a.sidebar-nav-item
  * contents to the bottom of the sidebar in tablets and up.
 
 @media (min-width: 48em)
-  .sidebar-sticky
-    position: absolute
-    right: 1rem
-    bottom: 1rem
-    left: 1rem
+  .sidebar
+    sticky
+      position: absolute
+      right: 1rem
+      bottom: 1rem
+      left: 1rem
 
 /* Container
  *
  * Align the contents of the site above the proper threshold with some margin-fu
  * with a 25%-wide `.sidebar`.
-
-.content
-  padding-top: 4rem
-  padding-bottom: 4rem
 
 /*
  * Reverse layout
