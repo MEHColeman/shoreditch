@@ -69,9 +69,6 @@ ol ol ol
   padding-top: 4rem
   padding-bottom: 2rem
 
-.sidebar
-  background-color: $accent-color
-
 .content a, .related-posts li a:hover
   color: #accent-color
 
@@ -80,17 +77,9 @@ ol ol ol
   border-style: solid
   border-color: white
 
-.sidebar-area
-  .final
-    position: absolute
-    bottom: 0
-    right: 1rem
-    left: 1rem
-    flex-grow: 1
-    width: 19rem
-
 .sidebar
-  padding: 2rem 1rem
+  padding: 1rem 1rem 0
+  background-color: $accent-color
   color: rgba(255, 255, 255, 0.5)
 
   display: flex
@@ -199,6 +188,12 @@ ol ol ol
           filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.8))
   .sticky
     flex-grow: 4
+
+  .final
+    right: auto
+    left: auto
+    height: 2rem
+    flex-grow: 0
 
 @keyframes pulsar
   0%
