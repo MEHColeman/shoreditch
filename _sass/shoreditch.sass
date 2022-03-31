@@ -70,7 +70,7 @@ ol ol ol
   padding-bottom: 2rem
 
 .content a, .related-posts li a:hover
-  color: #accent-color
+  color: $accent-color
 
 .debug
   border-width: 1px
@@ -81,10 +81,11 @@ ol ol ol
   padding: 1rem 1rem 0
   background-color: $accent-color
   color: rgba(255, 255, 255, 0.5)
+  min-height: 100vh
 
   display: flex
   flex-flow: column nowrap
-  justify-content: space-between safe
+  justify-content: space-between
   align-items: stretch
   a
     color: #fff
@@ -92,7 +93,8 @@ ol ol ol
   .logo-area
     text-align: center
     display: block
-    flex-grow: 1
+    flex: 0 9rem
+    height: 9rem
 
     a:hover
       text-decoration: none
@@ -145,9 +147,10 @@ ol ol ol
 
   .details
     align-content: flex-start
-    flex-grow: 5
+    flex-grow: 0
     margin-right: 0
     margin-left: 0
+    margin-top: auto
 
     ul
       padding-left: 0
@@ -187,7 +190,8 @@ ol ol ol
         &.phone:hover, &.email:hover, &.file:hover
           filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 5px rgba(255, 255, 255, 0.8))
   .sticky
-    flex-grow: 4
+    flex-grow: 0
+    margin-top: auto
 
   .final
     right: auto

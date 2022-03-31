@@ -1,102 +1,102 @@
-<div class="container details">
+<div class="details">
   <ul>
 
-      {% if site.author.github %}
-      <li class="github">
-        <a href="https://github.com/{{ site.author.github }}">
-          <i class="fa-brands fa-github"></i>
-          {{ site.author.github }}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.linkedin %}
-      <li class="linkedin">
-        <a href="https://linkedin.com/{{ site.author.linkedin }}">
-          <i class="fa-brands fa-linkedin"></i>
-          {{ site.author.linkedin }}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.deviantart %}
-      <li class="deviantart">
-        <a href="https://deviantart.com/{{ site.author.deviantart }}">
-          <i class="fa-brands fa-deviantart"></i>
-          {{ site.author.deviantart }}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.artstation %}
-      <li class="artstation">
-        <a href="https://artstation.com/{{ site.author.artstation }}">
-          <i class="fa-brands fa-artstation"></i>
-          {{ site.author.artstation }}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.instagram %}
-      <li class="instagram">
-        <a href="https://instagram.com/{{ site.author.instagram }}">
-          <i class="fa-brands fa-instagram"></i>
-          {{ site.author.instagram }}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.reddit %}
-      <li class="reddit">
-        <a href="https://reddit.com/{{ site.author.reddit }}">
-          <i class="fa-brands fa-reddit"></i>
-          {{ site.author.reddit }}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.youtube_url %}
-      <li class="youtube">
-        <a href="{{ site.author.youtube_url }}">
-          <i class="fa-brands fa-youtube"></i>
-          YouTube
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.tiktok %}
-      <li class="tiktok">
-        <a href="https://tiktok.com/{{ site.author.tiktok }}">
-          <i class="fa-brands fa-tiktok"></i>
-          {{ site.author.tiktok }}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.lastfm %}
-      <li class="lastfm">
-        <a href="https://lastfm.com/{{ site.author.lastfm}}">
-          <i class="fa-brands fa-lastfm"></i>
-          {{ site.author.lastfm}}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.twitter %}
-      <li class="twitter">
-        <a href="https://twitter.com/{{ site.author.twitter }}">
-          <i class="fa-brands fa-twitter"></i>
-          @{{ site.author.twitter }}
-        </a>
-      </li>
-      {% endif %}
-      {% if site.author.phone %}
-      <li class="phone">
-        <i class="fa-solid fa-phone"></i>
-        {{ site.author.phone }}
-      </li>
-      {% endif %}
-      {% if site.author.email_1 %}
-      <li class="email">
-        <script type="text/javascript">
-  <!--
-          email_addr=("{{site.author.email_1}}" + "{{site.author.email_2}}")
-          document.write('<A href="mailto:' + email_addr + '">')
-          document.write('<i class="fa-solid fa-envelope"></i> Email Me<\/a>')
-  //-->
-  </script>
-  <noscript>My e-mail address has been obfuscated to avoid being scanned by spam-bots... Please enable JavaScript to view my e-mail address!</noscript>
+    {% if site.author.github %}
+    <li class="github">
+      <a href="https://github.com/{{ site.author.github }}">
+        <i class="fa-brands fa-github"></i>
+        {{ site.author.github }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.linkedin %}
+    <li class="linkedin">
+      <a href="https://linkedin.com/{{ site.author.linkedin }}">
+        <i class="fa-brands fa-linkedin"></i>
+        {{ site.author.linkedin }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.deviantart %}
+    <li class="deviantart">
+      <a href="https://deviantart.com/{{ site.author.deviantart }}">
+        <i class="fa-brands fa-deviantart"></i>
+        {{ site.author.deviantart }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.artstation %}
+    <li class="artstation">
+      <a href="https://artstation.com/{{ site.author.artstation }}">
+        <i class="fa-brands fa-artstation"></i>
+        {{ site.author.artstation }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.instagram %}
+    <li class="instagram">
+      <a href="https://instagram.com/{{ site.author.instagram }}">
+        <i class="fa-brands fa-instagram"></i>
+        {{ site.author.instagram }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.reddit %}
+    <li class="reddit">
+      <a href="https://reddit.com/{{ site.author.reddit }}">
+        <i class="fa-brands fa-reddit"></i>
+        {{ site.author.reddit }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.youtube_url %}
+    <li class="youtube">
+      <a href="{{ site.author.youtube_url }}">
+        <i class="fa-brands fa-youtube"></i>
+        YouTube
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.tiktok %}
+    <li class="tiktok">
+      <a href="https://tiktok.com/{{ site.author.tiktok }}">
+        <i class="fa-brands fa-tiktok"></i>
+        {{ site.author.tiktok }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.lastfm %}
+    <li class="lastfm">
+      <a href="https://lastfm.com/{{ site.author.lastfm}}">
+        <i class="fa-brands fa-lastfm"></i>
+        {{ site.author.lastfm}}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.twitter %}
+    <li class="twitter">
+      <a href="https://twitter.com/{{ site.author.twitter }}">
+        <i class="fa-brands fa-twitter"></i>
+        @{{ site.author.twitter }}
+      </a>
+    </li>
+    {% endif %}
+    {% if site.author.phone %}
+    <li class="phone">
+      <i class="fa-solid fa-phone"></i>
+      {{ site.author.phone }}
+    </li>
+    {% endif %}
+    {% if site.author.email_1 %}
+    <li class="email">
+      <script type="text/javascript">
+<!--
+        email_addr=("{{site.author.email_1}}" + "{{site.author.email_2}}")
+        document.write('<A href="mailto:' + email_addr + '">')
+        document.write('<i class="fa-solid fa-envelope"></i> Email Me<\/a>')
+//-->
+</script>
+<noscript>My e-mail address has been obfuscated to avoid being scanned by spam-bots... Please enable JavaScript to view my e-mail address!</noscript>
 
     </li>
     {% endif %}
