@@ -1,71 +1,14 @@
 <div class="sidebar">
-  <div class="container sidebar-logo-area">
-    <a href="{{ site.configs.logo_link }}">
+  {% if page.include_logo %}
+      {% include logo.html %}
+  {% endif %}
 
-      {% if site.configs.round_logo %}
+  {% if page.include_details %}
+    {% include details.html %}
+  {% endif %}
 
-      <div class="logo-space round">
-        <img src="{{ site.configs.logo_location }}" alt="Site logo">
-      </div>
-      <div class="sidebar-logo-message round {% if site.configs.flashy_logo %} animate{% endif %}">
-        <svg viewBox="0 0 200 140">
-          <defs>
-            <path id="curve" d="m 15 8 a 92 92 0 1 0 170 0" />
-          </defs>
-          <text text-anchor="middle">
-            <textPath startOffset="50%" alignment-baseline="top" xlink:href="#curve">
-              {{ site.configs.logo_legend }}
-            </textPath>
-          </text>
-        </svg>
-      </div>
-
-      {% else %}
-
-      <div class="logo-space square">
-        <img src="/public/images/shoreditch/logo.png">
-      </div>
-      <div class="sidebar-logo-message square {% if site.configs.flashy_logo %} animate{% endif %}">
-            {{ site.configs.logo_legend }}
-      </div>
-      {% endif %}
-
-    </a>
-  </div>
-
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <h1>
-        <a href="{{ site.baseurl }}">
-          {{ site.title }}
-        </a>
-      </h1>
-      <p class="lead">{{ site.description }}</p>
-    </div>
-
-    <nav class="sidebar-nav">
-      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
-
-      {% comment %}
-        The code below dynamically generates a sidebar nav of pages with
-        `layout: page` in the front-matter. See readme for usage.
-      {% endcomment %}
-
-      {% for page in site.pages %}
-        {% unless page.title == null %}
-          {% unless page.exclude %}
-            {% if page.layout == "page" %}
-              <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ page.url }}">{{ page.title }}</a>
-            {% endif %}
-          {% endunless %}
-        {% endunless %}
-      {% endfor %}
-
-      <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
-      <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
-    </nav>
-
-    <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
-  </div>
+  {% if page.include_about %}
+    {% include about.html %}
+  {% endif %}
+  <div class="final">&copy; {{ site.time | date: '%Y' }}. All rights reserved.</div>
 </div>
