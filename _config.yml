@@ -56,6 +56,7 @@ defaults:
       excerpt_separator: <!--more-->
       thumbnail: /public/images/shoreditch/notes.svg
       include_about: TRUE
+      include_logo:  TRUE
       include_details: FALSE
   -
     scope:
@@ -64,6 +65,7 @@ defaults:
     values:
       include_about: TRUE
       include_logo:  TRUE
+      include_details: FALSE
 
 # Custom vars
 version:          1.0.0
