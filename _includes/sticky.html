@@ -1,0 +1,30 @@
+<div class="about">
+  <h1>
+    <a href="{{ site.baseurl }}">
+      {{ site.title }}
+    </a>
+  </h1>
+  <p class="lead">{{ site.description }}</p>
+</div>
+
+<nav class="nav">
+  <a class="nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+
+  {% comment %}
+  The code below dynamically generates a sidebar nav of pages with
+  `layout: page` in the front-matter. See readme for usage.
+  {% endcomment %}
+
+  {% for page in site.pages %}
+    {% unless page.title == null %}
+      {% unless page.exclude %}
+        {% if page.layout == "page" %}
+          <a class="nav-item{% if page.url == node.url %} active{% endif %}" href="{{ page.url }}">{{ page.title }}</a>
+        {% endif %}
+      {% endunless %}
+    {% endunless %}
+  {% endfor %}
+
+  {% include additional_items.html %}
+  <span class="nav-item">Currently v{{ site.version }}</span>
+</nav>

@@ -3,12 +3,16 @@
       {% include logo.html %}
   {% endif %}
 
+  <div class="details">
   {% if page.include_details %}
     {% include details.html %}
   {% endif %}
+  </div>
 
-  {% if page.include_about %}
-    {% include about.html %}
+  <div class="sticky">
+  {% if page.include_sticky %}
+    {% include sticky.html %}
   {% endif %}
+  </div>
   <div class="final">&copy; {{ site.time | date: '%Y' }}. All rights reserved.</div>
 </div>

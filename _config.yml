@@ -30,16 +30,9 @@ author:
   file_url:       'https://library.oapen.org/bitstream/id/370818a1-e744-4785-8ef4-6ece5ef7474c/UWP-035-REVISED.pdf'
   file_link_text: 'Brochure'
   # please split email betweed two variables. This is used as a form of
-  # basic spambot protection.
+  # basic spambot webcrawler protection.
   email_1:        'shoreditch@protec'
   email_2:        'ted.mehcoleman.com'
-
-configs:
-  flashy_logo:    TRUE
-  round_logo:     TRUE
-  logo_legend:    'Shoreditch: Something for Everyone'
-  logo_location:  '/public/images/shoreditch/logo.png'
-  logo_link:      'https://github.com/MEHColeman/shoreditch'
 
 lsi:              TRUE
 strict_front_matter: TRUE
@@ -50,20 +43,31 @@ defaults:
   -
     scope:
       path: ""
+    values:
+      flashy_logo:    TRUE
+      round_logo:     TRUE
+      logo_legend:    'Shoreditch: Something for Everyone'
+      logo_location:  '/public/images/shoreditch/logo.png'
+      logo_link:      'https://github.com/MEHColeman/shoreditch'
+  -
+    scope:
+      path: ""
       type: "posts"
     values:
       layout: post
       excerpt_separator: <!--more-->
       thumbnail: /public/images/shoreditch/notes.svg
-      include_about: TRUE
+      include_sticky: TRUE
+      include_logo:  TRUE
       include_details: FALSE
   -
     scope:
       path: ""
       type: "pages"
     values:
-      include_about: TRUE
+      include_sticky: TRUE
       include_logo:  TRUE
+      include_details: FALSE
 
 # Custom vars
 version:          1.0.0
