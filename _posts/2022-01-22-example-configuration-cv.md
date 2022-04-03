@@ -7,13 +7,13 @@ thumbnail: /public/images/3_gears.png
 tags: [ info, config ]
 round_logo: TRUE
 logo_legend: ''
-logo_location: '/public/images/shoreditch/logo.png'
+logo_location: '/public/images/shoreditch/mark.jpg'
 include_sticky: FALSE
 include_logo: TRUE
 include_details: TRUE
 ---
 
-This is an example of a template configuration where the sodebar contains a
+This is an example of a template configuration where the sidebar contains a
 small logo, the details, but no blog navigation section.
 
 I find that the details section is too verbose to have on every page, and prefer
@@ -25,7 +25,8 @@ will say "FOR HIRE", otherwise it is turned off.
 For my CV page, I switch ON the details section, but switch OFF the navigation
 section. This is because I want the extra contact details to be displayed on my
 CV, but I want that page to stand alone, independent of the rest of the blog, so
-it is better without the blog navigation section.
+it is better without the blog navigation section. So, I end up with a sidebar
+looking like the one on this page.
 
 You can specify a different sidebar configuration per page by specifying
 your requirements in the page's front matter.
