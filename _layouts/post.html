@@ -6,8 +6,13 @@ layout: default
   <h1 class="post-title">{{ page.title }}</h1>
   <div class="post-dates">
     <span class="post-date">Posted: {{ page.date | date_to_string }}</span>
+    {% if page.last_updated %}
     <span class="post-date">Updated: {{ page.last_updated | date_to_string }}</span>
+    {% endif %}
+
+    {% if page.last_verified %}
     <span class="post-date">Verified: {{ page.last_verified | date_to_string }}</span>
+    {% endif %}
   </div>
   {{ content }}
 </div>
