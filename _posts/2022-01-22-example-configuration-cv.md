@@ -8,6 +8,7 @@ tags: [ info, config ]
 round_logo: TRUE
 logo_legend: ''
 logo_location: '/public/images/shoreditch/mark.jpg'
+logo_link: '/'
 include_sticky: FALSE
 include_logo: TRUE
 include_details: TRUE
