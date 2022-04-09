@@ -85,9 +85,37 @@ last_verified: 2022-04-02
 ~~~
 If the values are not supplied, the fields are not displayed.
 
+## Page Class
+
+You can provide a ```class``` front matter option to a page, and this value will
+be set as the page's ```body``` css class.
+
+This let's you customize css styles on a per-page basis.
+
+/cv.md
+{:.code-title}
+~~~ yaml
+---
+class: cv
+---
+~~~
+
+
+/public/css/custom.css
+{:.code-title}
+~~~ css
+.cv {
+  font-family: "Very Professional", Helvetica, sans-serif;
+  }
+~~~
+
+
 disqus
 google analytics
 
+&nbsp;
+
+&nbsp;
 
 The cover image on this page is (c) Caroline Bishop. via [wallpaper flare](https://www.wallpaperflare.com/adore-and-endure-street-art-captured-in-shoreditch-east-london-wallpaper-woypo)
 
