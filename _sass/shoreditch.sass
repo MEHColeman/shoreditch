@@ -7,6 +7,7 @@
  * Messages
  * Posts
  * Container
+ * CV
 
 /*
  * Global resets
@@ -431,3 +432,64 @@ article.post > .post-thumbnail
     width: auto
     max-width: 49rem
     margin-bottom: -1.5rem
+
+/*
+ * CV
+
+.cv
+  font-family: "Lato", Helvetica, Arial, sans-serif
+
+  h1, h2, h3, h4,h5,h6
+    font-family: "Lato", Helvetica, Arial, sans-serif
+
+  .content
+    padding-top: 0
+
+  .position, .tenure
+    text-transform: uppercase
+    display: inline
+    font-weight: bold
+    font-size: larger
+
+  .tenure
+    color: dimgrey
+    font-size: 0.8em
+    float: right
+
+  .tenure, p.tenure
+    margin: 0
+
+  dt, .position, #profile, #experience, #projects, #education
+    color: rgb(113, 0, 88)
+
+  #profile
+    text-transform: uppercase
+    &:before
+      font: var(--fa-font-solid)
+      content:("\f007")
+      padding-right: 0.5em
+      font-size: 0.9em
+
+  #experience
+    text-transform: uppercase
+    &:before
+      font: var(--fa-font-solid)
+      content:("\f64a")
+      padding-right: 0.5em
+      font-size: 0.9em
+
+  #projects
+    text-transform: uppercase
+    &:before
+      font: var(--fa-font-solid)
+      content:("\f492")
+      padding-right: 0.5em
+      font-size: 0.9em
+
+  #education
+    text-transform: uppercase
+    &:before
+      font: var(--fa-font-solid)
+      content:("\f19d")
+      padding-right: 0.5em
+      font-size: 0.9em
