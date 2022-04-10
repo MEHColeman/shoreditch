@@ -436,6 +436,14 @@ article.post > .post-thumbnail
 /*
  * CV
 
+@mixin cv-title($icon)
+  text-transform: uppercase
+  &:before
+    font: var(--fa-font-solid)
+    content:($icon)
+    padding-right: 0.5em
+    font-size: 0.9em
+
 .cv
   font-family: "Lato", Helvetica, Arial, sans-serif
 
@@ -463,33 +471,13 @@ article.post > .post-thumbnail
     color: rgb(113, 0, 88)
 
   #profile
-    text-transform: uppercase
-    &:before
-      font: var(--fa-font-solid)
-      content:("\f007")
-      padding-right: 0.5em
-      font-size: 0.9em
+    @include cv-title("\f007")
 
   #experience
-    text-transform: uppercase
-    &:before
-      font: var(--fa-font-solid)
-      content:("\f64a")
-      padding-right: 0.5em
-      font-size: 0.9em
+    @include cv-title("\f64a")
 
   #projects
-    text-transform: uppercase
-    &:before
-      font: var(--fa-font-solid)
-      content:("\f492")
-      padding-right: 0.5em
-      font-size: 0.9em
+    @include cv-title("\f492")
 
   #education
-    text-transform: uppercase
-    &:before
-      font: var(--fa-font-solid)
-      content:("\f19d")
-      padding-right: 0.5em
-      font-size: 0.9em
+    @include cv-title("\f19d")
