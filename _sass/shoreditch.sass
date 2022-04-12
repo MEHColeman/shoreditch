@@ -481,3 +481,10 @@ article.post > .post-thumbnail
 
   #education
     @include cv-title("\f19d")
+
+  > .content
+    a:not([href*='yourdomain.com']):not([href^='#']):not([href^='/']):after
+      font: var(--fa-font-solid)
+      content:(" \f08e")
+      padding-right: 0.5em
+      font-size: 0.9em
