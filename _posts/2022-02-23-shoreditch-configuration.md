@@ -54,8 +54,10 @@ spambot crawlers to extraxct your email address from the page.
 logo
 : The logo section can be used to add a logo or portrait to the top of the page.
 You can choose a round or square picture, an optional link, a message to go
-underneath the logo. There is also a toggle to briefly flash the message a few
-times, to highlight it's importance.
+underneath the logo. The message can be curved around to fit the curved logo
+shape, or remain linear, using the toggle ```logo_legend_shape```. There is
+also a toggle (```flashy_logo```) to briefly flash the message a few times, to
+highlight it's importance.
 
   These options can be set in the ```_config.yml``` for the whole site, and also
 overidden for individual pages by overwriting the parameters in the page's

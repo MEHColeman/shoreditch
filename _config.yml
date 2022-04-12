@@ -44,11 +44,12 @@ defaults:
     scope:
       path: ""
     values:
-      flashy_logo:    TRUE
-      round_logo:     TRUE
-      logo_legend:    'Shoreditch: Something for Everyone'
-      logo_location:  '/public/images/shoreditch/logo.png'
-      logo_link:      'https://github.com/MEHColeman/shoreditch'
+      flashy_logo: TRUE
+      logo_shape: round # 'round' or 'square'
+      logo_legend_shape: curved   # 'curved' or 'straight'
+      logo_legend: 'Shoreditch: Something for Everyone'
+      logo_location: '/public/images/shoreditch/logo.png'
+      logo_link: 'https://github.com/MEHColeman/shoreditch'
   -
     scope:
       path: ""
@@ -58,7 +59,7 @@ defaults:
       excerpt_separator: <!--more-->
       thumbnail: /public/images/shoreditch/notes.svg
       include_sticky: TRUE
-      include_logo:  TRUE
+      include_logo:  FALSE
       include_details: FALSE
   -
     scope:
@@ -66,7 +67,7 @@ defaults:
       type: "pages"
     values:
       include_sticky: TRUE
-      include_logo:  TRUE
+      include_logo:  FALSE
       include_details: FALSE
 
 # Custom vars

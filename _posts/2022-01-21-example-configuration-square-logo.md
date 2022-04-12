@@ -6,7 +6,8 @@ cover: /public/images/shoreditch/shoreditch_cover.png
 thumbnail: /public/images/2_gears.png
 tags: [ info, config ]
 flashy_logo: FALSE
-round_logo: FALSE
+logo_shape: square
+logo_legend_shape: straight
 logo_legend: 'Square Logo'
 logo_location: '/public/images/shoreditch/logo.png'
 include_sticky: TRUE
@@ -27,7 +28,8 @@ defaults:
       path: ""
     values:
       flashy_logo:    FALSE
-      round_logo:     FALSE
+      logo_shape: square
+      logo_legend_shape: straight
       logo_legend:    'Square Logo'
       logo_location:  '/public/images/shoreditch/logo.png'
       logo_link:      'https://github.com/MEHColeman/shoreditch'
@@ -55,7 +57,8 @@ your requirements in the page's front matter.
 ~~~ yaml
 ---
 flashy_logo: FALSE
-round_logo: FALSE
+logo_shape: square
+logo_legend_shape: straight
 logo_legend: 'Square Logo'
 logo_location: '/public/images/shoreditch/logo.png'
 include_sticky: TRUE

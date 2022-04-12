@@ -125,27 +125,27 @@ p
       margin-left: auto
       margin-right: auto
 
-      &.round
+      &.curved
         top: -5em
-      &.square
-        text-shadow: red 0px 0px 5px, red 0px 0px 10px
+      &.straight
         margin-top: 0.5em
-        width: 11em
+        width: auto
 
       svg
-        filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent)
         text
           fill: white
           stroke: white
           width: 160px
 
       &.animate
-        &.square
+        &.straight
+          filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px transparent) drop-shadow(0 0 30px transparent)
           animation-name: pulsar
           animation-duration: 7s
           animation-delay: 5s
           animation-iteration-count: 3
         svg
+          filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px transparent) drop-shadow(0 0 30px transparent)
           animation-name: pulsar-svg
           animation-duration: 7s
           animation-delay: 5s
@@ -207,19 +207,19 @@ p
 
 @keyframes pulsar
   0%
-    text-shadow: red 0px 0px 5px, red 0px 0px 10px
-  10%
-    text-shadow: red 0px 0px 5px, red 0px 0px 10px, red 0px 0px 15px, red 0px 0px 20px
-  20%
-    text-shadow: red 0px 0px 5px, red 0px 0px 10px
-
-@keyframes pulsar-svg
-  0%
-    filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent)
+    filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px transparent) drop-shadow(0 0 30px transparent)
   10%
     filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px red)
   20%
-    filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px transparent)
+    filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px transparent) drop-shadow(0 0 30px transparent)
+
+@keyframes pulsar-svg
+  0%
+    filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px transparent) drop-shadow(0 0 30px transparent)
+  10%
+    filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px red) drop-shadow(0 0 30px red)
+  20%
+    filter: drop-shadow(0 0 5px red) drop-shadow(0 0 10px red) drop-shadow(0 0 20px transparent) drop-shadow(0 0 30px transparent)
 
 
 /*

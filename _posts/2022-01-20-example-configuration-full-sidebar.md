@@ -5,7 +5,8 @@ last_verified: 2022-02-20
 cover: /public/images/shoreditch/shoreditch_cover.png
 thumbnail: /public/images/1_gear.png
 tags: [ info, config ]
-round_logo: TRUE
+logo_shape: round
+logo_legend_shape: curved
 logo_legend: 'Everything turned on here'
 logo_location: '/public/images/shoreditch/logo.png'
 include_sticky: TRUE
@@ -25,8 +26,9 @@ defaults:
     scope:
       path: ""
     values:
-      flashy_logo:    TRUE
-      round_logo:     TRUE
+      flashy_logo: TRUE
+      logo_shape: round
+      logo_legend_shape: curved
       logo_legend: 'Everything turned on here'
       logo_location:  '/public/images/shoreditch/logo.png'
       logo_link:      'https://github.com/MEHColeman/shoreditch'
@@ -53,7 +55,8 @@ your requirements in the page's front matter.
 
 ~~~ yaml
 ---
-round_logo: TRUE
+logo_shape: round
+logo_legend_shape: curved
 logo_legend: 'Everything turned on here'
 logo_location: '/public/images/shoreditch/logo.png'
 include_sticky: TRUE

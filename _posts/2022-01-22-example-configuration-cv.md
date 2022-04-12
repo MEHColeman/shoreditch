@@ -5,8 +5,9 @@ last_verified: 2022-02-20
 cover: /public/images/shoreditch/shoreditch_cover.png
 thumbnail: /public/images/3_gears.png
 tags: [ info, config ]
-round_logo: TRUE
-logo_legend: ''
+logo_shape: round
+logo_legend_shape: square
+logo_legend: 'Name<br/> Job Title'
 logo_location: '/public/images/shoreditch/mark.jpg'
 logo_link: '/'
 include_sticky: FALSE
@@ -34,8 +35,9 @@ your requirements in the page's front matter.
 
 ~~~ yaml
 ---
-round_logo: TRUE
-logo_legend: ''
+logo_shape: round
+logo_legend_shape: square
+logo_legend: 'Name<br/> Job Title'
 logo_location: '/public/images/shoreditch/logo.png'
 include_sticky: FALSE
 include_logo: TRUE
