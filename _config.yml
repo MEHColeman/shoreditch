@@ -36,7 +36,6 @@ author:
 
 lsi:              TRUE
 strict_front_matter: TRUE
-
 paginate:         7
 
 defaults:
