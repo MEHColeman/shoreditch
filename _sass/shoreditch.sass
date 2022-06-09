@@ -311,6 +311,31 @@ article.post > .post-thumbnail
   background-color: #ffd4d4
   font-style: italic
 
+.pullquote
+  text-indent: -2em
+  border-left: 10px solid rgba(0,0,0,0.2)
+  margin: 2em
+  padding: 1em 2em
+  background: #eee
+
+  .quotation
+    &::before, &::after
+      font-size: 4em
+      font-family: serif
+      line-height: 1px
+      position: relative
+      bottom: -0.4em
+    &::before
+      content: open-quote
+    &::after
+      content: close-quote
+
+  .attribution
+    text-align: right
+
+    &::before
+      content: "— "
+
 /*
  * Posts
  * Additional styling for posts or pages

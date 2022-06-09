@@ -7,23 +7,31 @@ thumbnail: /public/images/shoreditch/shoreditch_cover.png
 tags: [ info ]
 ---
 
-Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
+Howdy! This is an example blog post that shows several types of HTML content
+supported in this theme.
 {:.message}
 <!--more-->
 
-Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum. [^1]
+Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>,
+nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia
+quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis
+consectetur purus sit amet fermentum. [^1]
 
 [^1]: footnote.
 
-The header image at the top of the page is specified with the cover property in the front matter.
+The header image at the top of the page is specified with the cover property in
+the front matter.
 
-> Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+> A quote: Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
 
-Etiam porta **sem malesuada magna** mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+Etiam porta **sem malesuada magna** mollis euismod. Cras mattis consectetur
+purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
 
 ## Inline HTML elements
 
-HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+HTML defines a long list of available inline tags, a complete
+list of which can be found on the [Mozilla Developer
+Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
 
 - **To bold text**, use `<strong>`.
 - *To italicize text*, use `<em>`.
@@ -34,13 +42,38 @@ HTML defines a long list of available inline tags, a complete list of which can 
 
 Most of these elements are styled by browsers with few modifications on our part.
 
+To get nicer quotations, you'll need to do a bit more work, as markdown by
+itself can't handle it.
+
+~~~html
+<div class="pullquote">
+<div class="quotation"> I have a dream that one day this nation will rise
+up and live out the true meaning of its creed: We hold these truths to be
+self-evident, that all men are created equal... I have a dream that my four
+little children will one day live in a nation where they will not be judged by
+the color of their skin but by the content of their character.</div>
+<div class="attribution">Martin Luther King</div>
+</div>
+~~~
+<div class="pullquote">
+<div class="quotation"> I have a dream that one day this nation will rise
+up and live out the true meaning of its creed: We hold these truths to be
+self-evident, that all men are created equal... I have a dream that my four
+little children will one day live in a nation where they will not be judged by
+the color of their skin but by the content of their character.</div>
+<div class="attribution">Martin Luther King</div>
+</div>
+
 ## Heading
 
-Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est
+non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
 
 ### Code
 
-Cum sociis natoque penatibus et magnis dis `code element` montes, nascetur ridiculus mus.
+Cum sociis natoque penatibus et magnis dis `code element` montes, nascetur
+ridiculus mus.
 
 ~~~ js
 // Example can be run directly in your JavaScript console
@@ -53,26 +86,36 @@ adder(2, 6);
 // > 8
 ~~~
 
-Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
+Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada
+magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+condimentum nibh, ut fermentum massa.
 
 ### Gists via GitHub Pages
 
-Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Donec sed odio dui.
+Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna
+mollis ornare vel eu leo. Donec sed odio dui.
 
 This requires adding the jekyll-gist gem - then uncomment, and it should work.
 {% comment %} {% gist 5555251 gist.md %} {% endcomment %}
 
-Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper.
+Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque
+penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed
+odio dui. Vestibulum id ligula porta felis euismod semper.
 
 ### Lists
 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada
+magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+condimentum nibh, ut fermentum massa justo sit amet risus.
 
 * Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
 * Donec id elit non mi porta gravida at eget metus.
 * Nulla vitae elit libero, a pharetra augue.
 
-Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a
+pharetra augue.
 
 1. Vestibulum id ligula porta felis euismod semper.
 2. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
@@ -99,11 +142,14 @@ If you want to insert HTML not supported by a markdown shorthand, you can
 simply insert it into the document.
 </textarea>
 
-Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.
+Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo
+risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna
+mollis ornare vel eu leo.
 
 ### Images
 
-Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.
+Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus.
+Aliquam aliquam metus erat, a pulvinar turpis suscipit at.
 
 ![placeholder](https://via.placeholder.com/800x400 "Large example image")
 ![placeholder](https://via.placeholder.com/400x200 "Medium example image")
@@ -111,7 +157,8 @@ Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliqua
 
 ### Tables
 
-Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet,
+consectetur adipiscing elit.
 
 <table>
   <thead>
@@ -147,7 +194,8 @@ Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, conse
   </tbody>
 </table>
 
-Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.
+Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur
+est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.
 
 -----
 
