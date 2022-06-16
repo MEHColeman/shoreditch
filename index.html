@@ -13,7 +13,7 @@ pagination:
      style="background-image: url({{post.thumbnail | relative_url}})"></a>
   {% endif %}
     <div class="post-detail">
-      <h1 class="post-title"><a href="{{post.url | relative_url}}">{{post.title}}</a></h1>
+      <h1 class="post-title"><a href="{{post.url | relative_url}}">{{ post.title | escape }}</a></h1>
       {{ post.excerpt | strip_html | truncate: 200 }}
       <p class="post-date">{{ post.date | date_to_string }}</p>
     </div>
