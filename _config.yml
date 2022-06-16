@@ -1,7 +1,7 @@
 # Dependencies
 markdown:         kramdown
 highlighter:      rouge
-plugins:          [jekyll-paginate]
+plugins:          [jekyll-paginate-v2]
 
 # Permalinks
 permalink:        pretty
@@ -36,7 +36,20 @@ author:
 
 lsi:              TRUE
 strict_front_matter: TRUE
-paginate:         7
+
+# Use this line for jekyll-paginate gem, supported by github pages
+# paginate:         7
+
+# Use the following configuration  if you are sticking with jekyll-paginate-v2
+pagination:
+  enabled: true
+  collection: 'posts'
+  per_page: 7
+  sort_reverse: true
+  permalink: '/page/:num/' # Pages are index.html inside this folder (default)
+
+  # Optional the title format for the paginated pages (supports :title for original page title, :num for pagination page number, :max for total number of pages)
+  title: ':title - page :num'
 
 defaults:
   -
