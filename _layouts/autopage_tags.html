@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Home
 pagination:
   enabled: true
 ---
+Posts tagged <b>{% if page.autopages %}{{page.autopages.display_name}}{% endif %}</b> - Page {{page.pagination_info.curr_page}} of {{page.pagination_info.total_pages}}</h1>
 
 <div class="posts">
   {% for post in paginator.posts %}

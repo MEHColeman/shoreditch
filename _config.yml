@@ -40,7 +40,16 @@ strict_front_matter: TRUE
 # Use this line for jekyll-paginate gem, supported by github pages
 # paginate:         7
 
-# Use the following configuration  if you are sticking with jekyll-paginate-v2
+# Use the following configuration if you are sticking with jekyll-paginate-v2
+autopages:
+  enabled: true
+  collections:
+    enabled: false
+  tags:
+    layouts:
+      - autopage_tags.html
+    enabled: true
+
 pagination:
   enabled: true
   collection: 'posts'
