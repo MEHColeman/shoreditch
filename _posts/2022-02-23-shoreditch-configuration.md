@@ -28,10 +28,9 @@ description
 
 paginate
 : If you are hosting your site on github pages, you'll need to use the
-jekyll-paginate gem. Edit the `Gemfile` and switch to the simpler config
+`jekyll-paginate` gem. Edit the `Gemfile` and switch to the simpler config
 option You will lose the tag links on the post pages, and the pag index pages.
-Otherwise, you can continue to use the jekyll-paginate-v2 gem.How many posts to
-show on each index page.
+Otherwise, you can continue to use the `jekyll-paginate-v2` gem.
 
 default thumbnail image
 : This is optional and specifies a placeholder blog post thumbnail to be
