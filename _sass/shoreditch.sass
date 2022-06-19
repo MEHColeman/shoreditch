@@ -44,7 +44,7 @@ html
 
 /* Headings
 
-h1, h2, h3, h4, h5, h6
+h1, h2, h3, h4, h5, h6, .tag-header
   font-family: "Rosario", Helvetica, Arial, sans-serif
   text-rendering: optimizeLegibility
 
@@ -60,6 +60,22 @@ li li
 
 ol ol ol
   margin-bottom: 0
+
+.tag-header
+  display: flex
+  flex-flow: row nowrap
+  justify-content: space-between
+  align-items: flex-end
+  margin-bottom: 2em
+
+  #tag-title
+    font-size: 1.5em
+    font-weight: bold
+
+  #tag-page-count
+    font-size: 0.75em
+    font-family: "Roboto", Helvetica, Arial, sans-serif
+    color: #555
 
 /*
  * Global Settings
