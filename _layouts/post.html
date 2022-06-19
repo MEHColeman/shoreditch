@@ -17,6 +17,13 @@ layout: default
   {{ content }}
 </div>
 
+<div class="tags">
+  Tagged: |{% for tag in page.tags %}
+
+  <a href="{{ tag | slugify | downcase | prepend: "/tag/" | prepend: site.baseurl | replace: '//','/' }}">{{ tag }}</a> |
+{% endfor %}
+</div>
+
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
@@ -32,5 +39,4 @@ layout: default
     {% endfor %}
   </ul>
 </div>
-
 {% include credit.html %}

@@ -17,7 +17,7 @@ Here is a quick guide to configuring your Shoreditch blog. <!--more-->
 
 # _config.yml
 
-```_config.yml``` is a good place to start. Here you can configure blog
+`_config.yml` is a good place to start. Here you can configure blog
 metadata such as title, tagline, description, default blog post icon, etc.
 
 blog title
@@ -27,7 +27,10 @@ description
 : Shown underneath the title in the sidebar.
 
 paginate
-: How many posts to show on each index page
+: If you are hosting your site on github pages, you'll need to use the
+`jekyll-paginate` gem. Edit the `Gemfile` and switch to the simpler config
+option You will lose the tag links on the post pages, and the pag index pages.
+Otherwise, you can continue to use the `jekyll-paginate-v2` gem.
 
 default thumbnail image
 : This is optional and specifies a placeholder blog post thumbnail to be
@@ -61,23 +64,23 @@ logo
 : The logo section can be used to add a logo or portrait to the top of the page.
 You can choose a round or square picture, an optional link, a message to go
 underneath the logo. The message can be curved around to fit the curved logo
-shape, or remain linear, using the toggle ```logo_legend_shape```. There is
-also a toggle (```flashy_logo```) to briefly flash the message a few times, to
+shape, or remain linear, using the toggle `logo_legend_shape`. There is
+also a toggle (`flashy_logo`) to briefly flash the message a few times, to
 highlight it's importance.
 
-  These options can be set in the ```_config.yml``` for the whole site, and also
+  These options can be set in the `_config.yml` for the whole site, and also
 overidden for individual pages by overwriting the parameters in the page's
 front matter.
 
 # Other Configuration Options
 
 Apart from the general config file, you can add your own custom CSS. An empty
-file at ```/public/css/custom.css``` is sourced in the header of each page, so
+file at `/public/css/custom.css` is sourced in the header of each page, so
 you can add your own CSS there, and it will be picked up automatically.
 
 You can also remove the external links in the navigation menu, and, if you
 wish, replace them with other links. Simply edit the content in
-```/_includes/additional_items.html```
+`/_includes/additional_items.html`
 
 # Page Options
 
@@ -95,8 +98,8 @@ If the values are not supplied, the fields are not displayed.
 
 ## Page Class
 
-You can provide a ```class``` front matter option to a page, and this value will
-be set as the page's ```body``` css class.
+You can provide a `class` front matter option to a page, and this value will
+be set as the page's `body` css class.
 
 This let's you customize css styles on a per-page basis.
 

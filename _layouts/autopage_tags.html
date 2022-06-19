@@ -1,9 +1,14 @@
 ---
 layout: default
-title: Home
 pagination:
   enabled: true
 ---
+{% if page.autopages %}
+<div class='tag-header'>
+  <span id='tag-title'>Posts tagged <i>'{{page.autopages.display_name}}'</i></span>
+  <span id='tag-page-count'>Page {{page.pagination_info.curr_page}} of {{page.pagination_info.total_pages}}</span>
+</div>
+{% endif %}
 
 <div class="posts">
   {% for post in paginator.posts %}

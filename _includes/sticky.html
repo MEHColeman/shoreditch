@@ -9,12 +9,10 @@
 
 <nav class="nav">
   <a class="nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
-
   {% comment %}
   The code below dynamically generates a sidebar nav of pages with
   `layout: page` in the front-matter. See readme for usage.
   {% endcomment %}
-
   {% for page in site.pages %}
     {% unless page.title == null %}
       {% unless page.exclude %}
@@ -24,7 +22,6 @@
       {% endunless %}
     {% endunless %}
   {% endfor %}
-
   {% include additional_items.html %}
   <span class="nav-item">Currently v{{ site.version }}</span>
 </nav>
