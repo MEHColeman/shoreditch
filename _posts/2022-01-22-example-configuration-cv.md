@@ -2,7 +2,6 @@
 title: "Example Config: CV"
 last_updated: 2022-01-14
 last_verified: 2022-02-20
-cover: /public/images/shoreditch/shoreditch_cover.png
 thumbnail: /public/images/3_gears.png
 tags: [ info, config ]
 logo_shape: round
