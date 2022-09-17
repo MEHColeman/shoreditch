@@ -14,7 +14,8 @@ optimised for technical blogging.
 *Shoreditch* has blog post content, stored in the `_posts` directory, and
 viewable via the [index page](/), or [tag indexes](/tag/info). It also has
 static pages, like this one, which are automatically added to the sidebar
-(unless you choose to exclude them, like the quick-reference page.
+(unless you choose to exclude them, like the [quick-reference]({% link
+quick-reference.md %}) page).
 
 Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
 theme by [@mdo](https://twitter.com/mdo). Check it out.
