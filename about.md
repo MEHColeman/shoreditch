@@ -14,7 +14,8 @@ optimised for technical blogging.
 *Shoreditch* has blog post content, stored in the `_posts` directory, and
 viewable via the [index page](/), or [tag indexes](/tag/info). It also has
 static pages, like this one, which are automatically added to the sidebar
-(unless you choose to exclude them, like the quick-reference page.
+(unless you choose to exclude them, like the [quick-reference]({% link
+quick-reference.md %}) page).
 
 Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
 theme by [@mdo](https://twitter.com/mdo). Check it out.
@@ -32,16 +33,21 @@ Sheludko. Also check that out!
 * Optional thumbnail images (with a configurable default) for each post.
 * Extra date options for indicating how up-to-date your blogs posts are.
 * Contact and social media links for other professional resources.
+* Social media sharing buttons
 * Easily Configurable google analytics.
 * Optional Disqus comments.
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+Learn more and contribute on [GitHub](https://github.com/MEHColeman/shoreditch).
 
 ## Setup
 
 ### Config options
 
+See {{ link 2022-02-23-shoreditch-configuration.md }} for full details.
+
 ### Common styles
+
+See {{ link quick_reference.md }} for full details.
 
 Jekyll 4.0 uses kramdown by default. See [this
 reference](https://kramdown.gettalong.org/syntax.html) for more info.
@@ -73,7 +79,7 @@ Code samples can also be `inline` using backticks `` ` ``
 
 ### Extra Front Matter
 
-The following front matter variables are supported by this theme.
+Additional front matter variables are supported by this theme.
 ~~~ yaml
 last_modified: 2020-04-20
 last_verified: 2020-05-20
@@ -95,8 +101,6 @@ fit a smaller frame. It might also be any other image used on the page.
 
 All these variables will work on both pages and posts, and are entirely
 optional.
-
-
 
 ### Extra Styles
 

@@ -111,7 +111,6 @@ class: cv
 ---
 ~~~
 
-
 /public/css/custom.css
 {:.code-title}
 ~~~ css
@@ -120,20 +119,7 @@ class: cv
   }
 ~~~
 
-
 disqus
 google analytics
 
 &nbsp;
-
-&nbsp;
-
-
-* Beautiful looking index, tag, and category pages.
-* Optional cover images along the top of the page on all layouts.
-* Optional thumbnail images (with a configurable default) for each post.
-* Extra date options for indicating how up-to-date your blogs posts are.
-* Contact and social media links for other professional resources.
-* Easily Configurable google analytics.
-* Optional Disqus comments.
-
