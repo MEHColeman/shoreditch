@@ -1,71 +1,145 @@
-# Hyde
+Welcome! This is *Shoreditch*. A clean, responsive, two-column
+[Jekyll](http://jekyllrb.com) theme optimised for technical blogging.
 
-Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme that pairs a prominent sidebar with uncomplicated content. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
 
-![Hyde screenshot](https://f.cloud.github.com/assets/98681/1831228/42af6c6a-7384-11e3-98fb-e0b923ee0468.png)
+See an example of this site at
+[shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/)
+or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/)
 
+Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
+theme by [@mdo](https://twitter.com/mdo). Check it out. <br>
+It is also heavily inspired by the [Flexible
+Jekyll](https://github.com/artemsheludko/flexible-jekyll) theme by Artem
+Sheludko. Also check that out!
 
-## Contents
+## Features
+* Updated for Jekyll 4.0.
+* Responsive layout for small, medium and large screens.
+* Beautiful index, tag, and category pages.
+* Optional cover images along the top of the page on all layouts.
+* Optional thumbnail images (with a configurable default) for each post.
+* Extra date options for indicating how up-to-date your blogs posts are.
+* Wider content section, so that code samples fit 80 characters across.
+* Contact and social media links for other professional resources.
+* Social media sharing buttons
+* Easily Configurable Google analytics.
+* Optional Disqus comments.
 
-- [Usage](#usage)
-- [Options](#options)
-  - [Sidebar menu](#sidebar-menu)
-  - [Sticky sidebar content](#sticky-sidebar-content)
-  - [Themes](#themes)
-  - [Reverse layout](#reverse-layout)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
+![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
+![Shoreditch screenshot](https://via.placeholder.com/600x300 "Medium example image")
 
+Learn more and contribute on [GitHub](https://github.com/MEHColeman/shoreditch).
 
-## Usage
+## Use
+Here's how I use this theme:
 
-Hyde is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
+I use the master branch only for framework changes - changes that you as a user
+would take on if you wanted to keep up-to-date with version updates.
 
+I use a branch called `content` for my blog content. When I make changes to
+the framework, I then rebase my entire content branch on top of the master
+branch I find that it's easier to do that cleanly if I delete the existing pages
+(like the `about` page in a single git commit, then add a new `about` page in a
+separate commit. That way, there are fewer conflicts when rebasing.
 
-## Options
+If you are submitting a pull request, please do so against the master branch.
 
-Hyde includes some customizable options, typically applied via classes on the `<body>` element.
+## Setup
 
+### Config options
 
-### Sidebar menu
+Various page options, design, image and logo settings can be configured, either
+globally or per-page.
 
-Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
+See [the config post](_posts/2022-02-23-shoreditch-configuration.md) and
+various other config posts for full details.
+
+*Shoreditch* has blog post content, stored in the `_posts` directory, and
+viewable via the index page, or tag indexes. It also has static pages that are
+automatically added to the sidebar (unless you choose to exclude them, like the
+[quick-reference](quick-reference.md) page).
+
+### Common styles
+
+See the [quick reference](quick-reference.md) for full details.
+
+Jekyll 4.0 uses kramdown by default. See [this
+reference](https://kramdown.gettalong.org/syntax.html) for more info.
+
+Code sample blocks span 80 characters. A `code-title` css
+class can be used to give a code section a nice looking
+title.
 
 ```
+directory/filename.txt
+{:.code-title}
+~~~ markdown
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+
+Hey, there! This is a message.
+{:.message}
+
+Hello again. This is a callout.
+{:.callout}
+
+Warning! This is an alert!
+{:.alert}
+
+DANGER! This is an alarm!
+{:.alarm}
+~~~
+```
+
+Code samples can also be `inline` using backticks `` ` ``
+
+### Extra Front Matter
+
+Additional front matter variables are supported by this theme.
+
+~~~yaml
 ---
-layout: page
-title: About
+last_modified: 2020-04-20
+last_verified: 2020-05-20
+cover: images/cover.png
+thumbnail: images/thumbnail.png
+credits:
+  -
+    label: "Cover Image"
+    name: "Mark Coleman"
+    via: "flickr"
+    via_link: https://www.flickr.com/MEHColeman
 ---
-```
+~~~
 
-**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
+`last_modified` and `last_verified` give extra
+information about how up-to-date the page is. See [my blog
+post](https://blog.mehcoleman.com/2015/10/11/what-day-is-it/) for more
+info.
 
+`cover` indicates that the page should be rendered with the specified
+header image.
+`thumbnail` indicates that the specified thumbnail should be used for
+index pages.
 
-### Sticky sidebar content
+All these variables will work on both pages and posts, and are entirely
+optional.
 
-By default Hyde ships with a sidebar that affixes it's content to the bottom of the sidebar. You can optionally disable this by removing the `.sidebar-sticky` class from the sidebar's `.container`. Sidebar content will then normally flow from top to bottom.
+The `credits` section, if provided will append an attribution note at the bottom
+of the page.
 
-```html
-<!-- Default sidebar -->
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    ...
-  </div>
-</div>
+### Sidebar Options
 
-<!-- Modified sidebar -->
-<div class="sidebar">
-  <div class="container">
-    ...
-  </div>
-</div>
-```
+The navigation menu and set of social links can be toggled on or off in the
+_config, and customized on any individual page or post via front matter.
 
+See [2022-02-23-shoreditch-configuration](_posts/2022-02-23-shoreditch-configuration.md) for more details.
 
 ### Themes
 
-Hyde ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
+Shoreditch inherits eight optional themes based on the [base16 color
+scheme](https://github.com/chriskempson/base16). Apply a theme to change the
+color scheme (mostly applies to sidebar and links).
 
 ![Hyde in red](https://f.cloud.github.com/assets/98681/1831229/42b0b354-7384-11e3-8462-31b8df193fe5.png)
 
@@ -73,7 +147,8 @@ There are eight themes available at this time.
 
 ![Hyde theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
 
-To use a theme, add anyone of the available theme classes to the `<body>` element in the `default.html` layout, like so:
+To use a theme, add anyone of the available theme classes to the `<body>`
+element in the `default.html` layout, like so:
 
 ```html
 <body class="theme-base-08">
@@ -81,7 +156,9 @@ To use a theme, add anyone of the available theme classes to the `<body>` elemen
 </body>
 ```
 
-To create your own theme, look to the Themes section of [included CSS file](https://github.com/poole/hyde/blob/master/public/css/hyde.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
+To customise CSS to your heart's content, add custom CSS to the `/public/css/custom.css` file.
+
+********
 
 ### Reverse layout
 
@@ -95,24 +172,6 @@ Hyde's page orientation can be reversed with a single class.
 </body>
 ```
 
-
-## Development
-
-Hyde has two branches, but only one is used for active development.
-
-- `master` for development.  **All pull requests should be submitted against `master`.**
-- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
-
-
-## Author
-
-**Mark Otto**
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
-
 ## License
 
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+Released under the [MIT license](LICENSE.md).
