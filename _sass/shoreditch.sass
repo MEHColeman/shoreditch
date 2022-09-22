@@ -27,7 +27,6 @@ html
   font-family: "Roboto", Helvetica, Arial, sans-serif
   line-height: 1.5
   text-rendering: optimizeLegibility
-
 @media (min-width: 38em)
   html
     font-size: 20px
@@ -364,16 +363,15 @@ article.post > .post-thumbnail
   font-size: 0.8rem
 
 .post-dates
-  text-align: justify
-  text-align-last: justify
+  display: flex
+  justify-content: space-between
+  flex-direction: row
+  margin-bottom: 1em
 
 /* safari refuses to implement text-align-last
 
 .post-date
-  display: inline-block
   font-size: 0.8rem
-  width: auto
-  text-align: center
   color: #999
 
 /* code title
