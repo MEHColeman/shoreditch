@@ -37,7 +37,7 @@ Consectetur commodo boldly go nibh sollicitudin amet morbi luctus phasellus
 efficitur sapien nullam montes sagittis nascetur dignissim, habitant varius
 strange new lifeforms integer at nec netus rutrum platea finibus imperdiet
 mus. Suspendisse aliquam tempor hac venenatis feugiat vehicula maximus nullam
-sodales.
+sodales [jamstack](/tag/jamstack).
 
 Torquent lobortis libero tempus justo penatibus dictum sapien praesent pulvinar
 augue quam ante leo, duis bibendum scelerisque nibh fames habitasse sit sodales

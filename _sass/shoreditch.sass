@@ -538,17 +538,47 @@ article.post > .post-thumbnail
   .toggle_wrapper
     float: right
 
+    span.label
+      display: inline-block
+      padding-left: 0.3em
 
-  > .content
-    a:not([href*='yourdomain.com']):not([href^='#']):not([href^='/']):after
-      font: var(--fa-font-solid)
-      content:(" \f08e")
-      padding-right: 0.5em
-      font-size: 0.9em
+    label
+      display: inline-block
+      background: #f3f3f3
+      height: 25px
+      width: 60px
+      top: 5px
+      border-radius: 40px
+      position: relative
+      box-shadow: 0 0 0 2px #dddddd
+
+      &:before
+        content: ''
+        display: inline-block
+        position: absolute
+        z-index: 1
+        left: 0
+        border-radius: 30px
+        height: 25px
+        width: 35px
+        background: white
+        box-shadow: 0 3px 3px rgba(0,0,0,.2),0 0 0 2px #dddddd
+
+    .toggle
+      position: absolute
+      display: inline-block
+      opacity: 0
+      &:checked
+        + label
+          background: #710058
+          box-shadow: 0 0 0 2px #710058
+          &:before
+            left: 25px
+            box-shadow: 0 3px 3px rgba(0,0,0,.2),0 0 0 2px #710058
 
 body.highlight
   a[href^='/tag']:after
     font: var(--fa-font-solid)
-    content:(" \f08e")
+    content: (" \f08e")
     padding-right: 0.5em
     font-size: 0.9em
