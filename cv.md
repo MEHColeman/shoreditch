@@ -1,6 +1,6 @@
 ---
 layout: page
-class: cv
+class: "cv highlight"
 include_details: TRUE
 include_logo: TRUE
 include_sticky: FALSE

@@ -538,9 +538,17 @@ article.post > .post-thumbnail
   .toggle_wrapper
     float: right
 
+
   > .content
     a:not([href*='yourdomain.com']):not([href^='#']):not([href^='/']):after
       font: var(--fa-font-solid)
       content:(" \f08e")
       padding-right: 0.5em
       font-size: 0.9em
+
+body.highlight
+  a[href^='/tag']:after
+    font: var(--fa-font-solid)
+    content:(" \f08e")
+    padding-right: 0.5em
+    font-size: 0.9em
