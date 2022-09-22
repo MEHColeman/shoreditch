@@ -504,6 +504,12 @@ article.post > .post-thumbnail
   .content
     padding-top: 0
 
+    a:not([href*='#{$site-domain}']):not([href^='#']):not([href^='/']):after
+      font: var(--fa-font-solid)
+      content:(" \f08e")
+      padding-right: 0.5em
+      font-size: 0.9em
+
   .position, .tenure
     text-transform: uppercase
     display: inline
@@ -580,3 +586,6 @@ body.highlight
     content: (" \f08e")
     padding-right: 0.5em
     font-size: 0.9em
+
+
+
