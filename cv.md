@@ -1,6 +1,6 @@
 ---
 layout: page
-class: cv
+class: "cv highlight"
 include_details: TRUE
 include_logo: TRUE
 include_sticky: FALSE
@@ -11,13 +11,12 @@ logo_legend: "Name Surname<BR/> Job Title"
 flashy_logo: FALSE
 include_filters: TRUE
 ---
+{% include cv_filter.html %}
 
 # Profile
 
-<div id="filter"></div><div id="blog_posts"></div>
-
 Vestibulum fusce sagittis sociosqu laoreet proin finibus quam, est primis
-posuere ullamcorper magnis class.
+posuere [info](/tag/info) ullamcorper magnis class.
 
 Volutpat et sit senectus sodales ex gravida quisque ultrices vulputate in justo
 porttitor, donec est consequat maximus, congue sagittis ultricies fringilla
@@ -38,7 +37,7 @@ Consectetur commodo boldly go nibh sollicitudin amet morbi luctus phasellus
 efficitur sapien nullam montes sagittis nascetur dignissim, habitant varius
 strange new lifeforms integer at nec netus rutrum platea finibus imperdiet
 mus. Suspendisse aliquam tempor hac venenatis feugiat vehicula maximus nullam
-sodales.
+sodales [jamstack](/tag/jamstack).
 
 Torquent lobortis libero tempus justo penatibus dictum sapien praesent pulvinar
 augue quam ante leo, duis bibendum scelerisque nibh fames habitasse sit sodales
@@ -58,7 +57,7 @@ suspendisse nec dignissim.
 
 Natoque pharetra vulputate aenean quam neque gravida orci Vesper Lynd
 pellentesque in purus malesuada penatibus, sit lacus per lectus at non cursus
-inceptos massa ad varius ex baccarat.
+inceptos [shoreditch](/tag/shoreditch) massa ad varius ex baccarat.
 
 ## Projects
 [Linux](https://github.com/torvalds/linux)
@@ -70,7 +69,8 @@ fusce ipsum tempor et nunc.
 [Ruby on Rails](https://github.com/rails/rails)
 : Ornare in tristique eleifend litora interdum aenean sagittis accumsan senectus
 habitant, vestibulum donec facilisis fermentum et mattis hendrerit fringilla
-aptent magnis volutpat, ac penatibus nulla suspendisse ultricies eget rhoncus.
+aptent magnis volutpat, ac penatibus [config](/tag/config) nulla suspendisse
+ultricies eget rhoncus.
 
 [TensorFlow](https://github.com/tensorflow/tensorflow)
 : Morbi convallis penatibus curae leo cras mollis pharetra euismod elit metus,
