@@ -19,7 +19,6 @@ layout: default
 
 <div class="tags">
   Tagged: |{% for tag in page.tags %}
-
   <a href="{{ tag | slugify | downcase | prepend: "/tag/" | prepend: site.baseurl | replace: '//','/' }}">{{ tag }}</a> |
 {% endfor %}
 </div>
@@ -41,8 +40,6 @@ layout: default
 </div>
 {% include credit.html %}
 {% if page.comments %}
-
   <hr>
-
   {% include disqus.html %}
 {% endif %}
