@@ -19,7 +19,7 @@ Welcome! This is *Shoreditch*. A clean, responsive, two-column
 
 See an example of this site at
 [shoreditch-example.mehcoleman.com](https://shoreditch-example.mehcoleman.com/){:target='_blank'},
-or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/){:target='_blank'}
+or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/){:target='_blank'}.
 
 Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
 theme by [@mdo](https://twitter.com/mdo). Check it out. <br>

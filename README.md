@@ -4,8 +4,8 @@ Welcome! This is *Shoreditch*. A clean, responsive, two-column
 ![Shoreditch Screenshot](/public/images/shoreditch/shoreditch_index_screen.png)
 
 See an example of this site at
-[shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/){:target='_blank'},
-or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/){:target='_blank'}
+[shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/),
+or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/).
 
 Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
 theme by [@mdo](https://twitter.com/mdo). Check it out. <br>
@@ -162,7 +162,9 @@ The page orientation can be reversed with a single class.
 ### CV / Résumé mode.
 
 Additional styles to support a well-presented online CV are available. See the
-[example cv](/cv.md){:target="_blank"} for details.
+[example cv](/cv.md) for details.
+
+![Example CV](/public/images/shoreditch/shoreditch_cv.png)
 
 ## License
 
