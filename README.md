@@ -45,6 +45,13 @@ separate commit. That way, there are fewer conflicts when rebasing.
 
 If you are submitting a pull request, please do so against the master branch.
 
+### Development plans
+Before version 1.0, I'll be swapping out the sidebar design for flexbox sytle.
+The look should remain the same, but it should be a bit simpler and more versatile.
+
+Versioning will respect SemVer, so you should be able to take a patch or minor
+update with your existing configuration files and not have any features break.
+
 ## Setup
 
 ### Config options
