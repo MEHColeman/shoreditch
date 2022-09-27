@@ -4,7 +4,7 @@ Welcome! This is *Shoreditch*. A clean, responsive, two-column
 ![Shoreditch Screenshot](/public/images/shoreditch/shoreditch_index_screen.png)
 
 See an example of this site at
-[shoreditch-example.mehcoleman.com](https://blog-example.mehcoleman.com/),
+[shoreditch-example.mehcoleman.com](https://shoreditch-example.mehcoleman.com/),
 or the author's own blog, [blog.mehcoleman.com](https://blog.mehcoleman.com/).
 
 Shoreditch is adapted from the very excellent [Hyde](http://hyde.getpoole.com)
