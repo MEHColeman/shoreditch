@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata = {
     "source_code_uri" => "https://github.com/MEHColeman/shoreditch",
-    "changelog_uri"   => "https://github.com/MEHColeman/shoreditch/blob/main/CHANGELOG.md",
+    "changelog_uri"   => "https://github.com/MEHColeman/shoreditch/blob/master/CHANGELOG.md",
     "homepage_uri"    => "https://shoreditch.mehcoleman.com",
   }
 
