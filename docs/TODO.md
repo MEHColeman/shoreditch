@@ -5,16 +5,18 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Inbox
 
-- [ ] Turn on GitHub Pages so the demo deploys
-    - Why: `.github/workflows/demo.yml` builds `demo/` and calls
-      `actions/deploy-pages`, but Pages is not enabled on this repo, so the
-      deploy job fails. Until it is enabled every push to master shows a red
-      workflow.
-    - Approach: repo Settings → Pages → Source: **GitHub Actions**. Then add
-      `shoreditch.mehcoleman.com` as the custom domain (`demo/src/CNAME`
-      already carries it) and create the DNS record at DNSimple.
-    - Known: the workflow triggers on `master`, not `main` — this repo's
-      default branch was left as `master` rather than renaming a public repo.
+- [ ] Create the DNS record for the demo's custom domain
+    - Why: Pages is enabled, the workflow deploys green, and the custom domain
+      is set to `shoreditch.mehcoleman.com` — but that name has no DNS record,
+      so the site currently 301s to a host that does not resolve. The demo is
+      reachable in the meantime at <https://mehcoleman.github.io/shoreditch/>.
+    - Approach: at **DNSimple**, add
+      `shoreditch.mehcoleman.com  CNAME  mehcoleman.github.io`.
+      Then turn on "Enforce HTTPS" in Settings → Pages — the API refuses it
+      until a certificate exists, which needs DNS resolving first.
+    - Known: `demo/src/CNAME` also carries the domain, but with
+      `build_type: workflow` GitHub takes the domain from repo settings rather
+      than the artifact, so the file alone was not enough.
     - Done when: shoreditch.mehcoleman.com serves the demo over HTTPS.
 
 - [ ] Publish 1.0.0 to RubyGems
@@ -57,3 +59,5 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 - [x] Add `bridgetown.automation.rb` for one-step install
 - [x] Finish the flexbox sidebar abandoned in the Jekyll version
 - [x] Add the `demo/` site
+- [x] Enable GitHub Pages with GitHub Actions as the source — the demo now
+      deploys green and is live at <https://mehcoleman.github.io/shoreditch/>
