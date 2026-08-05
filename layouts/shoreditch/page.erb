@@ -1,0 +1,27 @@
+---
+layout: shoreditch/default
+---
+
+<article class="sd-page">
+  <% if data.title %>
+    <h1><%= data.title %></h1>
+  <% end %>
+
+  <%= yield %>
+</article>
+
+<% if data.credits&.any? %>
+  <footer class="sd-credits">
+    <% data.credits.each do |credit| %>
+      <p>
+        <%= credit["label"] %>:
+        <% if credit["via_link"] %>
+          <a href="<%= credit["via_link"] %>" rel="noopener"><%= credit["name"] %></a>
+        <% else %>
+          <%= credit["name"] %>
+        <% end %>
+        <%= credit["via"] %>
+      </p>
+    <% end %>
+  </footer>
+<% end %>

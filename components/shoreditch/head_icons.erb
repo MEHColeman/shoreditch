@@ -1,0 +1,12 @@
+<% if favicon %>
+  <link rel="shortcut icon" href="<%= favicon %>" />
+<% end %>
+<% apple_icons.each do |size, path| %>
+  <link rel="apple-touch-icon" sizes="<%= size %>" href="<%= path %>" />
+<% end %>
+<% png_icons.each do |size, path| %>
+  <link rel="icon" type="image/png" sizes="<%= size %>" href="<%= path %>" />
+<% end %>
+<% if manifest %>
+  <link rel="manifest" href="<%= manifest %>" />
+<% end %>

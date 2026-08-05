@@ -1,0 +1,70 @@
+---
+layout: shoreditch/default
+---
+
+<article class="sd-post">
+  <header class="sd-post-header">
+    <h1 class="sd-post-title"><%= data.title %></h1>
+
+    <p class="sd-post-dates">
+      <span>
+        Posted
+        <time datetime="<%= resource.date.strftime("%Y-%m-%d") %>">
+          <%= resource.date.strftime("%-d %B %Y") %>
+        </time>
+      </span>
+
+      <%# last_updated and last_verified let a technical post say how stale it
+          is likely to be — the reason the original theme had them. %>
+      <% if data.last_updated %>
+        <span>Updated <time datetime="<%= data.last_updated %>"><%= data.last_updated %></time></span>
+      <% end %>
+
+      <% if data.last_verified %>
+        <span>Verified <time datetime="<%= data.last_verified %>"><%= data.last_verified %></time></span>
+      <% end %>
+    </p>
+  </header>
+
+  <%= yield %>
+</article>
+
+<% if data.tags&.any? %>
+  <nav class="sd-tags" aria-label="Tags">
+    <% data.tags.each do |tag| %>
+      <a class="sd-tag" href="/tag/<%= tag %>/"><%= tag %></a>
+    <% end %>
+  </nav>
+<% end %>
+
+<% if data.related_posts&.any? %>
+  <aside class="sd-related">
+    <h2>Related posts</h2>
+    <ul>
+      <% data.related_posts.each do |post| %>
+        <li>
+          <a href="<%= post.relative_url %>"><%= post.data.title %></a>
+          <time datetime="<%= post.date.strftime("%Y-%m-%d") %>">
+            <%= post.date.strftime("%-d %B %Y") %>
+          </time>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<% if data.credits&.any? %>
+  <footer class="sd-credits">
+    <% data.credits.each do |credit| %>
+      <p>
+        <%= credit["label"] %>:
+        <% if credit["via_link"] %>
+          <a href="<%= credit["via_link"] %>" rel="noopener"><%= credit["name"] %></a>
+        <% else %>
+          <%= credit["name"] %>
+        <% end %>
+        <%= credit["via"] %>
+      </p>
+    <% end %>
+  </footer>
+<% end %>

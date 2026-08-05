@@ -1,0 +1,43 @@
+<aside class="sd-sidebar">
+  <div class="sd-logo-area">
+    <% if logo_source %>
+      <a href="<%= site.metadata.logo_link || "/" %>">
+        <img
+          class="sd-logo"
+          data-shape="<%= options[:logo_shape] %>"
+          src="<%= logo_source %>"
+          alt="<%= site.metadata.title %>"
+        />
+      </a>
+    <% end %>
+
+    <% if logo_legend %>
+      <span class="sd-logo-legend"><%= logo_legend %></span>
+    <% end %>
+
+    <div>
+      <p class="sd-site-title"><a href="/"><%= site.metadata.title %></a></p>
+      <% if site.metadata.tagline %>
+        <p class="sd-site-tagline"><%= site.metadata.tagline %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <% if nav_pages.any? %>
+    <nav class="sd-nav" aria-label="Main">
+      <% nav_pages.each do |page| %>
+        <a
+          href="<%= page.relative_url %>"
+          <%= 'aria-current="page"' if current?(page) %>
+        ><%= page.data.title %></a>
+      <% end %>
+    </nav>
+  <% end %>
+
+  <div class="sd-sidebar-footer">
+    <button class="sd-theme-toggle" type="button" data-shoreditch-theme-toggle>
+      Switch theme
+    </button>
+    <p>&copy; <%= Time.now.year %> <%= site.metadata.author&.name || site.metadata.title %></p>
+  </div>
+</aside>

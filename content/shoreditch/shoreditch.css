@@ -1,0 +1,502 @@
+/*
+ * Shoreditch — a two-column theme for technical blogging.
+ *
+ * Shipped as a static file through the gem's source manifest, so consuming
+ * sites need no esbuild wiring. Everything themeable is a custom property on
+ * :root; a site can override any of them from its own stylesheet, which loads
+ * after this one.
+ *
+ * Adapted from Hyde by Mark Otto. The two-column shape is the inheritance;
+ * the implementation is not.
+ */
+
+:root {
+  /* Overridden per-site by the accent option in config/initializers.rb. */
+  --sd-accent: #4c7a9c;
+
+  --sd-sidebar-width: 18rem;
+  --sd-measure: 46rem;
+  --sd-gutter: clamp(1.25rem, 4vw, 3rem);
+  --sd-radius: 0.375rem;
+
+  --sd-font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --sd-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /* Light is the default; the dark block below flips these. */
+  --sd-bg: #ffffff;
+  --sd-fg: #1c1f23;
+  --sd-fg-muted: #5b6470;
+  --sd-rule: #e3e6ea;
+  --sd-code-bg: #f5f6f8;
+  --sd-sidebar-bg: #1c1f23;
+  --sd-sidebar-fg: #eceff3;
+  --sd-sidebar-fg-muted: #99a2ad;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sd-bg: #16181c;
+    --sd-fg: #e6e9ee;
+    --sd-fg-muted: #98a1ad;
+    --sd-rule: #2a2e35;
+    --sd-code-bg: #1e2126;
+    --sd-sidebar-bg: #101216;
+    --sd-sidebar-fg: #e6e9ee;
+    --sd-sidebar-fg-muted: #8d96a2;
+  }
+}
+
+/* The viewer's explicit choice wins over the OS preference, both ways. */
+:root[data-theme="light"] {
+  --sd-bg: #ffffff;
+  --sd-fg: #1c1f23;
+  --sd-fg-muted: #5b6470;
+  --sd-rule: #e3e6ea;
+  --sd-code-bg: #f5f6f8;
+  --sd-sidebar-bg: #1c1f23;
+  --sd-sidebar-fg: #eceff3;
+  --sd-sidebar-fg-muted: #99a2ad;
+}
+
+:root[data-theme="dark"] {
+  --sd-bg: #16181c;
+  --sd-fg: #e6e9ee;
+  --sd-fg-muted: #98a1ad;
+  --sd-rule: #2a2e35;
+  --sd-code-bg: #1e2126;
+  --sd-sidebar-bg: #101216;
+  --sd-sidebar-fg: #e6e9ee;
+  --sd-sidebar-fg-muted: #8d96a2;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--sd-bg);
+  color: var(--sd-fg);
+  font-family: var(--sd-font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: var(--sd-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sd-accent);
+  outline-offset: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------------------------------------------------------------- layout */
+
+.sd-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+}
+
+@media (min-width: 60rem) {
+  .sd-shell {
+    grid-template-columns: var(--sd-sidebar-width) minmax(0, 1fr);
+  }
+
+  /* sidebar_side: "right" swaps the columns without touching the markup. */
+  .sd-shell[data-sidebar="right"] {
+    grid-template-columns: minmax(0, 1fr) var(--sd-sidebar-width);
+  }
+
+  .sd-shell[data-sidebar="right"] > .sd-sidebar {
+    order: 2;
+  }
+}
+
+/* --------------------------------------------------------------- sidebar */
+
+.sd-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: var(--sd-gutter);
+  background: var(--sd-sidebar-bg);
+  color: var(--sd-sidebar-fg);
+}
+
+@media (min-width: 60rem) {
+  .sd-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+.sd-sidebar a {
+  color: inherit;
+}
+
+.sd-logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.sd-logo {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border: 3px solid var(--sd-accent);
+}
+
+.sd-logo[data-shape="round"] {
+  border-radius: 50%;
+}
+
+.sd-logo[data-shape="square"] {
+  border-radius: var(--sd-radius);
+}
+
+/* The "AVAILABLE FOR HIRE" badge. */
+.sd-logo-legend {
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--sd-radius);
+  background: var(--sd-accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sd-site-title {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.sd-site-tagline {
+  margin: 0;
+  color: var(--sd-sidebar-fg-muted);
+  font-size: 0.9rem;
+}
+
+.sd-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+@media (min-width: 60rem) {
+  .sd-nav {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+.sd-nav a {
+  padding: 0.15rem 0;
+  text-decoration: none;
+}
+
+.sd-nav a:hover,
+.sd-nav a[aria-current="page"] {
+  color: var(--sd-accent);
+  text-decoration: underline;
+}
+
+.sd-sidebar-footer {
+  margin-top: auto;
+  color: var(--sd-sidebar-fg-muted);
+  font-size: 0.8rem;
+}
+
+.sd-theme-toggle {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid currentColor;
+  border-radius: var(--sd-radius);
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------- content */
+
+.sd-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sd-cover {
+  width: 100%;
+  max-height: 22rem;
+  object-fit: cover;
+}
+
+.sd-content {
+  width: 100%;
+  /* Wider than a typical prose measure on purpose: code samples need to fit
+     80 characters without wrapping. */
+  max-width: var(--sd-measure);
+  padding: var(--sd-gutter);
+  margin-inline: auto;
+}
+
+.sd-content h1,
+.sd-content h2,
+.sd-content h3 {
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.sd-content h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+/* ----------------------------------------------------------------- posts */
+
+.sd-post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--sd-rule);
+}
+
+.sd-post-title {
+  margin: 0 0 0.5rem;
+}
+
+.sd-post-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0;
+  color: var(--sd-fg-muted);
+  font-size: 0.85rem;
+}
+
+.sd-post-summary {
+  display: grid;
+  gap: 1rem;
+  padding-block: 1.75rem;
+  border-bottom: 1px solid var(--sd-rule);
+}
+
+@media (min-width: 34rem) {
+  .sd-post-summary {
+    grid-template-columns: 8rem minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.sd-post-thumbnail img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--sd-radius);
+}
+
+.sd-post-summary h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+}
+
+.sd-post-summary h2 a {
+  text-decoration: none;
+}
+
+.sd-post-summary h2 a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------ tags */
+
+.sd-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-block: 2rem;
+}
+
+.sd-tag {
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--sd-rule);
+  border-radius: 999px;
+  color: var(--sd-fg-muted);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.sd-tag:hover {
+  border-color: var(--sd-accent);
+  color: var(--sd-accent);
+}
+
+/* ------------------------------------------------------- related/credits */
+
+.sd-related {
+  margin-block: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sd-rule);
+}
+
+.sd-related h2 {
+  font-size: 1.1rem;
+}
+
+.sd-related ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sd-related li {
+  padding-block: 0.4rem;
+}
+
+.sd-related time {
+  display: block;
+  color: var(--sd-fg-muted);
+  font-size: 0.8rem;
+}
+
+.sd-credits {
+  color: var(--sd-fg-muted);
+  font-size: 0.8rem;
+}
+
+/* ------------------------------------------------------------ pagination */
+
+.sd-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 2.5rem;
+}
+
+.sd-pagination a {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--sd-rule);
+  border-radius: var(--sd-radius);
+  text-decoration: none;
+}
+
+.sd-pagination a:hover {
+  border-color: var(--sd-accent);
+}
+
+/* Keeps "Older" hard right when "Newer" is absent on page 1. */
+.sd-pagination a.sd-older:only-child {
+  margin-inline-start: auto;
+}
+
+/* ------------------------------------------------------ prose and code */
+
+.sd-content :is(pre, .highlight) {
+  padding: 1rem;
+  border-radius: var(--sd-radius);
+  background: var(--sd-code-bg);
+  overflow-x: auto;
+}
+
+.sd-content :not(pre) > code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.25em;
+  background: var(--sd-code-bg);
+  font-size: 0.9em;
+}
+
+.sd-content code {
+  font-family: var(--sd-font-mono);
+}
+
+.sd-content blockquote {
+  padding-inline-start: 1rem;
+  margin-inline: 0;
+  border-inline-start: 3px solid var(--sd-accent);
+  color: var(--sd-fg-muted);
+}
+
+/* Tables can be wider than the measure — scroll them, never the page. */
+.sd-content .sd-table-wrap {
+  overflow-x: auto;
+}
+
+.sd-content table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.sd-content :is(th, td) {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--sd-rule);
+  text-align: start;
+}
+
+/* The message/callout/alert/alarm classes the Jekyll theme defined, kept so
+   existing posts using {:.message} and friends still render. */
+.sd-content :is(.message, .callout, .alert, .alarm) {
+  padding: 0.75rem 1rem;
+  border-inline-start: 4px solid var(--sd-fg-muted);
+  border-radius: var(--sd-radius);
+  background: var(--sd-code-bg);
+}
+
+.sd-content .callout {
+  border-inline-start-color: var(--sd-accent);
+}
+
+.sd-content .alert {
+  border-inline-start-color: #d08b1e;
+}
+
+.sd-content .alarm {
+  border-inline-start-color: #c0392b;
+}
+
+.sd-skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.sd-skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  background: var(--sd-bg);
+  color: var(--sd-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

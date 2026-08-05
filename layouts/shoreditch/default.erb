@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="<%= site.locale %>">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <% page_title = strip_html(strip_newlines(data.title.to_s)) %>
+    <title><%= page_title.empty? ? "#{site.metadata.title}: #{site.metadata.tagline}" : "#{page_title} | #{site.metadata.title}" %></title>
+
+    <% description = data.description || site.metadata.description %>
+    <meta name="description" content="<%= strip_html(description.to_s).strip %>" />
+
+    <meta property="og:title" content="<%= page_title.empty? ? site.metadata.title : page_title %>" />
+    <meta property="og:description" content="<%= strip_html(description.to_s).strip %>" />
+    <%# Paginated index pages are PaginationPage, which has no #collection. %>
+    <% is_post = resource.respond_to?(:collection) && resource.collection&.label == "posts" %>
+    <meta property="og:type" content="<%= is_post ? "article" : "website" %>" />
+    <% if data.cover %>
+      <meta property="og:image" content="<%= data.cover %>" />
+    <% end %>
+    <meta name="twitter:card" content="<%= data.cover ? "summary_large_image" : "summary" %>" />
+
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="<%= site.metadata.title %>" />
+
+    <%# Both ship with the gem via the source manifest, so a consuming site
+        needs no esbuild wiring to get the theme's styles or its toggle. %>
+    <link rel="stylesheet" href="/shoreditch/shoreditch.css" />
+    <script src="/shoreditch/shoreditch.js" defer></script>
+
+    <%# The site's own bundle loads afterwards and therefore overrides. %>
+    <link rel="stylesheet" href="<%= asset_path :css %>" />
+    <script src="<%= asset_path :js %>" defer></script>
+    <%= live_reload_dev_js %>
+
+    <%# Inline and render-blocking on purpose: applies the stored preference
+        before first paint, so there is no flash of the wrong scheme. %>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("shoreditch-theme");
+          if (stored === "light" || stored === "dark") {
+            document.documentElement.dataset.theme = stored;
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <%= render Shoreditch::HeadIcons.new(site: site) %>
+  </head>
+
+  <body class="<%= data.layout %> <%= data.class %>">
+    <a class="sd-skip-link" href="#sd-content">Skip to content</a>
+
+    <div class="sd-shell" data-sidebar="<%= site.config.shoreditch[:sidebar_side] %>">
+      <%= render Shoreditch::Sidebar.new(site: site, resource: resource) %>
+
+      <main class="sd-main">
+        <% if data.cover %>
+          <img class="sd-cover" src="<%= data.cover %>" alt="" />
+        <% end %>
+
+        <div class="sd-content" id="sd-content">
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
