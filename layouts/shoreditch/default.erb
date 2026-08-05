@@ -20,6 +20,12 @@
     <% end %>
     <meta name="twitter:card" content="<%= data.cover ? "summary_large_image" : "summary" %>" />
 
+    <%# Set `noindex: true` in front matter, or from a Roda route's
+        render_with, to keep a page out of search results. %>
+    <% if data.noindex %>
+      <meta name="robots" content="noindex, nofollow" />
+    <% end %>
+
     <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="<%= site.metadata.title %>" />
 
     <%# Both ship with the gem via the source manifest, so a consuming site
