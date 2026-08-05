@@ -1,6 +1,6 @@
 *.gem
 /.bundle
-Gemfile.lock
+/Gemfile.lock
 demo/output
 demo/node_modules
 demo/.bridgetown-cache
