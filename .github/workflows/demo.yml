@@ -1,0 +1,73 @@
+name: Demo site
+
+# Builds demo/ and publishes it to GitHub Pages at shoreditch.mehcoleman.com.
+# The demo is static — only the blog needs a Ruby process — so Pages serves it
+# free rather than costing another App Platform instance.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: demo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+          working-directory: demo
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: demo/package-lock.json
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Build
+        env:
+          BRIDGETOWN_ENV: production
+        run: |
+          npm run esbuild
+          bundle exec bridgetown build
+
+      - name: Check the build produced something usable
+        run: |
+          test -f output/index.html
+          test -f output/shoreditch/shoreditch.css
+          grep -q 'sd-sidebar' output/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: demo/output
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

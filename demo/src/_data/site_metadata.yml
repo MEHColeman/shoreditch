@@ -1,0 +1,11 @@
+title: Shoreditch
+tagline: A Bridgetown theme for technical blogging
+description: >-
+  A two-column Bridgetown theme built for technical writing — fixed sidebar,
+  cover images, and a content column wide enough for 80-character code.
+
+logo: /images/logo.svg
+logo_link: /
+
+author:
+  name: Mark Coleman

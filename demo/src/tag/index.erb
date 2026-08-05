@@ -1,0 +1,16 @@
+---
+layout: shoreditch/default
+title: Tagged
+pagination:
+  enabled: true
+  collection: posts
+prototype:
+  term: tag
+  collection: posts
+---
+
+<h1>Posts tagged &lsquo;<%= resource.data.tag %>&rsquo;</h1>
+
+<% paginator.resources.each do |post| %>
+  <%= render Shoreditch::PostSummary.new(post: post) %>
+<% end %>

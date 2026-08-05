@@ -1,0 +1,20 @@
+---
+layout: shoreditch/default
+title: Home
+pagination:
+  enabled: true
+  collection: posts
+---
+
+<% paginator.resources.each do |post| %>
+  <%= render Shoreditch::PostSummary.new(post: post) %>
+<% end %>
+
+<nav class="sd-pagination">
+  <% if paginator.previous_page %>
+    <a class="sd-newer" href="<%= paginator.previous_page_path %>">Newer</a>
+  <% end %>
+  <% if paginator.next_page %>
+    <a class="sd-older" href="<%= paginator.next_page_path %>">Older</a>
+  <% end %>
+</nav>
