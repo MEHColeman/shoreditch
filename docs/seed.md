@@ -31,13 +31,18 @@ now lives separately in `MEHColeman/blog`.
 ## Layout
 
 ```
-lib/shoreditch.rb       The initializer. Registers the source manifest and
-                        the accent / sidebar_side / logo_legend / logo_shape
-                        options.
+lib/shoreditch.rb       The initializer. Registers the source manifest and the
+                        accent / sidebar_side / logo_legend / logo_shape /
+                        logo_legend_shape / comments options, plus the CSS
+                        colour validator used for accent.
+lib/shoreditch/icons.rb Inline SVG path data for the contact panel. Brand marks
+                        vendored from Simple Icons (CC0); email/phone/file/link
+                        drawn by hand. GENERATED, but edit by hand — there is no
+                        regeneration script.
 lib/shoreditch/version.rb
 layouts/shoreditch/     default.erb, post.erb, page.erb
 components/shoreditch/  Ruby components with sidecar .erb templates:
-                        sidebar, head_icons, post_summary
+                        sidebar, head_icons, post_summary, details, comments
 content/shoreditch/     shoreditch.css and shoreditch.js — shipped as STATIC
                         FILES through the source manifest
 bridgetown.automation.rb  For `bin/bridgetown apply`
@@ -68,7 +73,11 @@ stylesheet loads after the theme's, so overriding never requires a fork.
 | `cd demo && bin/bridgetown start` | See changes — the fastest loop |
 | `cd demo && bin/bridgetown build` | Build the demo |
 
-Requires Ruby 3.3+ and Node 22.
+Requires Ruby 3.3+ and **Node 22** — not advisory. Bridgetown's
+`config/esbuild.defaults.js` calls `fs.globSync`, a Node 22 API. On Node 20 the
+frontend build throws while `bin/bridgetown start` carries on serving, so
+stylesheet edits silently never reach the browser and the old bundle is served
+indefinitely. `demo/.nvmrc` pins it; nvm's global default may not.
 
 ## Conventions
 
@@ -83,8 +92,44 @@ Requires Ruby 3.3+ and Node 22.
 - **Demo content is placeholder only.** No real contact details — the demo is
   public and is not Mark's CV.
 
+## Docs
+
+| | |
+| --- | --- |
+| `docs/seed.md` | This file — orientation |
+| `docs/TODO.md` | Outstanding work, each item with its own context block |
+| `docs/journal.md` | What happened and why, append-only |
+| `README.md` | Theme documentation for users |
+| `CHANGELOG.md` | What changed in 1.0.0, and what was removed |
+
 ## Current state
 
-1.0.0, building, consumed by `MEHColeman/blog` from a git source. **Not yet
-published to RubyGems**, and the Pages demo has not been deployed — the repo's
-Pages source needs setting to GitHub Actions first. See `docs/TODO.md`.
+1.0.0 released, with unreleased fixes on the `fix-theme-regressions` branch —
+see `CHANGELOG.md` under Unreleased. Consumed by `MEHColeman/blog` from a git
+source.
+
+**The demo has no working public URL.** Pages is enabled with GitHub Actions as
+the source and the workflow deploys green, but the custom domain
+`shoreditch.mehcoleman.com` is set in repo settings with no DNS record — and
+setting it also makes GitHub 301 the `mehcoleman.github.io/shoreditch/` URL to
+that non-resolving name. One DNSimple CNAME fixes both. See `docs/TODO.md`.
+
+Outstanding besides DNS: **not published to RubyGems** (deliberately — waiting
+on sign-off), and light mode has not been visually verified since the theme
+started rendering correctly.
+
+## Traps worth knowing
+
+- **`HashWithDotAccess::Hash` routes unknown methods to key lookups.** So
+  `data.class` returns the class name, and `metadata.author.present?` returns
+  `nil` rather than calling ActiveSupport — silently disabling anything guarded
+  by it. Only call methods `Hash` genuinely defines on these objects.
+- **A site's stylesheet loads after the theme's**, by design, so a consuming
+  site can override without forking. The starter CSS that `bridgetown new`
+  generates uses that precedence to trample the theme — its `main` rule pulls
+  `.sd-main` out of the grid. This cost the demo its entire appearance for
+  months and was invisible until someone rendered it.
+- **Component `.erb` sidecars are cached.** Editing one needs a server restart;
+  content and layout edits hot-reload.
+- **ERB output is escaped**, so an attribute injected as a whole string arrives
+  as `aria-current=&quot;page&quot;`. Interpolate the *value*, not the attribute.

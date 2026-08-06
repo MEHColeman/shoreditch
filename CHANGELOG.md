@@ -1,5 +1,62 @@
 # Changelog
 
+## Unreleased
+
+Restores features the 1.0.0 rewrite dropped without recording, and fixes a set
+of defects that only showed up once the demo rendered the theme correctly.
+
+### Fixed
+
+- **The `accent` option did nothing.** `--sd-accent` was hardcoded in the
+  stylesheet and the configured value was never emitted. It is now applied from
+  the initializer, after the theme's CSS and before the site's own, and
+  validated so a site's config cannot inject CSS.
+- **Index listings reserved a thumbnail column whether or not there was a
+  thumbnail**, squeezing every title and excerpt of a post without one into a
+  128px ribbon.
+- **Syntax highlighting is now owned by the theme.** It sets the code
+  background, so a site shipping the light-only Rouge palette that
+  `bridgetown new` generates rendered keywords black on near-black in dark
+  mode.
+- `aria-current` was HTML-escaped, so the current nav item was never
+  highlighted.
+- `<body>` carried `HashWithDotAccess::Hash`, from `data.class` resolving to
+  Ruby's `Object#class` rather than the front-matter `class` key.
+- Excerpts were the first *source line*, so hard-wrapped markdown was cut
+  mid-sentence. `<!--more-->` is honoured, otherwise the first paragraph.
+- Every generated tag page shared one `<title>`.
+- Code blocks were padded twice, Rouge nesting `pre.highlight` inside
+  `div.highlight` and both matching the same rule.
+- Pagination rendered an empty nav, and its margin, when there was one page.
+
+### Added
+
+- **Comments**, off unless configured. Giscus ships as the default provider;
+  overriding `components/shoreditch/comments.erb` swaps in any other. Replaces
+  the Disqus support removed in 1.0.0, without the third-party trackers.
+- **The contact panel**, restored from the Jekyll `details.html` include. Brand
+  marks are vendored from Simple Icons (CC0) and inlined, rather than loading a
+  Font Awesome kit from a CDN on every page.
+- **Per-page sidebar overrides** — `include_sticky`, `include_details`,
+  `include_logo`, `logo_location`, `logo_shape`, `logo_legend_shape` and
+  `flashy_logo`, as the Jekyll version had them.
+- **CV styling**, opted into with `class: cv`. Not a layout: a CV is an
+  ordinary page whose front matter reshapes the sidebar and whose body class
+  tightens the type.
+- `.pullquote` and `.code-title` styling, both of which the documentation
+  demonstrated but the stylesheet never defined.
+
+### Changed
+
+- **The sidebar splits top and bottom.** The logo, badge, site title and
+  tagline stay at the top of the column; the navigation and footer drop to the
+  bottom. Previously everything stacked from the top, leaving the empty space
+  below the nav with nothing to do.
+- **Node 22 is now required** for the frontend build. Bridgetown's esbuild
+  configuration calls `fs.globSync`, added in Node 22; on Node 20 the build
+  fails while the site still serves, so CSS changes silently never appear.
+  Pinned in `demo/.nvmrc`.
+
 ## 1.0.0
 
 First Bridgetown release. Shoreditch was a Jekyll theme up to 0.9.0; this is a
