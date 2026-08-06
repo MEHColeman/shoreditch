@@ -1,0 +1,52 @@
+<ul class="sd-details">
+  <% links.each do |key, icon_name, href, text| %>
+    <li data-network="<%= key %>">
+      <a href="<%= href %>" rel="me noopener">
+        <svg class="sd-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="<%= icon(icon_name) %>" />
+        </svg>
+        <%= text %>
+      </a>
+    </li>
+  <% end %>
+
+  <% if phone != "" %>
+    <li data-network="phone">
+      <a href="tel:<%= phone.gsub(/[^0-9+]/, "") %>">
+        <svg class="sd-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="<%= icon(:phone) %>" />
+        </svg>
+        <%= phone %>
+      </a>
+    </li>
+  <% end %>
+
+  <% if email? %>
+    <%# The two halves are only joined in the browser — see shoreditch.js. %>
+    <li data-network="email">
+      <a
+        class="sd-email"
+        href="#"
+        hidden
+        data-sd-email-user="<%= email_parts.first %>"
+        data-sd-email-host="<%= email_parts.last %>"
+      >
+        <svg class="sd-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="<%= icon(:email) %>" />
+        </svg>
+        Email
+      </a>
+    </li>
+  <% end %>
+
+  <% if file_url != "" %>
+    <li data-network="file">
+      <a href="<%= file_url %>" rel="noopener">
+        <svg class="sd-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="<%= icon(:file) %>" />
+        </svg>
+        <%= file_link_text %>
+      </a>
+    </li>
+  <% end %>
+</ul>

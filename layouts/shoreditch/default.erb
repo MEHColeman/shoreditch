@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <% page_title = strip_html(strip_newlines(data.title.to_s)) %>
+    <%# Prototype pages all share one front-matter title, so every generated
+        tag page was called "Tagged". The term the page was generated for
+        distinguishes them. %>
+    <% page_title = "#{page_title}: #{data.tag}" if data.tag %>
     <title><%= page_title.empty? ? "#{site.metadata.title}: #{site.metadata.tagline}" : "#{page_title} | #{site.metadata.title}" %></title>
 
     <% description = data.description || site.metadata.description %>
@@ -33,6 +37,12 @@
     <link rel="stylesheet" href="/shoreditch/shoreditch.css" />
     <script src="/shoreditch/shoreditch.js" defer></script>
 
+    <%# The accent option is applied here rather than in the stylesheet, which
+        ships as a static file and so cannot know a site's configuration. After
+        the theme's CSS so it overrides the default, and before the site's own
+        bundle so the site still has the last word. %>
+    <style>:root { --sd-accent: <%= Shoreditch.css_colour(site.config.shoreditch[:accent]) %>; }</style>
+
     <%# The site's own bundle loads afterwards and therefore overrides. %>
     <link rel="stylesheet" href="<%= asset_path :css %>" />
     <script src="<%= asset_path :js %>" defer></script>
@@ -54,7 +64,12 @@
     <%= render Shoreditch::HeadIcons.new(site: site) %>
   </head>
 
-  <body class="<%= data.layout %> <%= data.class %>">
+  <%# `data.class` here called Ruby's Object#class, putting
+      "HashWithDotAccess::Hash" on every page. The front matter key is read
+      with [] instead. The layout name is slash-separated, which is not a
+      usable CSS class, so it is hyphenated. %>
+  <% body_classes = [data.layout.to_s.tr("/", "-"), data[:class].to_s].reject(&:empty?) %>
+  <body class="<%= body_classes.join(" ") %>">
     <a class="sd-skip-link" href="#sd-content">Skip to content</a>
 
     <div class="sd-shell" data-sidebar="<%= site.config.shoreditch[:sidebar_side] %>">

@@ -34,6 +34,18 @@
   --sd-sidebar-fg: #eceff3;
   --sd-sidebar-fg-muted: #99a2ad;
 
+  /* Syntax highlighting. The theme owns the code background, so it has to own
+     the foreground too: a site shipping a light-only Rouge palette (which is
+     what `bridgetown new` gives you) renders keywords black on near-black the
+     moment dark mode flips the background. */
+  --sd-code-comment: #6a737d;
+  --sd-code-keyword: #d73a49;
+  --sd-code-string: #032f62;
+  --sd-code-number: #005cc5;
+  --sd-code-fn: #6f42c1;
+  --sd-code-tag: #22863a;
+  --sd-code-punct: #57606a;
+
   color-scheme: light dark;
 }
 
@@ -47,6 +59,14 @@
     --sd-sidebar-bg: #101216;
     --sd-sidebar-fg: #e6e9ee;
     --sd-sidebar-fg-muted: #8d96a2;
+
+    --sd-code-comment: #8b949e;
+    --sd-code-keyword: #ff7b72;
+    --sd-code-string: #a5d6ff;
+    --sd-code-number: #79c0ff;
+    --sd-code-fn: #d2a8ff;
+    --sd-code-tag: #7ee787;
+    --sd-code-punct: #a8b3c2;
   }
 }
 
@@ -60,6 +80,14 @@
   --sd-sidebar-bg: #1c1f23;
   --sd-sidebar-fg: #eceff3;
   --sd-sidebar-fg-muted: #99a2ad;
+
+  --sd-code-comment: #6a737d;
+  --sd-code-keyword: #d73a49;
+  --sd-code-string: #032f62;
+  --sd-code-number: #005cc5;
+  --sd-code-fn: #6f42c1;
+  --sd-code-tag: #22863a;
+  --sd-code-punct: #57606a;
 }
 
 :root[data-theme="dark"] {
@@ -71,6 +99,14 @@
   --sd-sidebar-bg: #101216;
   --sd-sidebar-fg: #e6e9ee;
   --sd-sidebar-fg-muted: #8d96a2;
+
+  --sd-code-comment: #8b949e;
+  --sd-code-keyword: #ff7b72;
+  --sd-code-string: #a5d6ff;
+  --sd-code-number: #79c0ff;
+  --sd-code-fn: #d2a8ff;
+  --sd-code-tag: #7ee787;
+  --sd-code-punct: #a8b3c2;
 }
 
 *,
@@ -152,6 +188,24 @@ img {
   }
 }
 
+/* The navigation and the footer sit at the foot of the column, leaving the
+   logo and site title at the top. Grouped so a single auto margin moves both:
+   an auto margin on each would share the free space between them and leave the
+   nav floating in the middle. Below the breakpoint the sidebar is a band above
+   the content with no spare height, so there is nothing to push against and
+   the group simply follows the identity. */
+.sd-sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 60rem) {
+  .sd-sidebar-bottom {
+    margin-top: auto;
+  }
+}
+
 .sd-sidebar a {
   color: inherit;
 }
@@ -179,6 +233,24 @@ img {
   border-radius: var(--sd-radius);
 }
 
+/* `flashy_logo: true` in front matter. The Jekyll version stacked four red
+   drop-shadows and pulsed them; this keeps the pulse but glows in the site's
+   own accent, so it reads as deliberate rather than as an alert. */
+.sd-logo[data-flashy="true"] {
+  animation: sd-logo-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes sd-logo-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 3px var(--sd-accent));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px var(--sd-accent))
+      drop-shadow(0 0 18px var(--sd-accent));
+  }
+}
+
 /* The "AVAILABLE FOR HIRE" badge. */
 .sd-logo-legend {
   padding: 0.2rem 0.6rem;
@@ -189,6 +261,15 @@ img {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Shaped independently of the logo, as `logo_legend_shape` did in 0.9.0. */
+.sd-logo-legend[data-shape="round"] {
+  border-radius: 999px;
+}
+
+.sd-logo-legend[data-shape="straight"] {
+  border-radius: 0;
 }
 
 .sd-site-title {
@@ -227,8 +308,70 @@ img {
   text-decoration: underline;
 }
 
+/* ------------------------------------------------- contact panel (details) */
+
+.sd-details {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.sd-details a {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--sd-sidebar-fg-muted);
+  text-decoration: none;
+}
+
+.sd-details a:hover {
+  color: var(--sd-sidebar-fg);
+  text-decoration: underline;
+}
+
+.sd-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: none;
+  fill: currentColor;
+}
+
+/* Each network glows in its own colour on hover — the one flourish the Jekyll
+   theme kept in the sidebar. The glow sits on the icon only, never the text,
+   so contrast on the label is untouched. */
+.sd-details a:hover .sd-icon {
+  color: var(--sd-brand, currentColor);
+  filter: drop-shadow(0 0 4px var(--sd-brand, transparent));
+}
+
+.sd-details li[data-network="github"]     { --sd-brand: #8b6bc4; }
+.sd-details li[data-network="linkedin"]   { --sd-brand: #0a86c8; }
+.sd-details li[data-network="mastodon"]   { --sd-brand: #6364ff; }
+.sd-details li[data-network="x"]          { --sd-brand: #d0d6dd; }
+.sd-details li[data-network="instagram"]  { --sd-brand: #6b7ef0; }
+.sd-details li[data-network="reddit"]     { --sd-brand: #ff5722; }
+.sd-details li[data-network="youtube"]    { --sd-brand: #ff3d3d; }
+.sd-details li[data-network="tiktok"]     { --sd-brand: #ff3b73; }
+.sd-details li[data-network="lastfm"]     { --sd-brand: #e8362c; }
+.sd-details li[data-network="deviantart"] { --sd-brand: #23d67e; }
+.sd-details li[data-network="artstation"] { --sd-brand: #35b5f0; }
+.sd-details li[data-network="phone"],
+.sd-details li[data-network="email"],
+.sd-details li[data-network="file"]       { --sd-brand: var(--sd-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-logo[data-flashy="true"] {
+    animation: none;
+    filter: drop-shadow(0 0 6px var(--sd-accent));
+  }
+}
+
 .sd-sidebar-footer {
-  margin-top: auto;
   color: var(--sd-sidebar-fg-muted);
   font-size: 0.8rem;
 }
@@ -306,9 +449,13 @@ img {
   border-bottom: 1px solid var(--sd-rule);
 }
 
+/* The thumbnail column is reserved only when there is actually a thumbnail to
+   put in it. Gating on :has matters: without it a summary for a post with no
+   `thumbnail` in its front matter still had its text auto-placed into the
+   8rem column, squeezing every title and excerpt into a 128px ribbon. */
 @media (min-width: 34rem) {
-  .sd-post-summary {
-    grid-template-columns: 8rem minmax(0, 1fr);
+  .sd-post-summary:has(.sd-post-thumbnail) {
+    grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
     align-items: start;
   }
 }
@@ -389,6 +536,71 @@ img {
   font-size: 0.8rem;
 }
 
+/* -------------------------------------------------------------- comments */
+
+.sd-comments {
+  margin-block-start: 3rem;
+  padding-block-start: 1.5rem;
+  border-top: 1px solid var(--sd-rule);
+}
+
+.sd-comments h2 {
+  margin-block-start: 0;
+  font-size: 1.15rem;
+}
+
+/* ------------------------------------------------------------------- cv */
+
+/* Opted into with `class: cv` in front matter. A CV is a dense document of
+   roles and dates, so headings get tighter and the role/tenure pair below each
+   one is set as a unit rather than as two loose paragraphs. */
+.cv .sd-content h1 {
+  margin-block: 2.5rem 1rem;
+  padding-block-end: 0.35rem;
+  border-bottom: 1px solid var(--sd-rule);
+  font-size: 1.5rem;
+}
+
+.cv .sd-content h1:first-child {
+  margin-block-start: 0;
+}
+
+.cv .sd-content .position {
+  margin-block-end: 0;
+  font-weight: 650;
+}
+
+.cv .sd-content .tenure {
+  margin-block: 0 0.75rem;
+  color: var(--sd-fg-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------- post archive */
+
+.sd-archive {
+  margin-block: 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sd-archive li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--sd-rule);
+}
+
+.sd-archive time {
+  color: var(--sd-fg-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
 /* ------------------------------------------------------------ pagination */
 
 .sd-pagination {
@@ -421,6 +633,94 @@ img {
   border-radius: var(--sd-radius);
   background: var(--sd-code-bg);
   overflow-x: auto;
+}
+
+/* Rouge nests pre.highlight inside div.highlight and both match the rule
+   above, so the inner element padded, rounded and filled a second time. */
+.sd-content .highlight > pre.highlight {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+
+/* A `{:.code-title}` paragraph immediately before a fence labels it — the
+   filename the snippet belongs to, usually. */
+.sd-content .code-title {
+  margin-bottom: 0;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--sd-radius) var(--sd-radius) 0 0;
+  background: var(--sd-code-bg);
+  border-bottom: 1px solid var(--sd-rule);
+  font-family: var(--sd-font-mono);
+  font-size: 0.8rem;
+  color: var(--sd-fg-muted);
+}
+
+.sd-content .code-title + :is(pre, .highlight) {
+  margin-top: 0;
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+
+/* Rouge token colours, mapped onto the theme's tokens so they follow the
+   light/dark switch. Grouped by what they mean rather than by Rouge's names. */
+.sd-content .highlight :is(.c, .cm, .c1, .cs, .cp, .cd) {
+  color: var(--sd-code-comment);
+  font-style: italic;
+}
+
+.sd-content .highlight :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .o, .ow) {
+  color: var(--sd-code-keyword);
+}
+
+.sd-content .highlight :is(.s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss) {
+  color: var(--sd-code-string);
+}
+
+.sd-content .highlight :is(.m, .mf, .mh, .mi, .mo, .il, .no, .nb, .bp) {
+  color: var(--sd-code-number);
+}
+
+.sd-content .highlight :is(.nf, .nc, .ne, .nd) {
+  color: var(--sd-code-fn);
+}
+
+.sd-content .highlight :is(.nt, .na, .nn) {
+  color: var(--sd-code-tag);
+}
+
+.sd-content .highlight :is(.p, .nv, .vc, .vg, .vi, .nl, .ni) {
+  color: var(--sd-code-punct);
+}
+
+.sd-content .highlight .err {
+  color: var(--sd-code-keyword);
+  background: none;
+}
+
+/* A pull quote, set apart from the prose rather than inline like a blockquote. */
+.sd-content .pullquote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--sd-radius);
+  background: var(--sd-code-bg);
+  border-inline-start: 3px solid var(--sd-accent);
+}
+
+.sd-content .pullquote .quotation {
+  font-size: 1.15rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.sd-content .pullquote .attribution {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--sd-fg-muted);
+}
+
+.sd-content .pullquote .attribution::before {
+  content: "— ";
 }
 
 .sd-content :not(pre) > code {

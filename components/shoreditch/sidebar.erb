@@ -4,7 +4,8 @@
       <a href="<%= site.metadata.logo_link || "/" %>">
         <img
           class="sd-logo"
-          data-shape="<%= options[:logo_shape] %>"
+          data-shape="<%= logo_shape %>"
+          data-flashy="<%= flashy_logo? %>"
           src="<%= logo_source %>"
           alt="<%= site.metadata.title %>"
         />
@@ -12,32 +13,52 @@
     <% end %>
 
     <% if logo_legend %>
-      <span class="sd-logo-legend"><%= logo_legend %></span>
+      <span class="sd-logo-legend" data-shape="<%= logo_legend_shape %>"><%= logo_legend %></span>
     <% end %>
 
-    <div>
-      <p class="sd-site-title"><a href="/"><%= site.metadata.title %></a></p>
-      <% if site.metadata.tagline %>
-        <p class="sd-site-tagline"><%= site.metadata.tagline %></p>
-      <% end %>
-    </div>
+    <%# `include_sticky: false` in front matter drops the site identity and the
+        navigation, leaving the logo and badge to introduce a person instead. %>
+    <% if sticky? %>
+      <div>
+        <p class="sd-site-title"><a href="/"><%= site.metadata.title %></a></p>
+        <% if site.metadata.tagline %>
+          <p class="sd-site-tagline"><%= site.metadata.tagline %></p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
-  <% if nav_pages.any? %>
-    <nav class="sd-nav" aria-label="Main">
-      <% nav_pages.each do |page| %>
-        <a
-          href="<%= page.relative_url %>"
-          <%= 'aria-current="page"' if current?(page) %>
-        ><%= page.data.title %></a>
-      <% end %>
-    </nav>
-  <% end %>
+  <%# The contact panel belongs with the identity above it, not with the
+      navigation — on a CV the logo, name and contact details read as one block. %>
+  <%= render Shoreditch::Details.new(site: site, resource: resource) %>
 
-  <div class="sd-sidebar-footer">
-    <button class="sd-theme-toggle" type="button" data-shoreditch-theme-toggle>
-      Switch theme
-    </button>
-    <p>&copy; <%= Time.now.year %> <%= site.metadata.author&.name || site.metadata.title %></p>
+  <%# Everything from here sits at the foot of the column: the identity stays
+      at the top where the eye starts, the menu and the footer drop to the
+      bottom. One auto margin on this wrapper does it, which is why the nav and
+      footer are grouped rather than each pushed down separately — two auto
+      margins would split the free space and strand the nav in the middle. %>
+  <div class="sd-sidebar-bottom">
+    <% if sticky? && nav_pages.any? %>
+      <nav class="sd-nav" aria-label="Main">
+        <% nav_pages.each do |page| %>
+          <%# The attribute is always present and only its value varies, because
+              ERB escapes interpolated output — injecting the whole attribute
+              rendered it as aria-current=&quot;page&quot; and the
+              a[aria-current="page"] rule never matched. "false" is the value
+              ARIA defines for "not the current item". %>
+          <a
+            href="<%= page.relative_url %>"
+            aria-current="<%= current?(page) ? "page" : "false" %>"
+          ><%= page.data.title %></a>
+        <% end %>
+      </nav>
+    <% end %>
+
+    <div class="sd-sidebar-footer">
+      <button class="sd-theme-toggle" type="button" data-shoreditch-theme-toggle>
+        Switch theme
+      </button>
+      <p>&copy; <%= Time.now.year %> <%= site.metadata.author&.name || site.metadata.title %></p>
+    </div>
   </div>
 </aside>

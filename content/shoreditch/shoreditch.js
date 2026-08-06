@@ -38,7 +38,34 @@
     button.textContent = next === "dark" ? "Dark theme" : "Light theme";
   }
 
+  /* The Giscus iframe loads with the OS preference and cannot see our toggle,
+     so it would sit light on a dark page. Its postMessage API is the only way
+     to change it after load. No-op when there is no comment thread. */
+  function syncComments(theme) {
+    var frame = document.querySelector("iframe.giscus-frame");
+    if (!frame || !frame.contentWindow) return;
+    frame.contentWindow.postMessage(
+      { giscus: { setConfig: { theme: theme } } },
+      "https://giscus.app"
+    );
+  }
+
+  /* The contact panel ships the address in two halves so it never appears
+     whole in the HTML. Joining them here is the only place it exists complete,
+     which is the trade the Jekyll version made with document.write. */
+  function revealEmail() {
+    document.querySelectorAll(".sd-email").forEach(function (link) {
+      var user = link.dataset.sdEmailUser;
+      var host = link.dataset.sdEmailHost;
+      if (!user || !host) return;
+      link.href = "mailto:" + user + host;
+      link.hidden = false;
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
+    revealEmail();
+
     var buttons = document.querySelectorAll("[data-shoreditch-theme-toggle]");
     if (!buttons.length) return;
 
@@ -48,6 +75,7 @@
       button.addEventListener("click", function () {
         var next = currentTheme() === "dark" ? "light" : "dark";
         apply(next);
+        syncComments(next);
         buttons.forEach(function (b) {
           label(b, next);
         });

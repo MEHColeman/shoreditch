@@ -3,6 +3,14 @@ title: Example Content
 last_updated: 2021-11-14
 last_verified: 2021-11-14
 tags: [ info ]
+cover: /images/mosaic-arch.jpg
+thumbnail: /images/mosaic-arch-thumb.jpg
+credits:
+  -
+    label: "Cover image"
+    name: "Mark Coleman"
+    via: "on Flickr"
+    via_link: https://www.flickr.com/photos/mehcoleman/
 ---
 
 Howdy! This is an example blog post that shows several types of HTML content

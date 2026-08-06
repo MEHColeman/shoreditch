@@ -30,8 +30,32 @@ class Shoreditch::Sidebar < Bridgetown::Component
     page.relative_url == @resource.relative_url
   end
 
+  attr_reader :resource
+
   def logo_source
+    return nil if @resource.data.include_logo == false
+
     @resource.data.logo_location || @site.metadata.logo
+  end
+
+  # `include_sticky: false` drops the site title, tagline and navigation. The
+  # CV page used it so its sidebar introduced a person rather than a site.
+  def sticky?
+    @resource.data.include_sticky != false
+  end
+
+  # A page can override the logo's shape, as the Jekyll version allowed.
+  def logo_shape
+    @resource.data.logo_shape || options[:logo_shape]
+  end
+
+  # "round" or "straight" — the badge under the logo, shaped independently.
+  def logo_legend_shape
+    @resource.data.logo_legend_shape || options[:logo_legend_shape] || "round"
+  end
+
+  def flashy_logo?
+    @resource.data.flashy_logo == true
   end
 
   def logo_legend
