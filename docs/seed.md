@@ -99,14 +99,16 @@ indefinitely. `demo/.nvmrc` pins it; nvm's global default may not.
 | `docs/seed.md` | This file — orientation |
 | `docs/TODO.md` | Outstanding work, each item with its own context block |
 | `docs/journal.md` | What happened and why, append-only |
+| `docs/acceptance.md` | Facts proven by review at merge time |
 | `README.md` | Theme documentation for users |
-| `CHANGELOG.md` | What changed in 1.0.0, and what was removed |
+| `CHANGELOG.md` | What changed and what was removed, per release |
 
 ## Current state
 
-1.0.0 released, with unreleased fixes on the `fix-theme-regressions` branch —
-see `CHANGELOG.md` under Unreleased. Consumed by `MEHColeman/blog` from a git
-source.
+1.0.0 released. The restorations and fixes that followed it (`CHANGELOG.md`
+under Unreleased) are merged to master via PR #2 (2026-08-08), reviewed
+against agreed criteria — see `docs/acceptance.md` — and await a version
+bump. Consumed by `MEHColeman/blog` from a git source.
 
 **The demo has no working public URL.** Pages is enabled with GitHub Actions as
 the source and the workflow deploys green, but the custom domain
@@ -115,8 +117,7 @@ setting it also makes GitHub 301 the `mehcoleman.github.io/shoreditch/` URL to
 that non-resolving name. One DNSimple CNAME fixes both. See `docs/TODO.md`.
 
 Outstanding besides DNS: **not published to RubyGems** (deliberately — waiting
-on sign-off), and light mode has not been visually verified since the theme
-started rendering correctly.
+on sign-off).
 
 ## Traps worth knowing
 

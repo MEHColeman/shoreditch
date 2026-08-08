@@ -211,3 +211,28 @@ earning its space rather than chrome. Noted but not acted on: the CV's band is
 343px, because the contact panel is nine stacked rows. On a CV the contact
 details arguably *are* the header, so that is defensible — but it is the one
 page where the band is still tall.
+
+### 2026-08-08 — the branch goes through the gate and lands
+
+`fix-theme-regressions` was reviewed and merged as PR #2. The branch predated
+the plan-doc workflow, so acceptance criteria were agreed retroactively with
+Mark, derived from the CHANGELOG Unreleased section, and written to a plan doc
+before the review ran. Two bounded blind passes (standard + security lens, the
+diff being ~1,700 lines), 16 tool calls each, plus the verification commands
+run for real: production build clean on Node 22, theme CSS linked, no Giscus
+in the built output.
+
+Verdict: pass, after one remediation — the reverse direction of the changelog
+check caught `.sd-archive` entering the diff under no entry, which the forward
+check during the work had missed. No blockers or majors. Three minors became
+TODO items: the excerpt regex mishandles posts opening with a blockquote or
+code fence, the contact fields want a URL-scheme check (a `javascript:` value
+in site metadata renders a clickable script link — self-XSS, but beneath the
+standard `accent` sets) plus the `data-network="twitter"`-vs-`"x"` mismatch,
+and four orphaned demo starter files survived the layout deletion. The
+security pass confirmed the accent validation cannot be escaped and found no
+unescaped ERB output anywhere.
+
+Verified criteria are distilled into `docs/acceptance.md` (new); the plan doc
+is deleted in the closeout, recoverable via
+`git log -- docs/tasks/fix-theme-regressions.md`.

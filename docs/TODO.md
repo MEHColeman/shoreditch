@@ -236,3 +236,8 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 - [x] Reframe index entries — the hairline-rule listing left the stack with no
       shared left edge, because a post without a thumbnail began its title
       where its neighbours began an image column
+- [x] Review and merge `fix-theme-regressions` — PR #2, merged 2026-08-08.
+      7/7 criteria met after one remediation (the reverse changelog check
+      caught `.sd-archive` under no entry). Verified criteria are in
+      `docs/acceptance.md`; the review itself is in git history
+      (`git log -- docs/tasks/fix-theme-regressions.md`)
