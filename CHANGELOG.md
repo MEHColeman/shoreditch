@@ -28,6 +28,16 @@ of defects that only showed up once the demo rendered the theme correctly.
 - Code blocks were padded twice, Rouge nesting `pre.highlight` inside
   `div.highlight` and both matching the same rule.
 - Pagination rendered an empty nav, and its margin, when there was one page.
+- **An automation-installed site never rendered as the theme.** The scaffold's
+  starter layouts beat the theme's for every page whose front matter named
+  them — including the scaffold's own welcome post, whose explicit `layout:
+  post` also defeated the automation's `_defaults.yml` — and the starter
+  stylesheet trampled what remained. The automation now retires starter files
+  that are recognisably untouched and points their pages at the theme's
+  layouts; anything edited is left alone with a warning.
+- The automation wrote prompt answers into generated Ruby verbatim, so an
+  answer containing `"` produced a `config/initializers.rb` that did not
+  parse. Answers are sanitised before interpolation.
 
 ### Added
 

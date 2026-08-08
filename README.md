@@ -17,6 +17,13 @@ Both are worth a look.
 bin/bridgetown apply https://github.com/MEHColeman/shoreditch
 ```
 
+The automation asks for an accent colour and a badge text, installs the gem,
+and points your posts and pages at the theme's layouts. On a fresh site it
+also retires the scaffold's starter stylesheet and layouts, which would
+otherwise override the theme — only files that are recognisably the untouched
+scaffold are replaced; anything you have edited is left alone, with a warning
+that your CSS loads after the theme's.
+
 Or by hand:
 
 ```
