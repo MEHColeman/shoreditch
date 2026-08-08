@@ -1,3 +1,7 @@
+# The /save-game and /next-task recommendation cache — session state, not
+# project state.
+.next-task
+
 *.gem
 /.bundle
 /Gemfile.lock

@@ -4,8 +4,28 @@ description: >-
   A two-column Bridgetown theme built for technical writing — fixed sidebar,
   cover images, and a content column wide enough for 80-character code.
 
-logo: /images/logo.svg
+# ROA's crane mural on Hanbury Street — the theme's name made literal, and
+# square, so the circular crop takes it without losing anything.
+logo: /images/logo.jpg
 logo_link: /
 
+# Placeholder throughout. This demo is public and is not anyone's real CV, so
+# no handle, number or address here resolves to a real account — they exist to
+# show the contact panel rendering, nothing more.
 author:
+  # The real owner — this drives the sidebar copyright line. The CV page's
+  # fictional persona lives in that page's `logo_legend`, not here.
   name: Mark Coleman
+  github: example
+  mastodon: https://example.social/@example
+  linkedin: example
+  instagram: example
+  reddit: example
+  lastfm: example
+  # Split in two on purpose: the halves are only joined in the browser, so the
+  # address is never whole in the HTML. See components/shoreditch/details.rb.
+  email_1: hello@exam
+  email_2: ple.invalid
+  phone: "+44 20 7946 0000"
+  file_url: /files/example-cv.pdf
+  file_link_text: Download as PDF

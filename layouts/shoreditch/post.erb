@@ -53,6 +53,8 @@ layout: shoreditch/default
   </aside>
 <% end %>
 
+<%= render Shoreditch::Comments.new(site: site, resource: resource) %>
+
 <% if data.credits&.any? %>
   <footer class="sd-credits">
     <% data.credits.each do |credit| %>

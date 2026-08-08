@@ -1,0 +1,25 @@
+<section class="sd-comments">
+  <h2>Comments</h2>
+
+  <%# data-theme follows the OS preference on load; shoreditch.js re-syncs it
+      through Giscus's postMessage API when the reader uses the theme toggle,
+      so the comment thread does not stay light on a dark page. %>
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="<%= repo %>"
+    data-repo-id="<%= repo_id %>"
+    data-category="<%= category %>"
+    data-category-id="<%= category_id %>"
+    data-mapping="pathname"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+  ></script>
+
+  <noscript>Comments need JavaScript. They are also readable as GitHub Discussions on the repository.</noscript>
+</section>

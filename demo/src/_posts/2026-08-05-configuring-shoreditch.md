@@ -3,6 +3,14 @@ title: Configuring Shoreditch
 last_updated: 2026-08-05
 last_verified: 2026-08-05
 tags: [ shoreditch, configuration ]
+cover: /images/adore-and-endure.jpg
+thumbnail: /images/adore-and-endure-thumb.jpg
+credits:
+  -
+    label: "Cover image"
+    name: "Mark Coleman"
+    via: "on Flickr"
+    via_link: https://www.flickr.com/photos/mehcoleman/
 ---
 
 Everything Shoreditch exposes is set in two places: the initializer, for things

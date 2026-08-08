@@ -10,11 +10,15 @@ pagination:
   <%= render Shoreditch::PostSummary.new(post: post) %>
 <% end %>
 
-<nav class="sd-pagination">
-  <% if paginator.previous_page %>
-    <a class="sd-newer" href="<%= paginator.previous_page_path %>">Newer</a>
-  <% end %>
-  <% if paginator.next_page %>
-    <a class="sd-older" href="<%= paginator.next_page_path %>">Older</a>
-  <% end %>
-</nav>
+<%# Skipped entirely when there is only one page, rather than rendering an
+    empty nav that still takes its margin. %>
+<% if paginator.previous_page || paginator.next_page %>
+  <nav class="sd-pagination">
+    <% if paginator.previous_page %>
+      <a class="sd-newer" href="<%= paginator.previous_page_path %>">Newer</a>
+    <% end %>
+    <% if paginator.next_page %>
+      <a class="sd-older" href="<%= paginator.next_page_path %>">Older</a>
+    <% end %>
+  </nav>
+<% end %>

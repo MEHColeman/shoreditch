@@ -2,6 +2,7 @@
 
 require "bridgetown"
 require "shoreditch/version"
+require "shoreditch/icons"
 
 # Shoreditch is a two-column Bridgetown theme aimed at technical blogging.
 #
@@ -25,7 +26,29 @@ module Shoreditch
     logo_legend: nil,
     # "round" or "square".
     logo_shape: "round",
+    # "round" or "straight" — the badge under the logo, shaped independently.
+    logo_legend_shape: "round",
+    # Comments, off by default. A hash of Giscus settings turns them on — see
+    # components/shoreditch/comments.rb. Override that component to use any
+    # other provider.
+    comments: nil,
   }.freeze
+
+  # A CSS colour we are willing to interpolate into a declaration: hex, an
+  # rgb()/hsl() function, or a bare keyword. Deliberately strict — `accent`
+  # comes from a site's config and is written straight into a <style> block,
+  # so a value containing a brace or semicolon could inject rules of its own.
+  CSS_COLOUR = %r{\A(?:
+    \#[0-9a-fA-F]{3,8}
+    | (?:rgb|hsl)a?\([0-9a-zA-Z.,%\s/+-]*\)
+    | [a-zA-Z]+
+  )\z}x
+
+  # Falls back to the default rather than emitting CSS we cannot vouch for.
+  def self.css_colour(value, fallback = DEFAULTS[:accent])
+    candidate = value.to_s.strip
+    candidate.match?(CSS_COLOUR) ? candidate : fallback
+  end
 end
 
 # @param config [Bridgetown::Configuration::ConfigurationDSL]

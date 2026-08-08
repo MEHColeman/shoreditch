@@ -29,10 +29,26 @@
   --sd-fg: #1c1f23;
   --sd-fg-muted: #5b6470;
   --sd-rule: #e3e6ea;
+  /* A hairline separator can afford to be almost invisible; a border drawn
+     around something, so that it reads as one object, cannot. Both weights are
+     tuned to land at roughly the same contrast in either scheme. */
+  --sd-rule-strong: #c9ced6;
   --sd-code-bg: #f5f6f8;
   --sd-sidebar-bg: #1c1f23;
   --sd-sidebar-fg: #eceff3;
   --sd-sidebar-fg-muted: #99a2ad;
+
+  /* Syntax highlighting. The theme owns the code background, so it has to own
+     the foreground too: a site shipping a light-only Rouge palette (which is
+     what `bridgetown new` gives you) renders keywords black on near-black the
+     moment dark mode flips the background. */
+  --sd-code-comment: #6a737d;
+  --sd-code-keyword: #d73a49;
+  --sd-code-string: #032f62;
+  --sd-code-number: #005cc5;
+  --sd-code-fn: #6f42c1;
+  --sd-code-tag: #22863a;
+  --sd-code-punct: #57606a;
 
   color-scheme: light dark;
 }
@@ -43,10 +59,19 @@
     --sd-fg: #e6e9ee;
     --sd-fg-muted: #98a1ad;
     --sd-rule: #2a2e35;
+    --sd-rule-strong: #363c45;
     --sd-code-bg: #1e2126;
     --sd-sidebar-bg: #101216;
     --sd-sidebar-fg: #e6e9ee;
     --sd-sidebar-fg-muted: #8d96a2;
+
+    --sd-code-comment: #8b949e;
+    --sd-code-keyword: #ff7b72;
+    --sd-code-string: #a5d6ff;
+    --sd-code-number: #79c0ff;
+    --sd-code-fn: #d2a8ff;
+    --sd-code-tag: #7ee787;
+    --sd-code-punct: #a8b3c2;
   }
 }
 
@@ -56,10 +81,19 @@
   --sd-fg: #1c1f23;
   --sd-fg-muted: #5b6470;
   --sd-rule: #e3e6ea;
+  --sd-rule-strong: #c9ced6;
   --sd-code-bg: #f5f6f8;
   --sd-sidebar-bg: #1c1f23;
   --sd-sidebar-fg: #eceff3;
   --sd-sidebar-fg-muted: #99a2ad;
+
+  --sd-code-comment: #6a737d;
+  --sd-code-keyword: #d73a49;
+  --sd-code-string: #032f62;
+  --sd-code-number: #005cc5;
+  --sd-code-fn: #6f42c1;
+  --sd-code-tag: #22863a;
+  --sd-code-punct: #57606a;
 }
 
 :root[data-theme="dark"] {
@@ -67,10 +101,19 @@
   --sd-fg: #e6e9ee;
   --sd-fg-muted: #98a1ad;
   --sd-rule: #2a2e35;
+  --sd-rule-strong: #363c45;
   --sd-code-bg: #1e2126;
   --sd-sidebar-bg: #101216;
   --sd-sidebar-fg: #e6e9ee;
   --sd-sidebar-fg-muted: #8d96a2;
+
+  --sd-code-comment: #8b949e;
+  --sd-code-keyword: #ff7b72;
+  --sd-code-string: #a5d6ff;
+  --sd-code-number: #79c0ff;
+  --sd-code-fn: #d2a8ff;
+  --sd-code-tag: #7ee787;
+  --sd-code-punct: #a8b3c2;
 }
 
 *,
@@ -152,6 +195,24 @@ img {
   }
 }
 
+/* The navigation and the footer sit at the foot of the column, leaving the
+   logo and site title at the top. Grouped so a single auto margin moves both:
+   an auto margin on each would share the free space between them and leave the
+   nav floating in the middle. Below the breakpoint the sidebar is a band above
+   the content with no spare height, so there is nothing to push against and
+   the group simply follows the identity. */
+.sd-sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 60rem) {
+  .sd-sidebar-bottom {
+    margin-top: auto;
+  }
+}
+
 .sd-sidebar a {
   color: inherit;
 }
@@ -179,6 +240,24 @@ img {
   border-radius: var(--sd-radius);
 }
 
+/* `flashy_logo: true` in front matter. The Jekyll version stacked four red
+   drop-shadows and pulsed them; this keeps the pulse but glows in the site's
+   own accent, so it reads as deliberate rather than as an alert. */
+.sd-logo[data-flashy="true"] {
+  animation: sd-logo-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes sd-logo-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 3px var(--sd-accent));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px var(--sd-accent))
+      drop-shadow(0 0 18px var(--sd-accent));
+  }
+}
+
 /* The "AVAILABLE FOR HIRE" badge. */
 .sd-logo-legend {
   padding: 0.2rem 0.6rem;
@@ -189,6 +268,15 @@ img {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Shaped independently of the logo, as `logo_legend_shape` did in 0.9.0. */
+.sd-logo-legend[data-shape="round"] {
+  border-radius: 999px;
+}
+
+.sd-logo-legend[data-shape="straight"] {
+  border-radius: 0;
 }
 
 .sd-site-title {
@@ -227,8 +315,70 @@ img {
   text-decoration: underline;
 }
 
+/* ------------------------------------------------- contact panel (details) */
+
+.sd-details {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.sd-details a {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--sd-sidebar-fg-muted);
+  text-decoration: none;
+}
+
+.sd-details a:hover {
+  color: var(--sd-sidebar-fg);
+  text-decoration: underline;
+}
+
+.sd-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: none;
+  fill: currentColor;
+}
+
+/* Each network glows in its own colour on hover — the one flourish the Jekyll
+   theme kept in the sidebar. The glow sits on the icon only, never the text,
+   so contrast on the label is untouched. */
+.sd-details a:hover .sd-icon {
+  color: var(--sd-brand, currentColor);
+  filter: drop-shadow(0 0 4px var(--sd-brand, transparent));
+}
+
+.sd-details li[data-network="github"]     { --sd-brand: #8b6bc4; }
+.sd-details li[data-network="linkedin"]   { --sd-brand: #0a86c8; }
+.sd-details li[data-network="mastodon"]   { --sd-brand: #6364ff; }
+.sd-details li[data-network="x"]          { --sd-brand: #d0d6dd; }
+.sd-details li[data-network="instagram"]  { --sd-brand: #6b7ef0; }
+.sd-details li[data-network="reddit"]     { --sd-brand: #ff5722; }
+.sd-details li[data-network="youtube"]    { --sd-brand: #ff3d3d; }
+.sd-details li[data-network="tiktok"]     { --sd-brand: #ff3b73; }
+.sd-details li[data-network="lastfm"]     { --sd-brand: #e8362c; }
+.sd-details li[data-network="deviantart"] { --sd-brand: #23d67e; }
+.sd-details li[data-network="artstation"] { --sd-brand: #35b5f0; }
+.sd-details li[data-network="phone"],
+.sd-details li[data-network="email"],
+.sd-details li[data-network="file"]       { --sd-brand: var(--sd-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-logo[data-flashy="true"] {
+    animation: none;
+    filter: drop-shadow(0 0 6px var(--sd-accent));
+  }
+}
+
 .sd-sidebar-footer {
-  margin-top: auto;
   color: var(--sd-sidebar-fg-muted);
   font-size: 0.8rem;
 }
@@ -242,6 +392,103 @@ img {
   font: inherit;
   font-size: 0.8rem;
   cursor: pointer;
+}
+
+/* Below the breakpoint the sidebar is not a column, it is a header band — and
+   it had never been designed for that axis. Every part kept the size it takes
+   in an 18rem column with 100vh to spend, so on a 390px phone the masthead,
+   nav, toggle and copyright took 439px before the article, putting the title
+   at 80% of the first screen and the copyright notice above the headline.
+   The parts are promoted to items of the shell so identity and navigation can
+   form a compact bar above the content while the toggle and copyright drop
+   below it, where a footer belongs. Someone arriving on a post from a search
+   result should meet the masthead, not the small print. */
+@media (max-width: 59.99rem) {
+  .sd-shell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sd-sidebar,
+  .sd-sidebar-bottom {
+    display: contents;
+  }
+
+  /* Promoting the parts discards the sidebar's own box, so each one carries
+     the background and inline padding it used to provide. They butt into one
+     another into a single band because the shell has no gap. */
+  .sd-logo-area,
+  .sd-details,
+  .sd-nav,
+  .sd-sidebar-footer {
+    background: var(--sd-sidebar-bg);
+    color: var(--sd-sidebar-fg);
+    padding-inline: var(--sd-gutter);
+  }
+
+  .sd-logo-area {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.9rem;
+    padding-top: 0.9rem;
+    text-align: start;
+  }
+
+  /* The title and tagline take what is left of the row, which pushes the badge
+     to the end of it — where it reads as a status pill rather than a caption
+     under the logo. */
+  .sd-site-identity {
+    flex: 1 1 10rem;
+  }
+
+  .sd-logo-legend {
+    order: 1;
+  }
+
+  .sd-logo {
+    width: 3rem;
+    height: 3rem;
+    border-width: 2px;
+  }
+
+  .sd-site-title {
+    font-size: 1.15rem;
+  }
+
+  .sd-site-tagline {
+    font-size: 0.8rem;
+  }
+
+  .sd-details {
+    padding-top: 0.9rem;
+  }
+
+  .sd-nav {
+    padding-block: 0.7rem 0.9rem;
+  }
+
+  /* Grows to take the slack, so a short page still leaves the footer at the
+     bottom rather than stranded mid-screen. */
+  .sd-main {
+    flex: 1;
+  }
+
+  /* Everything else keeps the default order of 0, so this alone lands after
+     the content. */
+  .sd-sidebar-footer {
+    order: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-block: 1.1rem;
+  }
+
+  .sd-sidebar-footer p {
+    margin: 0;
+  }
 }
 
 /* --------------------------------------------------------------- content */
@@ -299,30 +546,84 @@ img {
   font-size: 0.85rem;
 }
 
+/* An index entry is a framed object, not a row in a feed. The frame earns its
+   place: a post with no `thumbnail` started its title at the content edge
+   while its neighbours started an image-column in, so the stack had no shared
+   left edge and read as ragged. The border supplies one edge every entry
+   shares, whether or not it has an image. 0.9.0's listing was bordered for the
+   same reason — this restores that, clipping the excerpt at a line boundary
+   rather than mid-word as that version did. */
 .sd-post-summary {
   display: grid;
-  gap: 1rem;
-  padding-block: 1.75rem;
-  border-bottom: 1px solid var(--sd-rule);
+  overflow: hidden;
+  border: 1px solid var(--sd-rule-strong);
+  border-radius: var(--sd-radius);
+  transition: border-color 0.15s ease;
 }
 
-@media (min-width: 34rem) {
-  .sd-post-summary {
-    grid-template-columns: 8rem minmax(0, 1fr);
-    align-items: start;
-  }
+.sd-post-summary + .sd-post-summary {
+  margin-top: 1.25rem;
+}
+
+/* The same border-to-accent move the tags and the pager already make. */
+.sd-post-summary:hover,
+.sd-post-summary:focus-within {
+  border-color: var(--sd-accent);
+}
+
+/* The plate is an edge of the card, not a picture sitting inside it: flush to
+   the border, no radius of its own (the frame's overflow clips it), and
+   stretched to whatever height the text sets. */
+.sd-post-thumbnail {
+  display: block;
+  aspect-ratio: 16 / 7;
 }
 
 .sd-post-thumbnail img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--sd-radius);
+}
+
+/* The thumbnail column is reserved only when there is actually a thumbnail to
+   put in it. Gating on :has matters: without it a summary for a post with no
+   `thumbnail` in its front matter still had its text auto-placed into the
+   image column, squeezing every title and excerpt into a narrow ribbon. */
+@media (min-width: 34rem) {
+  .sd-post-summary:has(.sd-post-thumbnail) {
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  }
+
+  .sd-post-thumbnail {
+    height: 100%;
+    min-height: 9rem;
+    aspect-ratio: auto;
+  }
+}
+
+.sd-post-detail {
+  min-width: 0;
+  padding: 1.15rem 1.4rem;
+}
+
+/* Promoted above the title and set in the mono face. The date is not a
+   footnote on a technical blog — a listing here spans 2012 to 2026, where
+   "how stale is this?" is the first thing a reader wants to know — and mono is
+   already the theme's signal for data rather than prose. */
+.sd-post-summary .sd-post-dates {
+  margin-bottom: 0.3rem;
+  font-family: var(--sd-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .sd-post-summary h2 {
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.4rem;
   font-size: 1.25rem;
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 .sd-post-summary h2 a {
@@ -331,6 +632,41 @@ img {
 
 .sd-post-summary h2 a:hover {
   text-decoration: underline;
+}
+
+.sd-post-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  color: var(--sd-fg-muted);
+  font-size: 0.95rem;
+}
+
+/* An excerpt is a preview, so it is set as plain text whatever block the post
+   happens to open with. Without this a post starting with {:.message} or a
+   blockquote put a filled, accent-barred box inside the card while its
+   neighbours stayed plain. Scoped through .sd-content to outrank the prose
+   rules further down the file rather than depending on source order. */
+.sd-content .sd-post-excerpt :is(p, blockquote, .message, .callout, .alert, .alarm) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-style: inherit;
+}
+
+/* Flattening zeroes every margin, so an excerpt taken from two paragraphs by
+   an explicit <!--more--> would run them together. The selector repeats the
+   :is() list to match the specificity of the rule above — :is() takes the
+   weight of its most specific argument, so that rule is (0,3,0), not (0,2,0)
+   — and sits after it to win the tie. */
+.sd-content .sd-post-excerpt * + :is(p, blockquote, .message, .callout, .alert, .alarm) {
+  margin-top: 0.5rem;
 }
 
 /* ------------------------------------------------------------------ tags */
@@ -389,6 +725,71 @@ img {
   font-size: 0.8rem;
 }
 
+/* -------------------------------------------------------------- comments */
+
+.sd-comments {
+  margin-block-start: 3rem;
+  padding-block-start: 1.5rem;
+  border-top: 1px solid var(--sd-rule);
+}
+
+.sd-comments h2 {
+  margin-block-start: 0;
+  font-size: 1.15rem;
+}
+
+/* ------------------------------------------------------------------- cv */
+
+/* Opted into with `class: cv` in front matter. A CV is a dense document of
+   roles and dates, so headings get tighter and the role/tenure pair below each
+   one is set as a unit rather than as two loose paragraphs. */
+.cv .sd-content h1 {
+  margin-block: 2.5rem 1rem;
+  padding-block-end: 0.35rem;
+  border-bottom: 1px solid var(--sd-rule);
+  font-size: 1.5rem;
+}
+
+.cv .sd-content h1:first-child {
+  margin-block-start: 0;
+}
+
+.cv .sd-content .position {
+  margin-block-end: 0;
+  font-weight: 650;
+}
+
+.cv .sd-content .tenure {
+  margin-block: 0 0.75rem;
+  color: var(--sd-fg-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------- post archive */
+
+.sd-archive {
+  margin-block: 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sd-archive li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--sd-rule);
+}
+
+.sd-archive time {
+  color: var(--sd-fg-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
 /* ------------------------------------------------------------ pagination */
 
 .sd-pagination {
@@ -421,6 +822,94 @@ img {
   border-radius: var(--sd-radius);
   background: var(--sd-code-bg);
   overflow-x: auto;
+}
+
+/* Rouge nests pre.highlight inside div.highlight and both match the rule
+   above, so the inner element padded, rounded and filled a second time. */
+.sd-content .highlight > pre.highlight {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+
+/* A `{:.code-title}` paragraph immediately before a fence labels it — the
+   filename the snippet belongs to, usually. */
+.sd-content .code-title {
+  margin-bottom: 0;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--sd-radius) var(--sd-radius) 0 0;
+  background: var(--sd-code-bg);
+  border-bottom: 1px solid var(--sd-rule);
+  font-family: var(--sd-font-mono);
+  font-size: 0.8rem;
+  color: var(--sd-fg-muted);
+}
+
+.sd-content .code-title + :is(pre, .highlight) {
+  margin-top: 0;
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+
+/* Rouge token colours, mapped onto the theme's tokens so they follow the
+   light/dark switch. Grouped by what they mean rather than by Rouge's names. */
+.sd-content .highlight :is(.c, .cm, .c1, .cs, .cp, .cd) {
+  color: var(--sd-code-comment);
+  font-style: italic;
+}
+
+.sd-content .highlight :is(.k, .kc, .kd, .kn, .kp, .kr, .kt, .o, .ow) {
+  color: var(--sd-code-keyword);
+}
+
+.sd-content .highlight :is(.s, .s1, .s2, .sb, .sc, .sd, .se, .sh, .si, .sx, .sr, .ss) {
+  color: var(--sd-code-string);
+}
+
+.sd-content .highlight :is(.m, .mf, .mh, .mi, .mo, .il, .no, .nb, .bp) {
+  color: var(--sd-code-number);
+}
+
+.sd-content .highlight :is(.nf, .nc, .ne, .nd) {
+  color: var(--sd-code-fn);
+}
+
+.sd-content .highlight :is(.nt, .na, .nn) {
+  color: var(--sd-code-tag);
+}
+
+.sd-content .highlight :is(.p, .nv, .vc, .vg, .vi, .nl, .ni) {
+  color: var(--sd-code-punct);
+}
+
+.sd-content .highlight .err {
+  color: var(--sd-code-keyword);
+  background: none;
+}
+
+/* A pull quote, set apart from the prose rather than inline like a blockquote. */
+.sd-content .pullquote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--sd-radius);
+  background: var(--sd-code-bg);
+  border-inline-start: 3px solid var(--sd-accent);
+}
+
+.sd-content .pullquote .quotation {
+  font-size: 1.15rem;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.sd-content .pullquote .attribution {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--sd-fg-muted);
+}
+
+.sd-content .pullquote .attribution::before {
+  content: "— ";
 }
 
 .sd-content :not(pre) > code {
