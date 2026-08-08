@@ -30,3 +30,27 @@ PR that proved them; the full reviews live in git history under
   first-paint theme script whitelists its localStorage value; the vendored
   icons are plain path data (CC0, attributed); the theme makes no external
   network request except opt-in Giscus.
+
+## Install automation exercised and hardened (`bridgetown-automation`, PR #3, 2026-08-08)
+
+- `bin/bridgetown apply` installs the theme end to end on a fresh site:
+  `scripts/exercise-automation.sh` scaffolds a site, pre-seeds the gem as a
+  path source (RubyGems has no `shoreditch` gem yet), and drives the apply
+  with answers piped on stdin for three paths — both prompts answered, both
+  blank, and a hostile answer — asserting the initializer parses, the site
+  builds, and both the index and a post render `sd-sidebar`.
+- An automation-installed site renders as the theme. The automation retires a
+  starter layout or stylesheet only when it is exactly the untouched
+  `bridgetown new` scaffold (whitespace aside), and repoints the pages that
+  named a retired layout by editing only their front matter — never a
+  `layout:` line in body text or a code fence. A file the site has edited is
+  left in place with a note.
+- A prompt answer cannot inject code. Answers carrying a quote, a backslash, a
+  newline, or a Ruby interpolation (`#{`, `#@`, `#$`) are rejected rather than
+  escaped — escaping is unreliable because Bridgetown's `add_initializer`
+  insertion rewrites backslashes, which reactivated an escaped `#{` in
+  testing and executed it at site load. A rejected answer is dropped with a
+  note to set that option by hand.
+- The pure `bundle add shoreditch` install route stays unproven until the gem
+  is published; the RubyGems TODO item carries an `EXERCISE_PRESEED=0` re-run
+  to prove it then.

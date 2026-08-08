@@ -170,29 +170,17 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Doing
 
-- [ ] Exercise `bridgetown.automation.rb` against a fresh site
-    - **Plan:** [[bridgetown-automation]]
-    - Why: the automation is the headline install route — it is what the README
-      and the demo's configuration post both tell people to run — and it has
-      never been executed. The gem install path is proven (both `demo/` and
-      `MEHColeman/blog` consume the theme), but that was done by hand, not by
-      the automation.
-    - Files: `bridgetown.automation.rb`
-    - Known: it calls `ask()` twice, so it cannot be tested non-interactively
-      in a background shell — that is why it was skipped rather than
-      overlooked. `add_initializer` is passed a block returning `""` when both
-      answers are blank; whether Bridgetown writes a bare `init :shoreditch`
-      or something malformed in that case is the specific unknown.
-    - Known: until 6 Aug 2026 its first prompt asked for an accent colour that
-      had no effect at all, because the option was never wired to the CSS. That
-      is fixed, so the automation is now worth testing — before, it would have
-      confirmed a path leading nowhere.
-    - Approach: superseded by the plan doc — see [[bridgetown-automation]] for
-      the pre-seeded Gemfile strategy, the PTY script, and the three paths.
-    - Done when: the plan doc's seven acceptance criteria are ticked.
-
 ## Done
 
+- [x] Exercise `bridgetown.automation.rb` against a fresh site — PR #3, merged
+      2026-08-08. The install route had never run; `scripts/exercise-automation.sh`
+      now drives it against a fresh site (answered / blank / hostile-answer
+      paths). The exercise surfaced defects the branch then fixed: an
+      automation-installed site rendered as the starter, not the theme; and a
+      prompt answer could execute as code at site load (an RCE the review's
+      security pass caught, and two escaping attempts failed to close before
+      rejection did). See `docs/acceptance.md`; review in git history
+      (`git log -- docs/tasks/bridgetown-automation.md`).
 - [x] Rebuild as a gem-based Bridgetown plugin with a source manifest
 - [x] Redesign in modern CSS with light/dark and a toggle
 - [x] Add `bridgetown.automation.rb` for one-step install

@@ -253,3 +253,32 @@ during the swap.
 
 "Enforce HTTPS" is on. <https://shoreditch.mehcoleman.com/> serves over
 HTTP/2, plain HTTP 301s to it, and the README-screenshot task is unblocked.
+
+### 2026-08-08 — the install automation, exercised and hardened
+
+`bridgetown.automation.rb` had never been run. Building a harness to run it
+(`scripts/exercise-automation.sh`) turned up that the automation, as shipped,
+produced a site that rendered as the bare `bridgetown new` starter, not the
+theme: the scaffold's own layouts beat the theme's for every page whose front
+matter named them — including the welcome post, whose explicit `layout: post`
+also defeated the automation's `_defaults.yml` — and the starter stylesheet
+trampled the rest. The automation now retires those starter files and repoints
+their pages.
+
+The sharper finding came in review. Prompt answers were interpolated into the
+generated `config/initializers.rb`, so an answer containing `#{…}` executed as
+Ruby every time the site loaded — an RCE against anyone running the installer.
+Two escaping fixes failed: the first `.delete` selector stripped only the
+quote (its `\` was a delete-escape, not a stripped character), and even a
+correct `String#dump` did not survive, because Bridgetown's `add_initializer`
+insertion rewrites backslashes and reactivated the escaped `#{`. The `nasty`
+test path proved it concretely — the build aborted at `Kernel.exit(1)`. The
+lesson, recorded for the next time generated code sits behind an insertion
+layer: reject unsafe input, do not try to escape it. Answers carrying a quote,
+backslash, newline or interpolation are now declined with a note.
+
+Three review rounds in all (standard + security, then a remediation
+re-review), plus three correctness edge cases the re-review found and the
+closeout fixed (CRLF front matter, `.markdown` pages, non-UTF-8 sources). The
+one thing still unproven is the pure `bundle add shoreditch` route, which
+needs the gem published first; the RubyGems task carries the re-run.
