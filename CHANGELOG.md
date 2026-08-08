@@ -1,9 +1,10 @@
 # Changelog
 
-## Unreleased
+## 1.1.0
 
-Restores features the 1.0.0 rewrite dropped without recording, and fixes a set
-of defects that only showed up once the demo rendered the theme correctly.
+First version published to RubyGems. Restores features the 1.0.0 rewrite
+dropped without recording, and fixes a set of defects that only showed up once
+the demo rendered the theme correctly.
 
 ### Fixed
 

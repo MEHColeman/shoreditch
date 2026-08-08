@@ -106,17 +106,19 @@ indefinitely. `demo/.nvmrc` pins it; nvm's global default may not.
 
 ## Current state
 
-1.0.0 released. The restorations and fixes that followed it (`CHANGELOG.md`
-under Unreleased) are merged to master via PR #2 (2026-08-08), reviewed
-against agreed criteria — see `docs/acceptance.md` — and await a version
-bump. Consumed by `MEHColeman/blog` from a git source.
+1.0.0 released. The restorations and fixes that followed it are merged to
+master via PR #2 (2026-08-08), reviewed against agreed criteria — see
+`docs/acceptance.md` — and rolled into **1.1.0**, staged as the first version
+to publish to RubyGems (1.0.0 stays git-only; nobody should install the
+known-defective release). Consumed by `MEHColeman/blog` from a git source.
 
 The demo is live at **<https://shoreditch.mehcoleman.com/>** — Pages with
 GitHub Actions as the source, HTTPS enforced, deployed on every push to
 master.
 
-Outstanding: **not published to RubyGems** (deliberately — waiting on
-sign-off).
+Outstanding: **not yet published to RubyGems** — sign-off given 2026-08-08,
+release staged (version bump, changelog roll, gemspec file-list fix), publish
+awaiting Mark's `gem signin`. See the task in `docs/TODO.md`.
 
 ## Traps worth knowing
 

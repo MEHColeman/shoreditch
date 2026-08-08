@@ -5,21 +5,35 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Inbox
 
-- [ ] Publish 1.0.0 to RubyGems
+- [ ] Publish 1.1.0 to RubyGems
     - Why: `MEHColeman/blog` currently depends on this theme through a git
       source, which pins a revision and clones on every deploy. A released gem
       makes `bundle add shoreditch` work for anyone, which is the whole point
       of the rewrite.
-    - Approach: `gem build shoreditch.gemspec && gem push shoreditch-1.0.0.gem`.
-      Needs a RubyGems account with the name `shoreditch` available — check
-      that before announcing anything.
-    - Known: `add_gem "shoreditch"` in the automation resolves against
-      RubyGems, so the automation's own first step has only ever been tested
-      with a pre-seeded path-sourced Gemfile
-      (2026-08-08, see docs/acceptance.md). After publishing, re-run
-      `EXERCISE_PRESEED=0 scripts/exercise-automation.sh` to prove the pure
-      `bundle add shoreditch` route end to end.
-    - Done when: the blog's Gemfile can say `gem "shoreditch", "~> 1.0"`, and
+    - Known: sign-off given 2026-08-08. Decisions: first published version is
+      **1.1.0** (Unreleased rolled in; 1.0.0 stays git-only so nobody installs
+      the known-defective release), publish route is a **local `gem push`**
+      (trusted publishing via CI deliberately deferred), Mark's rubygems.org
+      account exists with MFA on.
+    - Known: the name `shoreditch` was free on rubygems.org as of 2026-08-08
+      (`GET /api/v1/gems/shoreditch.json` → 404).
+    - Known: staging exposed the gemspec shipping dev files — the exclusion
+      regex said `script/` (singular) so `scripts/exercise-automation.sh` was
+      in the gem, and `docs/`, `.github/`, `.gitignore` shipped too. Fixed,
+      along with bounding the bridgetown dependency to `~> 2.0` (the theme is
+      written against Bridgetown 2's APIs). `shoreditch-1.1.0.gem` built and
+      its contents verified clean.
+    - Plan: (1) Mark: `gem signin` with an API key scoped to push_rubygem
+      only. (2) Commit the staged release (version bump, changelog roll,
+      gemspec fixes) to master, tag `v1.1.0`, push both. (3) `gem push
+      shoreditch-1.1.0.gem` — if the account's MFA level is "UI and API",
+      Mark runs it himself to type the OTP. (4) Verify on rubygems.org.
+      (5) Re-run `EXERCISE_PRESEED=0 scripts/exercise-automation.sh` — the
+      automation's `add_gem "shoreditch"` route has only ever been tested
+      with a pre-seeded path-sourced Gemfile (see docs/acceptance.md).
+      (6) Update seed/TODO/journal; the blog's Gemfile switch to
+      `gem "shoreditch", "~> 1.1"` happens in that repo.
+    - Done when: the blog's Gemfile can say `gem "shoreditch", "~> 1.1"`, and
       the no-pre-seed exercise run passes.
 
 - [ ] Configure Giscus on the demo, or decide not to

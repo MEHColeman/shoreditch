@@ -282,3 +282,23 @@ re-review), plus three correctness edge cases the re-review found and the
 closeout fixed (CRLF front matter, `.markdown` pages, non-UTF-8 sources). The
 one thing still unproven is the pure `bundle add shoreditch` route, which
 needs the gem published first; the RubyGems task carries the re-run.
+
+### 2026-08-08 — RubyGems publish signed off, 1.1.0 staged
+
+Mark gave the sign-off the RubyGems task was waiting on, with three decisions:
+the first published version is **1.1.0** — the Unreleased section rolled in,
+1.0.0 left git-only so the registry never serves the known-defective release —
+the route is a local `gem push` from an MFA-protected account (trusted
+publishing via CI deferred as a possible follow-up), and the account already
+exists. The name `shoreditch` was confirmed free on rubygems.org first, as the
+task required.
+
+Staging the release caught the gemspec shipping development files: the
+exclusion regex said `script/` while the directory is `scripts/`, so the
+automation exercise harness was inside the gem, and `docs/` (the journal, the
+TODO list) and `.github/` shipped too. The file list now rejects all of them.
+The bridgetown dependency tightened from `>= 2.0` to `~> 2.0` — the theme is
+written against Bridgetown 2's ERB APIs and should not claim a future 3.x.
+
+`shoreditch-1.1.0.gem` is built and its contents verified. The publish itself
+waits on Mark's `gem signin`; the remaining steps live in the TODO item.

@@ -25,15 +25,16 @@ Gem::Specification.new do |spec|
 
   # `content` is included deliberately: it carries the stylesheet, which the
   # source manifest publishes as a static file. `demo` and `test` are the
-  # theme's own development site and are not part of the gem.
+  # theme's own development site, `docs` and `scripts` its working notes and
+  # tooling — none of them part of the gem.
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(demo|test|script|spec|features)/})
+    f.match(%r{^(demo|test|scripts?|spec|features|docs)/|^\.git})
   end
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = ">= 3.3"
 
-  spec.add_dependency "bridgetown", ">= 2.0"
+  spec.add_dependency "bridgetown", "~> 2.0"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 13.0"
