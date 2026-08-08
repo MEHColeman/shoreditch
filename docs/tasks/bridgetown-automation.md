@@ -201,10 +201,54 @@ grep -n "re-run" docs/TODO.md           # publish item carries the step
   edited-site test confirms edited default.erb and index.css are kept, the
   pristine post.erb is retired, a quoted `layout: "post"` is repointed, and an
   identical line inside a code fence is untouched.
+- Remediation re-review (one bounded pass) confirmed all four prior findings
+  closed and the rejection regex complete with no bypass, and raised three new
+  minor correctness edge cases — all fixed in the same closeout: CRLF front
+  matter now repoints (the sub anchored `\r?$` and re-emits the line ending),
+  the page glob includes `.markdown`, and a non-UTF-8 source is skipped so the
+  pass stays all-or-nothing. Fixes unit-verified (CRLF front matter repointed
+  with ending preserved, fence line untouched, invalid encoding guarded) and
+  a final full exercise run confirms the happy path.
 
 ## Review
 
-<Written by `review-merge`.>
+**Verdict:** pass — after two remediation rounds on this branch
+**Reviewed:** `git diff master...HEAD` — 9 files, ~490 added
+**Passes:** standard + security lens, then one remediation re-review (security
+lens) after the fixes — three bounded passes, 16/16/4 tool calls
+**Criteria:** 7 met (1–6 exercised by `scripts/exercise-automation.sh`,
+verified green this session; 7 by inspection)
+
+### Acceptance criteria
+
+| # | Criterion | Verdict | Evidence |
+|---|---|---|---|
+| 1 | Living set true of the tree | met | README/CHANGELOG/seed/TODO all updated to the shipped behaviour |
+| 2 | Script committed, 3 stdin paths, exits 0 | met | ran it — answered/blank/nasty all pass |
+| 3 | Answered path parses + settings + sidebar | met | `accent "#aa3355"` / `logo_legend "TEST"`, post + index carry `sd-sidebar` |
+| 4 | Blank path clean init + sidebar | met | bare `init :"shoreditch"`, builds, sidebar present |
+| 5 | Hostile answer cannot inject or execute | met | `nasty` path: quote/backslash/`#{…}` answers rejected, no payload in initializer, site builds |
+| 6 | Site not trampled by starter stylesheet | met | starter stylesheet cleared on exact match; index + post render the theme |
+| 7 | Publish item re-run step; defects fixed/filed | met | `EXERCISE_PRESEED=0` re-run recorded; all defects fixed on-branch |
+
+### Findings — no blockers, no majors open
+
+The first review found a **blocker (RCE)** and majors (destructive file
+heuristics, front-matter rewrite hitting body text); all fixed and confirmed
+closed by the re-review. The re-review's three new minors (CRLF, `.markdown`,
+non-UTF-8) were fixed in the closeout and unit-verified — localized enough
+that unit checks plus one full exercise run stand in for a third agent pass.
+No finding remains open.
+
+### Retrospective
+
+**Missed:** the implementer's own two escaping fixes were both wrong — the
+`.delete` selector semantics, then the assumption that `.dump` survives
+Bridgetown's backslash-rewriting insertion. The security-lens pass and the
+behavioural `nasty` build-abort caught what inspection had not. The lesson is
+recorded in the plan: for generated code behind an insertion layer, reject
+unsafe input rather than escape it.
+**Owed:** nothing outstanding — all findings fixed on-branch.
 
 ## Open questions
 

@@ -225,18 +225,23 @@ end
 # `---`…`---` front matter, so a `layout:` line in a post's body or a fenced
 # code block is never touched, and tolerant of quoted values (layout: "post").
 unless retired.empty?
-  Dir.glob("src/**/*.{md,erb,serb,liquid,html}").each do |page|
+  Dir.glob("src/**/*.{md,markdown,erb,serb,liquid,html}").each do |page|
     next unless File.file?(page)
 
     text = File.read(page)
+    # A non-UTF-8 source would raise on the match below, aborting mid-way with
+    # layouts already removed; skip it so the pass is all-or-nothing.
+    next unless text.valid_encoding?
     next unless text =~ /\A(---[ \t]*\r?\n)(.*?\r?\n)(---[ \t]*\r?\n)(.*)\z/m
 
     open_fence, front, close_fence, body = $1, $2, $3, $4
     changed = false
     retired.each do |name, replacement|
-      front = front.sub(/^(layout:[ \t]*)["']?#{Regexp.escape(name)}["']?[ \t]*$/) do
+      # The `\r?` before the anchor keeps CRLF front matter matching, and the
+      # captured trailing group is re-emitted so the line ending is preserved.
+      front = front.sub(/^(layout:[ \t]*)["']?#{Regexp.escape(name)}["']?([ \t]*\r?)$/) do
         changed = true
-        "#{$1}#{replacement}"
+        "#{$1}#{replacement}#{$2}"
       end
     end
     File.write(page, open_fence + front + close_fence + body) if changed
