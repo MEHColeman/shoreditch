@@ -4,7 +4,7 @@
 **Branch:** feat/bridgetown-automation
 **Worktree:** ../shoreditch-worktrees/bridgetown-automation
 **Base:** master
-**PR:** none yet
+**PR:** https://github.com/MEHColeman/shoreditch/pull/3
 **Issue:** none
 **Todo:** "Exercise `bridgetown.automation.rb` against a fresh site" in docs/TODO.md
 **Planned at:** 795ba475b54f34403fb32fa6a5a62b2fa8e8d327
@@ -113,8 +113,14 @@ This repo's doc set (no docs/system/ split):
 - [x] Blank path: `config/initializers.rb` passes `ruby -c` and carries a
       clean `init :shoreditch`; the site builds and a built post page
       contains `sd-sidebar`
-- [x] Quote-probe path: an accent answer containing `"` cannot produce an
-      initializer that fails `ruby -c` — the answer is sanitised or rejected
+- [x] Hostile-answer path: an answer containing a quote, a backslash or a
+      `#{…}` interpolation cannot produce a non-parsing initializer, cannot
+      execute at site load, and cannot reach the generated file — such answers
+      are rejected (verified by the `nasty` path: no payload in the
+      initializer, site builds) *(broadened 2026-08-08 from "quote-probe …
+      sanitised or rejected" during remediation — the review found escaping is
+      unreliable through Bridgetown's insertion, so rejection is the fix; the
+      criterion's intent, no injection, is unchanged)*
 - [x] An automation-installed site's built post page is not trampled by the
       starter stylesheet — verified by assertion or, if judged a
       documentation matter instead, by Mark waiving this criterion in review
@@ -164,6 +170,37 @@ grep -n "re-run" docs/TODO.md           # publish item carries the step
 - Docs updated: README install section (what the automation does), CHANGELOG
   Unreleased Fixed (two entries), seed commands table, publish TODO item
   (post-publish `EXERCISE_PRESEED=0` re-run).
+- Review (PR #3, two bounded passes) requested changes. Blocker + majors, all
+  in the code this branch added, all remediated on-branch:
+  - **RCE, and my first fix was wrong.** Sanitising with `.delete(%(\\"))`
+    stripped only `"` (the `\` was a `String#delete` escape, not a stripped
+    char), so backslashes passed through; and even a correct `.dump` did not
+    hold, because **Bridgetown's `add_initializer` insertion rewrites
+    backslashes** — it turned the inert `\\\#{` from `.dump` back into a live
+    `\\#{`, and `#{Kernel.exit(1)}` executed during the build (proven: the
+    `nasty` path's build aborted at Bridgetown startup). Escaping through that
+    layer is unreliable. Fixed by **rejecting** answers matching
+    `/["\\\r\n]|#[{@$]/` (quote, backslash, newline, or `#{`/`#@`/`#$`
+    interpolation) with a warning, so nothing needing escapes is ever written.
+  - **Destructive heuristics on a user's files.** `include?(marker)` substring
+    tests would delete an edited `default.erb` (still contains `Shared::Navbar`)
+    or force-overwrite a customised `index.css` (still contains
+    `--body-background`). Replaced with whitespace-normalised **exact match**
+    against the embedded pristine scaffold: anything edited is left with a
+    note. The gate is strict by design — an unrecognised (newer) scaffold is
+    left alone too.
+  - **Front-matter rewrite hit body text.** `gsub_file` over the whole file
+    rewrote a `layout: post` line inside a fenced code block. Confined to the
+    leading `---`…`---` block, and made tolerant of quoted values
+    (`layout: "post"`).
+  - Script hygiene: `nasty` probe added (quote+backslash+`#{}`), asserting the
+    payload never reaches the initializer and the site still builds;
+    `EXERCISE_WORKDIR` marker guard refuses to `rm -rf` a dir it did not
+    create; no unattended `nvm install`.
+- Re-verified: clean-workdir exercise exits 0 on all three paths; a by-hand
+  edited-site test confirms edited default.erb and index.css are kept, the
+  pristine post.erb is retired, a quoted `layout: "post"` is repointed, and an
+  identical line inside a code fence is untouched.
 
 ## Review
 

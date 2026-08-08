@@ -9,8 +9,9 @@
 #
 #   answered  both prompts answered  (#aa3355 / TEST)
 #   blank     both prompts blank
-#   quote     accent answer carries a double-quote — the generated
-#             initializer must still parse or the answer must be rejected
+#   nasty     answers carry a double-quote, a backslash and a `#{...}` — the
+#             generated initializer must still parse AND the interpolation
+#             must be inert (the site builds, so nothing executed at load)
 #
 # The apply target must be the automation FILE (or a URL): Bridgetown 2.2.2
 # IO.reads the argument directly, so a checkout directory dies with EISDIR.
@@ -20,7 +21,14 @@ set -u
 
 THEME_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 WORK="${EXERCISE_WORKDIR:-$(mktemp -d /tmp/shoreditch-automation.XXXXXX)}"
+# The per-path dirs get rm -rf'd, so refuse to adopt a workdir we did not
+# create: a populated EXERCISE_WORKDIR without our marker is someone else's.
+if [ -d "$WORK" ] && [ ! -e "$WORK/.exercise-workdir" ] && [ -n "$(ls -A "$WORK" 2>/dev/null)" ]; then
+  echo "Refusing to reuse non-empty $WORK — no .exercise-workdir marker (set EXERCISE_WORKDIR to a fresh path)" >&2
+  exit 2
+fi
 mkdir -p "$WORK"
+: >"$WORK/.exercise-workdir"
 PRESEED="${EXERCISE_PRESEED:-1}"
 FAILURES=0
 
@@ -41,11 +49,12 @@ insite() {
 if [ -s "${NVM_DIR:-$HOME/.nvm}/nvm.sh" ]; then
   # shellcheck disable=SC1091
   . "${NVM_DIR:-$HOME/.nvm}/nvm.sh"
-  nvm use 22 >/dev/null 2>&1 || nvm install 22 >/dev/null
+  nvm use 22 >/dev/null 2>&1 || true   # never install unattended; the check below fails loudly
 fi
 node_major="$(node --version 2>/dev/null | sed 's/^v//;s/\..*//')"
 if [ "${node_major:-0}" -lt 22 ]; then
-  echo "Node 22+ required (esbuild uses fs.globSync); found: $(node --version 2>&1)" >&2
+  echo "Node 22+ required (esbuild uses fs.globSync); found: $(node --version 2>&1)." >&2
+  echo "Install it yourself (nvm install 22) and re-run." >&2
   exit 2
 fi
 
@@ -118,6 +127,15 @@ run_path() {
       then fail "blank path wrote settings anyway:"; grep -nE 'accent|logo_legend' "$init" | sed 's/^/   | /'
       else pass "no settings written on blank answers"; fi
       ;;
+    nasty)
+      # The answers carried a quote, a backslash and `#{Kernel.exit(1)}`. The
+      # automation rejects such answers outright, so no trace of the payload
+      # may reach the generated initializer — and if any did and were live,
+      # the build (below) would abort at load. Both must hold.
+      if grep -q 'Kernel.exit' "$init"
+      then fail "hostile answer reached the initializer:"; grep -n 'Kernel.exit' "$init" | sed 's/^/   | /'
+      else pass "hostile answers rejected — no payload in the initializer"; fi
+      ;;
   esac
 
   [ -f "$site/src/_posts/_defaults.yml" ] \
@@ -153,7 +171,7 @@ run_path() {
 
 run_path answered '#aa3355' 'TEST'
 run_path blank    ''        ''
-run_path quote    '#aa3355"' ''
+run_path nasty    '#aa3355"\#{Kernel.exit(1)}' 'x"y\z'
 
 say "result"
 if [ "$FAILURES" -eq 0 ]; then
