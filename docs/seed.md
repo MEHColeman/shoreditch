@@ -110,14 +110,12 @@ under Unreleased) are merged to master via PR #2 (2026-08-08), reviewed
 against agreed criteria — see `docs/acceptance.md` — and await a version
 bump. Consumed by `MEHColeman/blog` from a git source.
 
-**The demo has no working public URL.** Pages is enabled with GitHub Actions as
-the source and the workflow deploys green, but the custom domain
-`shoreditch.mehcoleman.com` is set in repo settings with no DNS record — and
-setting it also makes GitHub 301 the `mehcoleman.github.io/shoreditch/` URL to
-that non-resolving name. One DNSimple CNAME fixes both. See `docs/TODO.md`.
+The demo is live at **<https://shoreditch.mehcoleman.com/>** — Pages with
+GitHub Actions as the source, HTTPS enforced, deployed on every push to
+master.
 
-Outstanding besides DNS: **not published to RubyGems** (deliberately — waiting
-on sign-off).
+Outstanding: **not published to RubyGems** (deliberately — waiting on
+sign-off).
 
 ## Traps worth knowing
 

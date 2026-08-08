@@ -5,31 +5,6 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Inbox
 
-- [ ] Create the DNS record for the demo's custom domain
-    - Why: Pages is enabled, the workflow deploys green, and the custom domain
-      is set to `shoreditch.mehcoleman.com` — but that name has no DNS record,
-      so the site 301s to a host that does not resolve.
-    - Known: there is **no working fallback URL**. Setting the custom domain in
-      repo settings also makes GitHub 301 `mehcoleman.github.io/shoreditch/` to
-      the non-resolving name, so the demo is unreachable at every public URL
-      until this lands. (An earlier note here claimed the github.io URL still
-      worked; verified 6 Aug 2026 that it does not.) Removing the custom domain
-      from repo settings restores it within about a minute, if a working link
-      is needed before DNS propagates.
-    - Known: `dig` is not installed on this machine; `resolvectl query
-      shoreditch.mehcoleman.com` is the local check. It currently returns no
-      record at all — neither A nor AAAA.
-    - Known: do not touch the apex. `mehcoleman.com` and `www` both resolve to
-      157.245.31.183 and are in use by something else.
-    - Approach: at **DNSimple**, add
-      `shoreditch.mehcoleman.com  CNAME  mehcoleman.github.io`.
-      Then turn on "Enforce HTTPS" in Settings → Pages — the API refuses it
-      until a certificate exists, which needs DNS resolving first.
-    - Known: `demo/src/CNAME` also carries the domain, but with
-      `build_type: workflow` GitHub takes the domain from repo settings rather
-      than the artifact, so the file alone was not enough.
-    - Done when: shoreditch.mehcoleman.com serves the demo over HTTPS.
-
 - [ ] Exercise `bridgetown.automation.rb` against a fresh site
     - Why: the automation is the headline install route — it is what the README
       and the demo's configuration post both tell people to run — and it has
@@ -241,3 +216,10 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       caught `.sd-archive` under no entry). Verified criteria are in
       `docs/acceptance.md`; the review itself is in git history
       (`git log -- docs/tasks/fix-theme-regressions.md`)
+- [x] Create the DNS record for the demo's custom domain — Mark added the
+      DNSimple CNAME 2026-08-08; certificate provisioning had stalled (the
+      domain predated the record) and needed the domain removed and re-added
+      via the Pages API, after which Let's Encrypt issued in ~4 minutes.
+      "Enforce HTTPS" is on: <https://shoreditch.mehcoleman.com/> serves over
+      HTTP/2 and plain HTTP 301s to it. The github.io URL 301s there too, as
+      expected

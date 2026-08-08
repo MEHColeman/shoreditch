@@ -236,3 +236,20 @@ unescaped ERB output anywhere.
 Verified criteria are distilled into `docs/acceptance.md` (new); the plan doc
 is deleted in the closeout, recoverable via
 `git log -- docs/tasks/fix-theme-regressions.md`.
+
+### 2026-08-08 — the demo gets its public URL
+
+Mark added the DNSimple CNAME (`shoreditch` → `mehcoleman.github.io`) and the
+name resolved immediately to the Pages addresses — but no certificate arrived.
+After 30 minutes `https_certificate` was still null with no pending state,
+and CAA was ruled out (no record on the apex; the github.io target's own CAA
+allows Let's Encrypt). The cause was the configuration order: the custom
+domain had been set in repo settings days before the DNS record existed, and
+GitHub's provisioning had given up rather than retry. Removing the domain and
+re-adding it through the Pages API forced a fresh verification cycle —
+`authorization_pending` appeared at once and the certificate issued in about
+four minutes, with roughly half a minute of fallback to the github.io URL
+during the swap.
+
+"Enforce HTTPS" is on. <https://shoreditch.mehcoleman.com/> serves over
+HTTP/2, plain HTTP 301s to it, and the README-screenshot task is unblocked.
