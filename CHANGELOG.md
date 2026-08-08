@@ -28,6 +28,22 @@ of defects that only showed up once the demo rendered the theme correctly.
 - Code blocks were padded twice, Rouge nesting `pre.highlight` inside
   `div.highlight` and both matching the same rule.
 - Pagination rendered an empty nav, and its margin, when there was one page.
+- **An automation-installed site never rendered as the theme.** The scaffold's
+  starter layouts beat the theme's for every page whose front matter named
+  them — including the scaffold's own welcome post, whose explicit `layout:
+  post` also defeated the automation's `_defaults.yml` — and the starter
+  stylesheet trampled what remained. The automation now retires a starter
+  layout or stylesheet only when it is *exactly* the untouched scaffold
+  (whitespace aside), points the pages that named a retired layout at the
+  theme's — editing only their front matter, never a `layout:` line in body
+  text — and leaves anything a site has changed in place with a note.
+- **The automation could execute a prompt answer as code.** Answers were
+  interpolated into the generated `config/initializers.rb` verbatim, so an
+  answer such as `#{`…`}` ran as Ruby every time the site loaded, and one
+  containing a quote produced a file that would not parse. Answers carrying a
+  quote, a backslash, a newline or a Ruby interpolation are now rejected with
+  a note to set that option by hand — escaping was not enough, because
+  Bridgetown's initializer insertion rewrites backslashes.
 
 ### Added
 

@@ -17,6 +17,15 @@ Both are worth a look.
 bin/bridgetown apply https://github.com/MEHColeman/shoreditch
 ```
 
+The automation asks for an accent colour and a badge text, installs the gem,
+and points your posts and pages at the theme's layouts. On a fresh site it
+also retires the scaffold's starter stylesheet and layouts, which would
+otherwise override the theme — but only files that are *exactly* the untouched
+`bridgetown new` scaffold; anything you have edited is left alone with a note.
+An accent or badge answer that contains a quote, a backslash or a `#{…}` is
+declined rather than written into your config, since it would otherwise land
+in generated Ruby — set those options by hand if you need such characters.
+
 Or by hand:
 
 ```

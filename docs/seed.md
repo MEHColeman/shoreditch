@@ -72,6 +72,7 @@ stylesheet loads after the theme's, so overriding never requires a fork.
 | `gem build shoreditch.gemspec` | Build the gem |
 | `cd demo && bin/bridgetown start` | See changes — the fastest loop |
 | `cd demo && bin/bridgetown build` | Build the demo |
+| `scripts/exercise-automation.sh` | Exercise the install automation against a fresh site |
 
 Requires Ruby 3.3+ and **Node 22** — not advisory. Bridgetown's
 `config/esbuild.defaults.js` calls `fs.globSync`, a Node 22 API. On Node 20 the

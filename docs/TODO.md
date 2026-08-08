@@ -5,28 +5,6 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Inbox
 
-- [ ] Exercise `bridgetown.automation.rb` against a fresh site
-    - Why: the automation is the headline install route — it is what the README
-      and the demo's configuration post both tell people to run — and it has
-      never been executed. The gem install path is proven (both `demo/` and
-      `MEHColeman/blog` consume the theme), but that was done by hand, not by
-      the automation.
-    - Files: `bridgetown.automation.rb`
-    - Known: it calls `ask()` twice, so it cannot be tested non-interactively
-      in a background shell — that is why it was skipped rather than
-      overlooked. `add_initializer` is passed a block returning `""` when both
-      answers are blank; whether Bridgetown writes a bare `init :shoreditch`
-      or something malformed in that case is the specific unknown.
-    - Known: until 6 Aug 2026 its first prompt asked for an accent colour that
-      had no effect at all, because the option was never wired to the CSS. That
-      is fixed, so the automation is now worth testing — before, it would have
-      confirmed a path leading nowhere.
-    - Approach: `bridgetown new /tmp/apply-test --templates=erb`, then
-      `bin/bridgetown apply /home/mark/dev/personal/shoreditch` from inside it.
-      Run it twice — once answering both prompts, once leaving both blank.
-      Check `config/initializers.rb` parses and the site builds.
-    - Done when: both runs produce a site that builds and renders the sidebar.
-
 - [ ] Publish 1.0.0 to RubyGems
     - Why: `MEHColeman/blog` currently depends on this theme through a git
       source, which pins a revision and clones on every deploy. A released gem
@@ -35,7 +13,14 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
     - Approach: `gem build shoreditch.gemspec && gem push shoreditch-1.0.0.gem`.
       Needs a RubyGems account with the name `shoreditch` available — check
       that before announcing anything.
-    - Done when: the blog's Gemfile can say `gem "shoreditch", "~> 1.0"`.
+    - Known: `add_gem "shoreditch"` in the automation resolves against
+      RubyGems, so the automation's own first step has only ever been tested
+      with a pre-seeded path-sourced Gemfile
+      (2026-08-08, see docs/acceptance.md). After publishing, re-run
+      `EXERCISE_PRESEED=0 scripts/exercise-automation.sh` to prove the pure
+      `bundle add shoreditch` route end to end.
+    - Done when: the blog's Gemfile can say `gem "shoreditch", "~> 1.0"`, and
+      the no-pre-seed exercise run passes.
 
 - [ ] Configure Giscus on the demo, or decide not to
     - Why: the comments component is implemented and verified to stay off when
@@ -184,6 +169,27 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       390px, or this is closed as deliberate and the reasoning recorded.
 
 ## Doing
+
+- [ ] Exercise `bridgetown.automation.rb` against a fresh site
+    - **Plan:** [[bridgetown-automation]]
+    - Why: the automation is the headline install route — it is what the README
+      and the demo's configuration post both tell people to run — and it has
+      never been executed. The gem install path is proven (both `demo/` and
+      `MEHColeman/blog` consume the theme), but that was done by hand, not by
+      the automation.
+    - Files: `bridgetown.automation.rb`
+    - Known: it calls `ask()` twice, so it cannot be tested non-interactively
+      in a background shell — that is why it was skipped rather than
+      overlooked. `add_initializer` is passed a block returning `""` when both
+      answers are blank; whether Bridgetown writes a bare `init :shoreditch`
+      or something malformed in that case is the specific unknown.
+    - Known: until 6 Aug 2026 its first prompt asked for an accent colour that
+      had no effect at all, because the option was never wired to the CSS. That
+      is fixed, so the automation is now worth testing — before, it would have
+      confirmed a path leading nowhere.
+    - Approach: superseded by the plan doc — see [[bridgetown-automation]] for
+      the pre-seeded Gemfile strategy, the PTY script, and the three paths.
+    - Done when: the plan doc's seven acceptance criteria are ticked.
 
 ## Done
 
