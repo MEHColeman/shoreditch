@@ -103,7 +103,10 @@ This repo's doc set (no docs/system/ split):
       still read true
 - [x] `scripts/exercise-automation.sh` exists, is committed, and exits 0: it
       scaffolds a fresh site, pre-seeds the path-sourced gem, and drives the
-      apply through a PTY for the answered, blank, and quote-probe paths
+      apply with answers piped on stdin for the answered, blank, and
+      quote-probe paths *(amended from "through a PTY" with Mark's agreement
+      2026-08-08 — the exercise disproved the PTY premise; the point was
+      non-interactive and repeatable, which stdin piping is)*
 - [x] Answered path: `config/initializers.rb` passes `ruby -c` and carries
       `init :shoreditch` with `accent "#aa3355"` and `logo_legend "TEST"`;
       the site builds and a built post page contains `sd-sidebar`
