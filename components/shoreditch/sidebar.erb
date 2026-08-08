@@ -19,7 +19,7 @@
     <%# `include_sticky: false` in front matter drops the site identity and the
         navigation, leaving the logo and badge to introduce a person instead. %>
     <% if sticky? %>
-      <div>
+      <div class="sd-site-identity">
         <p class="sd-site-title"><a href="/"><%= site.metadata.title %></a></p>
         <% if site.metadata.tagline %>
           <p class="sd-site-tagline"><%= site.metadata.tagline %></p>

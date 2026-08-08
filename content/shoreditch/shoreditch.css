@@ -29,6 +29,10 @@
   --sd-fg: #1c1f23;
   --sd-fg-muted: #5b6470;
   --sd-rule: #e3e6ea;
+  /* A hairline separator can afford to be almost invisible; a border drawn
+     around something, so that it reads as one object, cannot. Both weights are
+     tuned to land at roughly the same contrast in either scheme. */
+  --sd-rule-strong: #c9ced6;
   --sd-code-bg: #f5f6f8;
   --sd-sidebar-bg: #1c1f23;
   --sd-sidebar-fg: #eceff3;
@@ -55,6 +59,7 @@
     --sd-fg: #e6e9ee;
     --sd-fg-muted: #98a1ad;
     --sd-rule: #2a2e35;
+    --sd-rule-strong: #363c45;
     --sd-code-bg: #1e2126;
     --sd-sidebar-bg: #101216;
     --sd-sidebar-fg: #e6e9ee;
@@ -76,6 +81,7 @@
   --sd-fg: #1c1f23;
   --sd-fg-muted: #5b6470;
   --sd-rule: #e3e6ea;
+  --sd-rule-strong: #c9ced6;
   --sd-code-bg: #f5f6f8;
   --sd-sidebar-bg: #1c1f23;
   --sd-sidebar-fg: #eceff3;
@@ -95,6 +101,7 @@
   --sd-fg: #e6e9ee;
   --sd-fg-muted: #98a1ad;
   --sd-rule: #2a2e35;
+  --sd-rule-strong: #363c45;
   --sd-code-bg: #1e2126;
   --sd-sidebar-bg: #101216;
   --sd-sidebar-fg: #e6e9ee;
@@ -387,6 +394,103 @@ img {
   cursor: pointer;
 }
 
+/* Below the breakpoint the sidebar is not a column, it is a header band — and
+   it had never been designed for that axis. Every part kept the size it takes
+   in an 18rem column with 100vh to spend, so on a 390px phone the masthead,
+   nav, toggle and copyright took 439px before the article, putting the title
+   at 80% of the first screen and the copyright notice above the headline.
+   The parts are promoted to items of the shell so identity and navigation can
+   form a compact bar above the content while the toggle and copyright drop
+   below it, where a footer belongs. Someone arriving on a post from a search
+   result should meet the masthead, not the small print. */
+@media (max-width: 59.99rem) {
+  .sd-shell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sd-sidebar,
+  .sd-sidebar-bottom {
+    display: contents;
+  }
+
+  /* Promoting the parts discards the sidebar's own box, so each one carries
+     the background and inline padding it used to provide. They butt into one
+     another into a single band because the shell has no gap. */
+  .sd-logo-area,
+  .sd-details,
+  .sd-nav,
+  .sd-sidebar-footer {
+    background: var(--sd-sidebar-bg);
+    color: var(--sd-sidebar-fg);
+    padding-inline: var(--sd-gutter);
+  }
+
+  .sd-logo-area {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.9rem;
+    padding-top: 0.9rem;
+    text-align: start;
+  }
+
+  /* The title and tagline take what is left of the row, which pushes the badge
+     to the end of it — where it reads as a status pill rather than a caption
+     under the logo. */
+  .sd-site-identity {
+    flex: 1 1 10rem;
+  }
+
+  .sd-logo-legend {
+    order: 1;
+  }
+
+  .sd-logo {
+    width: 3rem;
+    height: 3rem;
+    border-width: 2px;
+  }
+
+  .sd-site-title {
+    font-size: 1.15rem;
+  }
+
+  .sd-site-tagline {
+    font-size: 0.8rem;
+  }
+
+  .sd-details {
+    padding-top: 0.9rem;
+  }
+
+  .sd-nav {
+    padding-block: 0.7rem 0.9rem;
+  }
+
+  /* Grows to take the slack, so a short page still leaves the footer at the
+     bottom rather than stranded mid-screen. */
+  .sd-main {
+    flex: 1;
+  }
+
+  /* Everything else keeps the default order of 0, so this alone lands after
+     the content. */
+  .sd-sidebar-footer {
+    order: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-block: 1.1rem;
+  }
+
+  .sd-sidebar-footer p {
+    margin: 0;
+  }
+}
+
 /* --------------------------------------------------------------- content */
 
 .sd-main {
@@ -442,34 +546,84 @@ img {
   font-size: 0.85rem;
 }
 
+/* An index entry is a framed object, not a row in a feed. The frame earns its
+   place: a post with no `thumbnail` started its title at the content edge
+   while its neighbours started an image-column in, so the stack had no shared
+   left edge and read as ragged. The border supplies one edge every entry
+   shares, whether or not it has an image. 0.9.0's listing was bordered for the
+   same reason — this restores that, clipping the excerpt at a line boundary
+   rather than mid-word as that version did. */
 .sd-post-summary {
   display: grid;
-  gap: 1rem;
-  padding-block: 1.75rem;
-  border-bottom: 1px solid var(--sd-rule);
+  overflow: hidden;
+  border: 1px solid var(--sd-rule-strong);
+  border-radius: var(--sd-radius);
+  transition: border-color 0.15s ease;
+}
+
+.sd-post-summary + .sd-post-summary {
+  margin-top: 1.25rem;
+}
+
+/* The same border-to-accent move the tags and the pager already make. */
+.sd-post-summary:hover,
+.sd-post-summary:focus-within {
+  border-color: var(--sd-accent);
+}
+
+/* The plate is an edge of the card, not a picture sitting inside it: flush to
+   the border, no radius of its own (the frame's overflow clips it), and
+   stretched to whatever height the text sets. */
+.sd-post-thumbnail {
+  display: block;
+  aspect-ratio: 16 / 7;
+}
+
+.sd-post-thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* The thumbnail column is reserved only when there is actually a thumbnail to
    put in it. Gating on :has matters: without it a summary for a post with no
    `thumbnail` in its front matter still had its text auto-placed into the
-   8rem column, squeezing every title and excerpt into a 128px ribbon. */
+   image column, squeezing every title and excerpt into a narrow ribbon. */
 @media (min-width: 34rem) {
   .sd-post-summary:has(.sd-post-thumbnail) {
-    grid-template-columns: minmax(0, 10rem) minmax(0, 1fr);
-    align-items: start;
+    grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  }
+
+  .sd-post-thumbnail {
+    height: 100%;
+    min-height: 9rem;
+    aspect-ratio: auto;
   }
 }
 
-.sd-post-thumbnail img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: var(--sd-radius);
+.sd-post-detail {
+  min-width: 0;
+  padding: 1.15rem 1.4rem;
+}
+
+/* Promoted above the title and set in the mono face. The date is not a
+   footnote on a technical blog — a listing here spans 2012 to 2026, where
+   "how stale is this?" is the first thing a reader wants to know — and mono is
+   already the theme's signal for data rather than prose. */
+.sd-post-summary .sd-post-dates {
+  margin-bottom: 0.3rem;
+  font-family: var(--sd-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .sd-post-summary h2 {
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.4rem;
   font-size: 1.25rem;
+  line-height: 1.25;
+  text-wrap: balance;
 }
 
 .sd-post-summary h2 a {
@@ -478,6 +632,41 @@ img {
 
 .sd-post-summary h2 a:hover {
   text-decoration: underline;
+}
+
+.sd-post-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  color: var(--sd-fg-muted);
+  font-size: 0.95rem;
+}
+
+/* An excerpt is a preview, so it is set as plain text whatever block the post
+   happens to open with. Without this a post starting with {:.message} or a
+   blockquote put a filled, accent-barred box inside the card while its
+   neighbours stayed plain. Scoped through .sd-content to outrank the prose
+   rules further down the file rather than depending on source order. */
+.sd-content .sd-post-excerpt :is(p, blockquote, .message, .callout, .alert, .alarm) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-style: inherit;
+}
+
+/* Flattening zeroes every margin, so an excerpt taken from two paragraphs by
+   an explicit <!--more--> would run them together. The selector repeats the
+   :is() list to match the specificity of the rule above — :is() takes the
+   weight of its most specific argument, so that rule is (0,3,0), not (0,2,0)
+   — and sits after it to win the tie. */
+.sd-content .sd-post-excerpt * + :is(p, blockquote, .message, .callout, .alert, .alarm) {
+  margin-top: 0.5rem;
 }
 
 /* ------------------------------------------------------------------ tags */

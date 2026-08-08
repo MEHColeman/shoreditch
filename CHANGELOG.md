@@ -31,6 +31,9 @@ of defects that only showed up once the demo rendered the theme correctly.
 
 ### Added
 
+- `--sd-rule-strong`, a heavier companion to `--sd-rule`. A hairline separator
+  can afford to be almost invisible; a border drawn around something so it reads
+  as one object cannot. Index entries use it.
 - **Comments**, off unless configured. Giscus ships as the default provider;
   overriding `components/shoreditch/comments.erb` swaps in any other. Replaces
   the Disqus support removed in 1.0.0, without the third-party trackers.
@@ -48,6 +51,26 @@ of defects that only showed up once the demo rendered the theme correctly.
 
 ### Changed
 
+- **The sidebar becomes a compact header band on narrow screens.** Below 60rem
+  it had been the desktop column rendered at phone width with nothing resized —
+  a 128px logo, a centred stack, the theme toggle and the copyright all ahead of
+  the article. On a 390px phone that was 439px of chrome, putting a post's title
+  at 80% of the first screen and its copyright notice above the headline. The
+  logo now sits inline with the site title, the navigation runs beneath it, and
+  the toggle and copyright drop to the foot of the page: 137px, with the title
+  at 45%. No menu to open and no JavaScript — the parts are promoted to items of
+  the page shell with `display: contents` and reordered.
+- **Index entries are framed again**, as they were up to 0.9.0, rather than
+  separated by a hairline rule. The frame is what gives the listing a single
+  left edge: a post with no thumbnail began its title at the content edge while
+  its neighbours began an image-column in, so the stack read as ragged.
+  Thumbnails now sit flush to the frame and fill the card's height instead of
+  floating inside it with their own rounded corners, excerpts are clamped to
+  three lines at a line boundary, and the date moves above the title, set in the
+  mono face.
+- **Index excerpts are set as plain text** whatever block the post opens with.
+  A post beginning with `{:.message}` or a blockquote put a filled, accent-barred
+  box in the listing while its neighbours stayed plain.
 - **The sidebar splits top and bottom.** The logo, badge, site title and
   tagline stay at the top of the column; the navigation and footer drop to the
   bottom. Previously everything stacked from the top, leaving the empty space

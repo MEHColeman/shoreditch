@@ -173,6 +173,11 @@ background. Override `--sd-code-keyword`, `--sd-code-string`,
 `--sd-code-comment`, `--sd-code-number`, `--sd-code-fn`, `--sd-code-tag` and
 `--sd-code-punct` to use your own.
 
+Rules come in two weights. `--sd-rule` is the hairline used for separators and
+table borders; `--sd-rule-strong` is the heavier one used where a border encloses
+something that has to read as a single object, as an index entry does. Override
+them together if you are changing the palette.
+
 Do not style `body`, `main` or bare `a` from your site's stylesheet — those
 belong to the theme, and because your CSS loads last you will win by accident.
 Override custom properties instead.
@@ -181,6 +186,13 @@ Light and dark both come from `prefers-color-scheme`, with a toggle in the
 sidebar that stores the reader's choice and wins over the OS setting. The
 choice is applied by an inline script before first paint, so there is no flash
 of the wrong scheme.
+
+Below 60rem the two columns stack, and the sidebar becomes a compact header
+band: the logo shrinks and sits inline with the site title, the navigation runs
+along under it, and the theme toggle and copyright move to the foot of the page
+so a reader arriving on a post meets the masthead rather than the small print.
+There is no menu to open — everything stays on screen, and no JavaScript is
+involved.
 
 The markdown classes the Jekyll version defined — `.message`, `.callout`,
 `.alert`, `.alarm` — still work, so posts carrying them keep rendering.

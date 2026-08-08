@@ -6,10 +6,14 @@
   <% end %>
 
   <div class="sd-post-detail">
-    <h2><a href="<%= post.relative_url %>"><%= post.data.title %></a></h2>
     <p class="sd-post-dates">
       <time datetime="<%= date_attr %>"><%= date_text %></time>
     </p>
-    <%= summary %>
+    <h2><a href="<%= post.relative_url %>"><%= post.data.title %></a></h2>
+    <%# Wrapped so the excerpt can be clamped and flattened as a unit: the
+        summary is whatever block the post opens with, which may be a
+        blockquote or a {:.message}, and an index preview has to read the same
+        whichever it is. %>
+    <div class="sd-post-excerpt"><%= summary %></div>
   </div>
 </article>

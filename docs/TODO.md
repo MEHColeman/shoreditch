@@ -62,21 +62,6 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       that before announcing anything.
     - Done when: the blog's Gemfile can say `gem "shoreditch", "~> 1.0"`.
 
-- [ ] Verify light mode
-    - Why: the theme has only ever been looked at in dark mode. Headless
-      Chrome requested dark for every screenshot taken on 6 Aug 2026, and the
-      demo was rendering with the starter stylesheet forcing a white page
-      before that — so no one has seen the theme's own light palette.
-    - Known: the tokens exist in all four blocks (`:root`, the
-      `prefers-color-scheme` media query, and both `data-theme` overrides).
-      This is a looking-at task, not a building task.
-    - Approach: open <http://localhost:4000> and use the sidebar toggle.
-      Check the syntax palette on "Configuring Shoreditch" especially — the
-      light and dark token sets are different values, and only dark has been
-      seen.
-    - Done when: light mode has been looked at on the index, a post, the CV
-      page and a tag page, and anything illegible is fixed.
-
 - [ ] Configure Giscus on the demo, or decide not to
     - Why: the comments component is implemented and verified to stay off when
       unconfigured, but has never rendered a real thread — the four Giscus IDs
@@ -87,6 +72,52 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       renders nothing and gives no clue why.
     - Done when: either a thread renders on the demo and follows the theme
       toggle, or a decision is recorded that the demo does not want comments.
+
+- [ ] Resolve the dead `.sd-table-wrap` rule
+    - Why: `content/shoreditch/shoreditch.css:745` styles
+      `.sd-content .sd-table-wrap { overflow-x: auto }`, but nothing in
+      `layouts/` or `components/` ever emits that wrapper —
+      `grep -rn 'sd-table-wrap' content/ layouts/ components/` returns only the
+      CSS. So a wide table in a post overflows the content column instead of
+      scrolling inside it.
+    - Files: `content/shoreditch/shoreditch.css`
+    - Known: the demo's "Example Content" post has a three-row table, but it is
+      `width: 100%` and narrow enough to fit, so nothing looks wrong today. A
+      table with many columns would break the page.
+    - Approach: either emit the wrapper (kramdown does not do this by itself —
+      it needs a builder or a post-render hook) or delete the rule and let
+      tables be the site's problem. Deleting is honest; emitting is kinder.
+      Decide which, do not leave it dead.
+    - Done when: a wide table either scrolls inside its own container, or the
+      rule is gone and the README says tables are the site's responsibility.
+
+- [ ] Make the contact fields consistent about handles vs URLs
+    - Why: `components/shoreditch/details.rb` ENTRIES takes a bare handle for
+      most networks (`github: yourhandle` → `https://github.com/%s`) but a full
+      URL for `mastodon` and `youtube`, whose templates are just `"%s"`. Nothing
+      signals which is which except the README comments, so getting it wrong
+      produces a broken link with no error.
+    - Files: `components/shoreditch/details.rb`, `README.md`
+    - Known: Mastodon genuinely cannot take a bare handle — the instance is
+      part of the address — so full-URL is right there. YouTube has no single
+      canonical handle form either (`@handle`, `/c/`, `/channel/`). The
+      inconsistency is defensible; the silence about it is not.
+    - Approach: either accept both forms per field (pass anything starting
+      `http` through untouched, otherwise interpolate) which makes the whole
+      list forgiving, or leave the behaviour and make the README table explicit
+      about which fields want a URL.
+    - Done when: entering a full URL in a handle field, or a handle in a URL
+      field, either works or is documented clearly enough not to happen.
+
+- [ ] Tidy the "What's Bridgetown?" demo post
+    - Why: it says "is an alternative _Jamstack_ alternative to Jekyll" and then
+      "created an excellent alternative" two lines later — three uses of the
+      word in three lines, one of them a duplication.
+    - Files: `demo/src/_posts/2021-10-15-whats-bridgetown.md` lines 10–12
+    - Known: pre-existing copy, carried over rather than introduced. Noticed
+      because the excerpt fix made the first sentence visible on the home page
+      for the first time.
+    - Done when: the sentence reads cleanly on the index and in the post.
 
 - [ ] Rebuild the CV highlight filter, if wanted
     - Why: 0.9.0 had a checkbox toggling a `highlight` body class, lighting up
@@ -117,6 +148,24 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       inconsistent with the other logo settings, which are initializer
       options.
 
+- [ ] Decide whether the CV's contact panel should compact on phones
+    - Why: the mobile header band is 137px on every page except the CV, where
+      it is 343px. The contact panel is nine stacked rows, and on a CV
+      `include_sticky: false` drops the site title and nav, so the band is
+      logo + name badge + those nine rows.
+    - Known: measured 2026-08-07 at 390×844 with the theme's own tooling. It is
+      not obviously wrong — on a CV the contact details arguably *are* the
+      header, and the CV has no cover image, so the page title still lands at
+      43% of the first screen, better than a post's 45%. This is a judgement
+      call, not a defect, which is why it was left alone.
+    - Approach: if it should compact, make `.sd-details` a wrapped horizontal
+      row inside the mobile band (it is already a flex column, so it is a
+      `flex-direction` and `gap` change in the existing
+      `@media (max-width: 59.99rem)` block). Weigh against scannability —
+      a vertical list of contact methods is the conventional CV treatment.
+    - Done when: either the row treatment is in and checked on `/cv/` at
+      390px, or this is closed as deliberate and the reasoning recorded.
+
 ## Doing
 
 ## Done
@@ -137,3 +186,11 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 - [x] Restore the contact panel, per-page sidebar overrides and CV styling
 - [x] Replace Disqus with a pluggable comments slot, shipping Giscus
 - [x] Give the theme its own light/dark syntax palette
+- [x] Verify light mode — checked on the index, a post, the CV page and a tag
+      page. The light Rouge palette, the half that had never been seen, is
+      legible. Headless Chrome cannot be made to request light by CLI flag on
+      this machine; `Emulation.setEmulatedMedia` over the DevTools protocol is
+      what works
+- [x] Reframe index entries — the hairline-rule listing left the stack with no
+      shared left edge, because a post without a thumbnail began its title
+      where its neighbours began an image column
