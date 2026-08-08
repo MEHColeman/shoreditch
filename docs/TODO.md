@@ -102,12 +102,54 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       part of the address — so full-URL is right there. YouTube has no single
       canonical handle form either (`@handle`, `/c/`, `/channel/`). The
       inconsistency is defensible; the silence about it is not.
+    - Known: the 2026-08-08 review's security pass added weight — the
+      `mastodon`/`youtube` values are emitted verbatim into `href`, so a
+      `javascript:` value in site metadata renders a clickable script link
+      (self-XSS only, it is the owner's own config, but inconsistent with the
+      validation standard `accent` sets). A `https?://` scheme check with
+      drop-on-fail, mirroring `css_colour`, closes it.
+    - Known: same review, cosmetic — ENTRIES emits `data-network="twitter"`
+      but the CSS brand-hover rule styles only `[data-network="x"]`
+      (`shoreditch.css` ~362), so a twitter handle gets no hover glow and the
+      `x` rule is dead. Fix whichever side is wrong while in the file.
     - Approach: either accept both forms per field (pass anything starting
       `http` through untouched, otherwise interpolate) which makes the whole
       list forgiving, or leave the behaviour and make the README table explicit
-      about which fields want a URL.
+      about which fields want a URL. Add the scheme check either way.
     - Done when: entering a full URL in a handle field, or a handle in a URL
-      field, either works or is documented clearly enough not to happen.
+      field, either works or is documented clearly enough not to happen; a
+      non-http(s) scheme is dropped.
+
+- [ ] Fix index excerpt extraction for posts opening with a blockquote or code fence
+    - Why: `components/shoreditch/post_summary.rb` (~20–36) cuts the rendered
+      post at the first `</p>` (or `<!--more-->`) and marks it `html_safe`. A
+      post opening with a blockquote stops at the *inner* `</p>`, emitting an
+      unclosed `<blockquote>` into the index — browsers recover at the
+      wrapping div and the flatten rule hides it visually, but the HTML is
+      invalid, and the CHANGELOG claims this case handled. A post opening with
+      a fenced code block has no `</p>` inside the Rouge output, so the
+      excerpt swallows the whole highlighted block plus the following
+      paragraph.
+    - Files: `components/shoreditch/post_summary.rb`
+    - Known: found by the 2026-08-08 review of `fix-theme-regressions`
+      (minor, both passes flagged it). The `{:.message}` case is fine — that
+      is a single paragraph carrying a class, so it ends at its own `</p>`;
+      nesting is what breaks.
+    - Approach: take the first *top-level* block instead of the first `</p>`
+      — Nokogiri is already in Bridgetown's dependency tree, so the first
+      child element's `to_html` does it; keep `<!--more-->` honoured first.
+    - Done when: a post opening with a blockquote yields balanced excerpt
+      HTML and one opening with a code fence yields only that block, both
+      verified in the built index.
+
+- [ ] Delete the orphaned demo starter files
+    - Why: the demo layouts that rendered them were deleted when the demo
+      moved onto the theme's layouts, but
+      `demo/src/_components/shared/navbar.{erb,rb}` and
+      `demo/src/_partials/{_head,_footer}.erb` remain, referenced by nothing.
+    - Known: found by the 2026-08-08 review (minor). The deleted demo layouts
+      were the only callers.
+    - Done when: the files are gone and the demo builds clean.
 
 - [ ] Tidy the "What's Bridgetown?" demo post
     - Why: it says "is an alternative _Jamstack_ alternative to Jekyll" and then

@@ -48,6 +48,9 @@ of defects that only showed up once the demo rendered the theme correctly.
   tightens the type.
 - `.pullquote` and `.code-title` styling, both of which the documentation
   demonstrated but the stylesheet never defined.
+- `.sd-archive` styling for a flat post archive — titles left, dates right in
+  tabular figures, a hairline rule between entries. The page supplies the
+  markup (the demo's Posts page groups by year); the theme ships the style.
 
 ### Changed
 
