@@ -1,8 +1,8 @@
 PATH
   remote: ..
   specs:
-    shoreditch (1.0.0)
-      bridgetown (>= 2.0)
+    shoreditch (1.1.0)
+      bridgetown (~> 2.0)
 
 GEM
   remote: https://rubygems.org/
