@@ -34,11 +34,12 @@ PR that proved them; the full reviews live in git history under
 ## Install automation exercised and hardened (`bridgetown-automation`, PR #3, 2026-08-08)
 
 - `bin/bridgetown apply` installs the theme end to end on a fresh site:
-  `scripts/exercise-automation.sh` scaffolds a site, pre-seeds the gem as a
-  path source (RubyGems has no `shoreditch` gem yet), and drives the apply
-  with answers piped on stdin for three paths — both prompts answered, both
-  blank, and a hostile answer — asserting the initializer parses, the site
-  builds, and both the index and a post render `sd-sidebar`.
+  `scripts/exercise-automation.sh` scaffolds a site, installs the gem either
+  pre-seeded as a path source or straight from RubyGems (`EXERCISE_PRESEED=0`),
+  and drives the apply with answers piped on stdin for three paths — both
+  prompts answered, both blank, and a hostile answer — asserting the
+  initializer parses, the site builds, and both the index and a post render
+  `sd-sidebar`.
 - An automation-installed site renders as the theme. The automation retires a
   starter layout or stylesheet only when it is exactly the untouched
   `bridgetown new` scaffold (whitespace aside), and repoints the pages that
@@ -51,6 +52,6 @@ PR that proved them; the full reviews live in git history under
   insertion rewrites backslashes, which reactivated an escaped `#{` in
   testing and executed it at site load. A rejected answer is dropped with a
   note to set that option by hand.
-- The pure `bundle add shoreditch` install route stays unproven until the gem
-  is published; the RubyGems TODO item carries an `EXERCISE_PRESEED=0` re-run
-  to prove it then.
+- The pure `bundle add shoreditch` install route is proven: with shoreditch
+  1.1.0 live on RubyGems, the `EXERCISE_PRESEED=0` run passed all three answer
+  paths against the real registry (2026-08-08).

@@ -302,3 +302,22 @@ written against Bridgetown 2's ERB APIs and should not claim a future 3.x.
 
 `shoreditch-1.1.0.gem` is built and its contents verified. The publish itself
 waits on Mark's `gem signin`; the remaining steps live in the TODO item.
+
+### 2026-08-08 — shoreditch 1.1.0 is on RubyGems
+
+Published. Mark authed with `gem signin` (the key scoped to push only,
+OTP-per-push on), the release commit and `1.1.0` tag went to master, and
+`gem push` succeeded — from a real terminal, because the key demands an OTP
+and neither the session shell nor the `!` runner has an interactive stdin;
+`--otp` inline is the session-side fallback. The registry entry checked out:
+correct metadata, MIT, all three URIs.
+
+The proof that mattered followed: `EXERCISE_PRESEED=0
+scripts/exercise-automation.sh` — the pure `bundle add shoreditch` route the
+automation had never run, RubyGems having had no such gem — passed all three
+answer paths against the live registry. The acceptance record is updated;
+the pre-seed caveat it carried is retired.
+
+Left open, as new tasks: the blog's Gemfile switch to `~> 1.1` (that repo's
+change), and considering Trusted Publishing so future releases need no
+local key or OTP dance.

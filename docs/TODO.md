@@ -5,36 +5,21 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Inbox
 
-- [ ] Publish 1.1.0 to RubyGems
-    - Why: `MEHColeman/blog` currently depends on this theme through a git
-      source, which pins a revision and clones on every deploy. A released gem
-      makes `bundle add shoreditch` work for anyone, which is the whole point
-      of the rewrite.
-    - Known: sign-off given 2026-08-08. Decisions: first published version is
-      **1.1.0** (Unreleased rolled in; 1.0.0 stays git-only so nobody installs
-      the known-defective release), publish route is a **local `gem push`**
-      (trusted publishing via CI deliberately deferred), Mark's rubygems.org
-      account exists with MFA on.
-    - Known: the name `shoreditch` was free on rubygems.org as of 2026-08-08
-      (`GET /api/v1/gems/shoreditch.json` → 404).
-    - Known: staging exposed the gemspec shipping dev files — the exclusion
-      regex said `script/` (singular) so `scripts/exercise-automation.sh` was
-      in the gem, and `docs/`, `.github/`, `.gitignore` shipped too. Fixed,
-      along with bounding the bridgetown dependency to `~> 2.0` (the theme is
-      written against Bridgetown 2's APIs). `shoreditch-1.1.0.gem` built and
-      its contents verified clean.
-    - Plan: (1) Mark: `gem signin` with an API key scoped to push_rubygem
-      only. (2) Commit the staged release (version bump, changelog roll,
-      gemspec fixes) to master, tag `v1.1.0`, push both. (3) `gem push
-      shoreditch-1.1.0.gem` — if the account's MFA level is "UI and API",
-      Mark runs it himself to type the OTP. (4) Verify on rubygems.org.
-      (5) Re-run `EXERCISE_PRESEED=0 scripts/exercise-automation.sh` — the
-      automation's `add_gem "shoreditch"` route has only ever been tested
-      with a pre-seeded path-sourced Gemfile (see docs/acceptance.md).
-      (6) Update seed/TODO/journal; the blog's Gemfile switch to
-      `gem "shoreditch", "~> 1.1"` happens in that repo.
-    - Done when: the blog's Gemfile can say `gem "shoreditch", "~> 1.1"`, and
-      the no-pre-seed exercise run passes.
+- [ ] Switch `MEHColeman/blog` from the git source to `gem "shoreditch", "~> 1.1"`
+    - Why: the gem is on RubyGems now; the git source pins a revision and
+      clones on every deploy for no remaining reason.
+    - Known: this is a change in the blog repo, not this one. `bundle update
+      shoreditch` there afterwards.
+
+- [ ] Consider Trusted Publishing via GitHub Actions for future releases
+    - Why: deliberately deferred at the 1.1.0 publish in favour of a local
+      `gem push`. OIDC-based publishing needs no long-lived API key and makes
+      releases reproducible from a tag push.
+    - Known: the account's API key requires an OTP per push, so every local
+      release needs Mark at a real terminal (the in-session runner has no
+      interactive stdin — discovered 2026-08-08). Trusted publishing removes
+      that step. Register the publisher under the gem's settings on
+      rubygems.org, add a release workflow triggered on tag push.
 
 - [ ] Configure Giscus on the demo, or decide not to
     - Why: the comments component is implemented and verified to stay off when
@@ -186,6 +171,16 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Done
 
+- [x] Publish to RubyGems — **1.1.0 live 2026-08-08**, the first published
+      version (1.0.0 stays git-only so the registry never serves the
+      known-defective release). Name availability checked first; staging
+      caught the gemspec shipping `scripts/`, `docs/` and `.github/` (the
+      exclusion regex said `script/`, singular) and the open-ended bridgetown
+      dependency, both fixed before the push. Tagged `1.1.0` on master
+      (`5d436ec`). The pure `bundle add shoreditch` route then proven by
+      `EXERCISE_PRESEED=0 scripts/exercise-automation.sh` — all three answer
+      paths passed against the live registry (see docs/acceptance.md). The
+      blog's Gemfile switch is a new Inbox item.
 - [x] Exercise `bridgetown.automation.rb` against a fresh site — PR #3, merged
       2026-08-08. The install route had never run; `scripts/exercise-automation.sh`
       now drives it against a fresh site (answered / blank / hostile-answer

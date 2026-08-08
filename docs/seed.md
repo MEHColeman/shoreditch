@@ -106,19 +106,23 @@ indefinitely. `demo/.nvmrc` pins it; nvm's global default may not.
 
 ## Current state
 
-1.0.0 released. The restorations and fixes that followed it are merged to
-master via PR #2 (2026-08-08), reviewed against agreed criteria — see
-`docs/acceptance.md` — and rolled into **1.1.0**, staged as the first version
-to publish to RubyGems (1.0.0 stays git-only; nobody should install the
-known-defective release). Consumed by `MEHColeman/blog` from a git source.
+**1.1.0 is live on RubyGems** (2026-08-08) — the first published version.
+1.0.0 stays git-only: the restorations and fixes that followed it (merged via
+PR #2, reviewed against agreed criteria — see `docs/acceptance.md`) are what
+1.1.0 rolls in, so the registry never serves the known-defective release.
+`bundle add shoreditch` works, proven end to end by the no-preseed automation
+exercise. `MEHColeman/blog` still consumes the theme from a git source — the
+switch to `gem "shoreditch", "~> 1.1"` happens in that repo.
 
 The demo is live at **<https://shoreditch.mehcoleman.com/>** — Pages with
 GitHub Actions as the source, HTTPS enforced, deployed on every push to
 master.
 
-Outstanding: **not yet published to RubyGems** — sign-off given 2026-08-08,
-release staged (version bump, changelog roll, gemspec file-list fix), publish
-awaiting Mark's `gem signin`. See the task in `docs/TODO.md`.
+Release process: bump `lib/shoreditch/version.rb`, roll the changelog, commit
+to master, tag (bare version, no `v` — matching `0.9.0`), push, then
+`gem push` — Mark runs the push in a real terminal, since the account's API
+key demands an OTP per push and the in-session runner has no interactive
+stdin.
 
 ## Traps worth knowing
 
