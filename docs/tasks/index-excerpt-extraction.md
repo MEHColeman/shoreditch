@@ -1,12 +1,13 @@
 # Index excerpt extraction for non-prose openings
 
-**Status:** queued
-**Branch:** none yet — fix/index-excerpt-extraction at pickup
+**Status:** in progress
+**Branch:** fix/index-excerpt-extraction
+**Worktree:** ../shoreditch-worktrees/index-excerpt-extraction
 **Base:** master
-**PR:** none yet
+**PR:** https://github.com/MEHColeman/shoreditch/pull/5
 **Issue:** none
 **Todo:** "Fix index excerpt extraction for posts opening with a blockquote or code fence" in docs/TODO.md (plus two ride-alongs, see Context)
-**Planned at:** 9a893dacddcf762ffe6691ec4db89747fc3ff719
+**Planned at:** 48bc6ce0b07c27b1238c143b1985623891274060
 
 ## Context
 
@@ -54,7 +55,18 @@ No docs/goals.md exists in this project; no goal ID to cite.
   `</p>`.
 - Rouge output for a fenced block is `<div class="highlight"><pre
   class="highlight"><code>…` — no `</p>` at all, hence the swallow.
-- Nokogiri is already in Bridgetown's dependency tree — no new runtime dep.
+- **The plan's Nokogiri premise was false**: Bridgetown 2.2.2 ships no HTML
+  parser gem at all — `grep nokogiri demo/Gemfile.lock` is empty and
+  `bundle exec ruby -e 'require "nokogiri"'` fails in the demo bundle
+  (verified at pickup, 2026-08-09). Parsing is done with **kramdown's own
+  HTML parser** instead (`Kramdown::Document.new(html, input: "html")`) —
+  kramdown rendered the HTML being parsed, so it is definitionally present
+  and the "no new runtime dep" premise stays true by a different route.
+- Kramdown roundtrip behaviour, prototyped before committing: blockquote
+  openers come back balanced, `class="message"` survives, a marker cut
+  mid-paragraph re-renders with closed tags. One trade-off: in the no-prose
+  fallback, Rouge's `<span>` markup inside `<pre><code>` is re-parsed as text
+  and stripped — structure balanced, highlighting lost, degenerate case only.
 - The gemspec already excludes `test/` from the gem (exclusion regex updated
   2026-08-08), and carries `rake` as a development dependency; minitest needs
   adding.
@@ -95,11 +107,12 @@ This project's living set (no docs/system/ split here):
 
 1. Extract the logic into `Shoreditch::Excerpt.extract(html)` — new
    `lib/shoreditch/excerpt.rb`, required from `lib/shoreditch.rb`. Behaviour:
-   `<!--more-->` first (everything before the marker, unchanged semantics);
-   otherwise parse with `Nokogiri::HTML5.fragment` and return `to_html` of the
-   first top-level `p` or `blockquote` element; if no such element exists,
-   fall back to the first top-level element's `to_html` (balanced, unlike
-   today); empty/nil content returns `""`.
+   `<!--more-->` first — everything before the marker, now re-rendered so a
+   mid-block marker yields closed tags (content unchanged, validity gained);
+   otherwise parse with kramdown's HTML parser (**not Nokogiri — see Known**)
+   and return the first top-level `p` or `blockquote` element, re-rendered;
+   if no such element exists, fall back to the first top-level block
+   (balanced, unlike today); empty/nil content returns `""`.
 2. `PostSummary#summary` delegates to it, keeping `html_safe` (the input is
    kramdown's rendered output, same trust level as today).
 3. Test scaffold: `Rakefile` with `rake test` as default task,
@@ -117,13 +130,13 @@ This project's living set (no docs/system/ split here):
 
 ## Acceptance criteria
 
-- [ ] The living set is true of the tree again: every document named in the registry delta is updated on this branch, and the ones named unchanged still read true
-- [ ] In the built demo index, the blockquote-opening post's `.sd-post-excerpt` contains a balanced `<blockquote>` (equal open/close tags within the excerpt div)
-- [ ] In the built demo index, the code-fence-opening post's `.sd-post-excerpt` contains its first paragraph and no `highlight`/`<pre>` markup
-- [ ] `bundle exec rake test` exits 0, covering all eight cases named in the approach
-- [ ] `git ls-files demo/src/_components/shared demo/src/_partials` prints nothing, and the demo builds clean without the deleted files
-- [ ] The "What's Bridgetown?" post uses "alternative" at most once in its opening paragraph, in the built post and index
-- [ ] CHANGELOG.md's Unreleased section records the fix and the test suite
+- [x] The living set is true of the tree again: every document named in the registry delta is updated on this branch, and the ones named unchanged still read true
+- [x] In the built demo index, the blockquote-opening post's `.sd-post-excerpt` contains a balanced `<blockquote>` (equal open/close tags within the excerpt div)
+- [x] In the built demo index, the code-fence-opening post's `.sd-post-excerpt` contains its first paragraph and no `highlight`/`<pre>` markup
+- [x] `bundle exec rake test` exits 0, covering all eight cases named in the approach
+- [x] `git ls-files demo/src/_components/shared demo/src/_partials` prints nothing, and the demo builds clean without the deleted files
+- [x] The "What's Bridgetown?" post uses "alternative" at most once in its opening paragraph, in the built post and index
+- [x] CHANGELOG.md's Unreleased section records the fix and the test suite
 
 ## Verification
 
@@ -140,10 +153,60 @@ grep -c alternative demo/src/_posts/2021-10-15-whats-bridgetown.md  # ≤1 in th
 ## Progress log
 
 - Planned 2026-08-09; decisions recorded in Context. Not started.
+- Picked up 2026-08-09. Freshness check reported drift on docs/TODO.md; the
+  two new commits were the plan's own landing (PR #4), so no claims changed —
+  Planned at refreshed to 48bc6ce. Worktree created at
+  ../shoreditch-worktrees/index-excerpt-extraction on fix/index-excerpt-extraction.
+- **Material drift found and resolved at implementation**: the Nokogiri
+  premise was false (no HTML parser gem anywhere in Bridgetown 2.2.2's tree).
+  Switched the mechanism to kramdown's HTML parser after prototyping all four
+  shapes in the demo bundle — same behaviour, zero new runtime deps. Recorded
+  in Known/Approach above; surfaced to Mark in session.
+- Implemented: `lib/shoreditch/excerpt.rb` + delegation from `PostSummary`;
+  Rakefile + `test/` scaffold (8 cases, all passing — one assertion loosened:
+  the roundtrip normalises a hard-wrap newline to a space, content intact);
+  minitest added as dev dependency; two demo fixture posts; four orphaned
+  demo files deleted; "What's Bridgetown?" sentence fixed (one "alternative",
+  in source, built post and index); README §Index excerpts + §Development,
+  CHANGELOG Unreleased, seed.md layout/commands updated.
+- Verified in the built index (Node 22 via nvm, frontend rebuilt): blockquote
+  excerpt balanced; code-fence post excerpts its paragraph with no
+  `highlight`/`<pre>`; both `<!--more-->` posts now close their `<p>` —
+  previously unbalanced; `{:.message}` keeps its class.
 
 ## Review
 
-<Written by review-merge.>
+**Verdict:** pass — after one remediation, re-reviewed
+**Reviewed:** `git diff master...fix/index-excerpt-extraction` — 20 files, +377 −112; one blind pass (15 of ≤25 calls) + one re-review pass (2 calls)
+**Criteria:** 7 met (1 after remediation `e5fc930`)
+
+### Acceptance criteria
+
+| # | Criterion | Verdict | Evidence |
+|---|---|---|---|
+| 1 | Living docs true of tree | met | after `e5fc930` the gemspec no longer ships the Rakefile; seed.md's exclusion line reads true |
+| 2 | Blockquote excerpt balanced | met | built index: 1 open / 1 close inside `.sd-post-excerpt` |
+| 3 | Code-fence excerpt = first paragraph | met | excerpt is the `<p>` only; no `highlight`, no `<pre` |
+| 4 | `rake test` green, eight cases | met | 8 runs, 38 assertions, 0 failures — session and reviewer both ran it |
+| 5 | Orphans gone, demo builds clean | met | `git ls-files` on both paths empty; rebuild exit 0 |
+| 6 | "alternative" at most once | met | 1 in source, 1 in built post, 1 in built index |
+| 7 | CHANGELOG Unreleased records both | met | Fixed (extraction) + Added (test suite) present |
+
+### Findings
+
+**Minor — `shoreditch.gemspec:31`** — the reject regex kept `test/` out of the
+gem but shipped the top-level `Rakefile`, while the new seed.md line claimed
+both excluded. Fixed in `e5fc930`; re-review confirms nothing leaks and the
+gem keeps everything it needs. No other findings — the reviewer's adversarial
+probes of `Shoreditch::Excerpt.extract` (raw-HTML/table/script openers,
+escaped marker in `<code>`, comment-only content, marker at position 0) all
+behaved sensibly. PR #5 body graded against the description standard: clean
+(tickets and CVEs n/a).
+
+### Retrospective
+
+**Missed:** adding top-level files (Rakefile, test/) without re-checking the
+gemspec's exclusion regex — a new top-level file needs a gem-contents check.
 
 ## Open questions
 

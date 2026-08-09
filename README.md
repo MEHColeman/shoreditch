@@ -162,6 +162,14 @@ introduce a person rather than the site:
 | `logo_legend_shape` | `round` or `straight` — the badge, shaped independently |
 | `flashy_logo` | `true` gives the logo a pulsing accent glow |
 
+## Index excerpts
+
+Index listings preview each post with its first prose block — the opening
+paragraph, or the opening blockquote — set as plain text and clamped to three
+lines. A `<!--more-->` marker in the post wins: everything before it becomes
+the excerpt. Non-prose openers are skipped, so a post that begins with a
+fenced code block is previewed by its first paragraph rather than a code dump.
+
 ## Customising
 
 Every colour and dimension is a custom property on `:root`, and your site's own
@@ -223,6 +231,13 @@ Ruby 3.3+ and **Node 22 or newer** — Bridgetown's esbuild configuration calls
 `fs.globSync`, which does not exist before Node 22. On an older Node the
 frontend build fails while the site itself still serves, so stylesheet changes
 silently never reach the browser. `demo/.nvmrc` pins it.
+
+The unit tests live in `test/` and cover the pure logic (currently excerpt
+extraction):
+
+```
+bundle exec rake test
+```
 
 ## Licence
 

@@ -338,3 +338,26 @@ Mark switched `MEHColeman/blog` from the git source to
 changes now reach the blog through `bundle update shoreditch` rather than a
 clone of master on every deploy. The switch was local at the time of
 recording; the deployed blog picks it up on his next push there.
+
+### 2026-08-09 — excerpt extraction rebuilt on kramdown, tests seeded
+
+Picked up the queued index-excerpt-extraction plan. The plan's one factual
+premise failed at implementation: it said Nokogiri was already in
+Bridgetown's dependency tree, and Bridgetown 2.2.2 ships no HTML parser gem
+at all. Rather than add a native-extension dependency to every consuming
+site, the extraction parses with kramdown's own HTML parser
+(`input: "html"`) — kramdown rendered the HTML being parsed, so it is
+definitionally present. Prototyped all four block shapes in the demo bundle
+before committing to it.
+
+`Shoreditch::Excerpt.extract` now owns the rule: `<!--more-->` wins and is
+re-rendered so a mid-paragraph marker yields closed tags (both existing
+marker posts had been emitting unclosed `<p>` into the index); otherwise the
+first top-level prose block, so a blockquote opener arrives balanced and a
+code-fence opener is previewed by its first paragraph instead of a code
+dump. The gem's first unit tests came with it — `bundle exec rake test`,
+minitest, eight excerpt cases — plus two demo fixture posts proving both
+openers in the built index, deletion of the four orphaned demo starter
+files, and the "What's Bridgetown?" sentence fix. One trade-off recorded:
+in the no-prose fallback, Rouge spans inside `<pre><code>` are re-parsed as
+text, so that degenerate excerpt is balanced but unhighlighted.

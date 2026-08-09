@@ -73,52 +73,6 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       field, either works or is documented clearly enough not to happen; a
       non-http(s) scheme is dropped.
 
-- [ ] Fix index excerpt extraction for posts opening with a blockquote or code fence
-    - **Plan:** [[index-excerpt-extraction]] — queued 2026-08-09; amends this
-      item's done-when (a code-fence opener excerpts its first *paragraph*,
-      not the block) and seeds the minitest suite. Pick up via /task-plan.
-    - Why: `components/shoreditch/post_summary.rb` (~20–36) cuts the rendered
-      post at the first `</p>` (or `<!--more-->`) and marks it `html_safe`. A
-      post opening with a blockquote stops at the *inner* `</p>`, emitting an
-      unclosed `<blockquote>` into the index — browsers recover at the
-      wrapping div and the flatten rule hides it visually, but the HTML is
-      invalid, and the CHANGELOG claims this case handled. A post opening with
-      a fenced code block has no `</p>` inside the Rouge output, so the
-      excerpt swallows the whole highlighted block plus the following
-      paragraph.
-    - Files: `components/shoreditch/post_summary.rb`
-    - Known: found by the 2026-08-08 review of `fix-theme-regressions`
-      (minor, both passes flagged it). The `{:.message}` case is fine — that
-      is a single paragraph carrying a class, so it ends at its own `</p>`;
-      nesting is what breaks.
-    - Approach: take the first *top-level* block instead of the first `</p>`
-      — Nokogiri is already in Bridgetown's dependency tree, so the first
-      child element's `to_html` does it; keep `<!--more-->` honoured first.
-    - Done when: a post opening with a blockquote yields balanced excerpt
-      HTML and one opening with a code fence yields only that block, both
-      verified in the built index.
-
-- [ ] Delete the orphaned demo starter files
-    - **Plan:** rides along on [[index-excerpt-extraction]] (queued 2026-08-09).
-    - Why: the demo layouts that rendered them were deleted when the demo
-      moved onto the theme's layouts, but
-      `demo/src/_components/shared/navbar.{erb,rb}` and
-      `demo/src/_partials/{_head,_footer}.erb` remain, referenced by nothing.
-    - Known: found by the 2026-08-08 review (minor). The deleted demo layouts
-      were the only callers.
-    - Done when: the files are gone and the demo builds clean.
-
-- [ ] Tidy the "What's Bridgetown?" demo post
-    - **Plan:** rides along on [[index-excerpt-extraction]] (queued 2026-08-09).
-    - Why: it says "is an alternative _Jamstack_ alternative to Jekyll" and then
-      "created an excellent alternative" two lines later — three uses of the
-      word in three lines, one of them a duplication.
-    - Files: `demo/src/_posts/2021-10-15-whats-bridgetown.md` lines 10–12
-    - Known: pre-existing copy, carried over rather than introduced. Noticed
-      because the excerpt fix made the first sentence visible on the home page
-      for the first time.
-    - Done when: the sentence reads cleanly on the index and in the post.
-
 - [ ] Rebuild the CV highlight filter, if wanted
     - Why: 0.9.0 had a checkbox toggling a `highlight` body class, lighting up
       links from the CV to related blog posts. Deliberately left out of the
@@ -134,12 +88,16 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       advertisement.
     - Approach: take one from the demo site once it is deployed.
 
-- [ ] Consider a test suite
-    - Why: `bridgetown plugins new` scaffolds `test/` with fixtures and a
-      helper, and none of that was carried over. The components have real
-      logic worth testing — `HeadIcons` decides which icons exist, `Sidebar`
-      filters and sorts nav pages.
-    - Known: the demo build in CI is currently the only check, and it only
+- [ ] Expand the test suite beyond the excerpt cases
+    - Why: the scaffold exists as of 2026-08-09 (`Rakefile`, `test/`,
+      minitest via `bundle exec rake test` — seeded on
+      [[index-excerpt-extraction]] with eight excerpt cases), but the
+      components still have untested logic — `HeadIcons` decides which icons
+      exist, `Sidebar` filters and sorts nav pages.
+    - Known: component tests need more scaffolding than the pure-logic
+      excerpt tests did — `Bridgetown::Component` subclasses want a site and
+      render context, where `Shoreditch::Excerpt` loads with plain kramdown.
+    - Known: the demo build in CI is otherwise the only check, and it only
       asserts that an index page, the stylesheet and a sidebar exist.
 
 - [ ] Decide about `logo_link`
@@ -169,6 +127,24 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 ## Doing
 
 ## Done
+
+- [x] Fix index excerpt extraction for posts opening with a blockquote or code
+      fence — fixed 2026-08-09 on `fix/index-excerpt-extraction` (plan
+      [[index-excerpt-extraction]]). Extraction moved to
+      `lib/shoreditch/excerpt.rb`: `<!--more-->` wins (now balanced even
+      mid-paragraph), else the first top-level prose block, so a code-fence
+      opener excerpts its first *paragraph* (amended done-when, decided in
+      session). Parsed with kramdown's own HTML parser — the plan's belief
+      that Nokogiri was already in Bridgetown's tree turned out false, so
+      Nokogiri was dropped rather than added as a dep. Verified in the built
+      index via two new demo fixture posts.
+- [x] Delete the orphaned demo starter files — deleted 2026-08-09 on the same
+      branch (`demo/src/_components/shared/navbar.{erb,rb}`,
+      `demo/src/_partials/{_head,_footer}.erb`); demo builds clean without
+      them.
+- [x] Tidy the "What's Bridgetown?" demo post — rewritten 2026-08-09 on the
+      same branch; one "alternative" in the opening paragraph, verified in the
+      built post and index.
 
 - [x] Switch `MEHColeman/blog` to `gem "shoreditch", "~> 1.1"` — Mark made
       the change 2026-08-09. At the time of recording it was local to his
