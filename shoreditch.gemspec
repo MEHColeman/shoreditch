@@ -26,9 +26,10 @@ Gem::Specification.new do |spec|
   # `content` is included deliberately: it carries the stylesheet, which the
   # source manifest publishes as a static file. `demo` and `test` are the
   # theme's own development site, `docs` and `scripts` its working notes and
-  # tooling — none of them part of the gem.
+  # tooling — none of them part of the gem, and the Rakefile only drives the
+  # tests, so it stays out too.
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(demo|test|scripts?|spec|features|docs)/|^\.git})
+    f.match(%r{^(demo|test|scripts?|spec|features|docs)/|^\.git|^Rakefile$})
   end
   spec.require_paths = ["lib"]
 
