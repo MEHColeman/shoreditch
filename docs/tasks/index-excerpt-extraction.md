@@ -4,7 +4,7 @@
 **Branch:** fix/index-excerpt-extraction
 **Worktree:** ../shoreditch-worktrees/index-excerpt-extraction
 **Base:** master
-**PR:** none yet
+**PR:** https://github.com/MEHColeman/shoreditch/pull/5
 **Issue:** none
 **Todo:** "Fix index excerpt extraction for posts opening with a blockquote or code fence" in docs/TODO.md (plus two ride-alongs, see Context)
 **Planned at:** 48bc6ce0b07c27b1238c143b1985623891274060
@@ -176,7 +176,37 @@ grep -c alternative demo/src/_posts/2021-10-15-whats-bridgetown.md  # ≤1 in th
 
 ## Review
 
-<Written by review-merge.>
+**Verdict:** pass — after one remediation, re-reviewed
+**Reviewed:** `git diff master...fix/index-excerpt-extraction` — 20 files, +377 −112; one blind pass (15 of ≤25 calls) + one re-review pass (2 calls)
+**Criteria:** 7 met (1 after remediation `e5fc930`)
+
+### Acceptance criteria
+
+| # | Criterion | Verdict | Evidence |
+|---|---|---|---|
+| 1 | Living docs true of tree | met | after `e5fc930` the gemspec no longer ships the Rakefile; seed.md's exclusion line reads true |
+| 2 | Blockquote excerpt balanced | met | built index: 1 open / 1 close inside `.sd-post-excerpt` |
+| 3 | Code-fence excerpt = first paragraph | met | excerpt is the `<p>` only; no `highlight`, no `<pre` |
+| 4 | `rake test` green, eight cases | met | 8 runs, 38 assertions, 0 failures — session and reviewer both ran it |
+| 5 | Orphans gone, demo builds clean | met | `git ls-files` on both paths empty; rebuild exit 0 |
+| 6 | "alternative" at most once | met | 1 in source, 1 in built post, 1 in built index |
+| 7 | CHANGELOG Unreleased records both | met | Fixed (extraction) + Added (test suite) present |
+
+### Findings
+
+**Minor — `shoreditch.gemspec:31`** — the reject regex kept `test/` out of the
+gem but shipped the top-level `Rakefile`, while the new seed.md line claimed
+both excluded. Fixed in `e5fc930`; re-review confirms nothing leaks and the
+gem keeps everything it needs. No other findings — the reviewer's adversarial
+probes of `Shoreditch::Excerpt.extract` (raw-HTML/table/script openers,
+escaped marker in `<code>`, comment-only content, marker at position 0) all
+behaved sensibly. PR #5 body graded against the description standard: clean
+(tickets and CVEs n/a).
+
+### Retrospective
+
+**Missed:** adding top-level files (Rakefile, test/) without re-checking the
+gemspec's exclusion regex — a new top-level file needs a gem-contents check.
 
 ## Open questions
 
