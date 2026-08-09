@@ -3,6 +3,7 @@
 require "bridgetown"
 require "shoreditch/version"
 require "shoreditch/icons"
+require "shoreditch/excerpt"
 
 # Shoreditch is a two-column Bridgetown theme aimed at technical blogging.
 #

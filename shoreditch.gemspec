@@ -37,5 +37,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "bridgetown", "~> 2.0"
 
   spec.add_development_dependency "bundler"
+  spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "rake", "~> 13.0"
 end

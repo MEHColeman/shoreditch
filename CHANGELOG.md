@@ -1,5 +1,28 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- **Excerpt extraction now yields balanced HTML whatever block the post opens
+  with.** 1.1.0's claim to that effect was true only of the CSS; the
+  extraction itself still cut the rendered post at the first `</p>`. A
+  blockquote opener was cut at the *inner* `</p>`, emitting an unclosed
+  `<blockquote>` into the index, and a fenced-code opener has no `</p>` in
+  Rouge's output, so the excerpt swallowed the whole highlighted block plus
+  the following paragraph. The excerpt is now the first top-level prose block
+  — a `<p>` or a `<blockquote>`, found with kramdown's own HTML parser, so no
+  new dependency — and non-prose openers are skipped: a post beginning with a
+  code fence is previewed by its first paragraph rather than a code dump. A
+  `<!--more-->` marker still wins, and a marker placed mid-paragraph now
+  yields closed tags too.
+
+### Added
+
+- **A unit test suite**: `bundle exec rake test`, minitest, seeded with the
+  excerpt extraction cases. The demo gains a blockquote-opening and a
+  code-fence-opening post demonstrating the fix in its index.
+
 ## 1.1.0
 
 First version published to RubyGems. Restores features the 1.0.0 rewrite

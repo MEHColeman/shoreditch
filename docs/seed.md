@@ -39,6 +39,9 @@ lib/shoreditch/icons.rb Inline SVG path data for the contact panel. Brand marks
                         vendored from Simple Icons (CC0); email/phone/file/link
                         drawn by hand. GENERATED, but edit by hand — there is no
                         regeneration script.
+lib/shoreditch/excerpt.rb  Index excerpt extraction: <!--more--> wins, else the
+                        first top-level prose block, parsed with kramdown's own
+                        HTML parser (Bridgetown 2 ships no HTML parser gem).
 lib/shoreditch/version.rb
 layouts/shoreditch/     default.erb, post.erb, page.erb
 components/shoreditch/  Ruby components with sidecar .erb templates:
@@ -46,6 +49,8 @@ components/shoreditch/  Ruby components with sidecar .erb templates:
 content/shoreditch/     shoreditch.css and shoreditch.js — shipped as STATIC
                         FILES through the source manifest
 bridgetown.automation.rb  For `bin/bridgetown apply`
+Rakefile, test/         Unit tests for the pure logic (minitest; currently the
+                        excerpt cases). Excluded from the gem.
 demo/                   A Bridgetown site consuming the theme from ..
                         Published to GitHub Pages. Excluded from the gem.
 ```
@@ -70,6 +75,7 @@ stylesheet loads after the theme's, so overriding never requires a fork.
 | | |
 | --- | --- |
 | `gem build shoreditch.gemspec` | Build the gem |
+| `bundle exec rake test` | Run the unit tests |
 | `cd demo && bin/bridgetown start` | See changes — the fastest loop |
 | `cd demo && bin/bridgetown build` | Build the demo |
 | `scripts/exercise-automation.sh` | Exercise the install automation against a fresh site |
