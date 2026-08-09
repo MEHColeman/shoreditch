@@ -118,11 +118,14 @@ The demo is live at **<https://shoreditch.mehcoleman.com/>** — Pages with
 GitHub Actions as the source, HTTPS enforced, deployed on every push to
 master.
 
-Release process: bump `lib/shoreditch/version.rb`, roll the changelog, commit
-to master, tag (bare version, no `v` — matching `0.9.0`), push, then
-`gem push` — Mark runs the push in a real terminal, since the account's API
-key demands an OTP per push and the in-session runner has no interactive
-stdin.
+Release process: bump `lib/shoreditch/version.rb`, roll the changelog, refresh
+`demo/Gemfile.lock` (`cd demo && bundle lock`) **in the same commit** — the
+demo deploy runs bundler frozen, so a lockfile still naming the old version
+fails the workflow, which is what reddened the two runs around the 1.1.0
+release — then commit to master, tag (bare version, no `v` — matching
+`0.9.0`), push, and `gem push`. Mark runs the push in a real terminal, since
+the account's API key demands an OTP per push and the in-session runner has
+no interactive stdin.
 
 ## Traps worth knowing
 

@@ -321,3 +321,12 @@ the pre-seed caveat it carried is retired.
 Left open, as new tasks: the blog's Gemfile switch to `~> 1.1` (that repo's
 change), and considering Trusted Publishing so future releases need no
 local key or OTP dance.
+
+### 2026-08-09 — the two red demo runs, explained
+
+The "Release 1.1.0" and closeout pushes each failed the Demo site workflow:
+the demo deploy runs bundler frozen, and `demo/Gemfile.lock` still named the
+path-sourced theme at 1.0.0 after the version bump. The lockfile commit that
+followed went green and deployed; the site serves. Lesson folded into the
+seed's release process: refresh the demo lockfile in the release commit
+itself.
