@@ -330,3 +330,11 @@ path-sourced theme at 1.0.0 after the version bump. The lockfile commit that
 followed went green and deployed; the site serves. Lesson folded into the
 seed's release process: refresh the demo lockfile in the release commit
 itself.
+
+### 2026-08-09 — the blog is on the gem
+
+Mark switched `MEHColeman/blog` from the git source to
+`gem "shoreditch", "~> 1.1"`, closing the loop the rewrite was for: theme
+changes now reach the blog through `bundle update shoreditch` rather than a
+clone of master on every deploy. The switch was local at the time of
+recording; the deployed blog picks it up on his next push there.

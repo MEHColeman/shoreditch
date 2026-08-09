@@ -5,12 +5,6 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Inbox
 
-- [ ] Switch `MEHColeman/blog` from the git source to `gem "shoreditch", "~> 1.1"`
-    - Why: the gem is on RubyGems now; the git source pins a revision and
-      clones on every deploy for no remaining reason.
-    - Known: this is a change in the blog repo, not this one. `bundle update
-      shoreditch` there afterwards.
-
 - [ ] Consider Trusted Publishing via GitHub Actions for future releases
     - Why: deliberately deferred at the 1.1.0 publish in favour of a local
       `gem push`. OIDC-based publishing needs no long-lived API key and makes
@@ -171,6 +165,10 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
 
 ## Done
 
+- [x] Switch `MEHColeman/blog` to `gem "shoreditch", "~> 1.1"` — Mark made
+      the change 2026-08-09. At the time of recording it was local to his
+      working copy (the blog repo's last push predates the gem), so the
+      deployed blog picks it up on his next push there.
 - [x] Publish to RubyGems — **1.1.0 live 2026-08-08**, the first published
       version (1.0.0 stays git-only so the registry never serves the
       known-defective release). Name availability checked first; staging

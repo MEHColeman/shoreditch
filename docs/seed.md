@@ -111,8 +111,8 @@ indefinitely. `demo/.nvmrc` pins it; nvm's global default may not.
 PR #2, reviewed against agreed criteria — see `docs/acceptance.md`) are what
 1.1.0 rolls in, so the registry never serves the known-defective release.
 `bundle add shoreditch` works, proven end to end by the no-preseed automation
-exercise. `MEHColeman/blog` still consumes the theme from a git source — the
-switch to `gem "shoreditch", "~> 1.1"` happens in that repo.
+exercise. `MEHColeman/blog` consumes the theme as `gem "shoreditch", "~> 1.1"`
+(switched 2026-08-09).
 
 The demo is live at **<https://shoreditch.mehcoleman.com/>** — Pages with
 GitHub Actions as the source, HTTPS enforced, deployed on every push to
