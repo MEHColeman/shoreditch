@@ -361,3 +361,16 @@ openers in the built index, deletion of the four orphaned demo starter
 files, and the "What's Bridgetown?" sentence fix. One trade-off recorded:
 in the no-prose fallback, Rouge spans inside `<pre><code>` are re-parsed as
 text, so that degenerate excerpt is balanced but unhighlighted.
+
+### 2026-08-09 — index-excerpt-extraction reviewed and merged
+
+PR #5 merged after a pass verdict: one blind bounded pass (15 of 25 calls)
+plus verification run for real. The single finding — the gemspec kept
+`test/` out of the built gem but shipped the new top-level `Rakefile`,
+contradicting seed.md's exclusion claim — was fixed on the branch
+(`e5fc930`) and confirmed clean by a 2-call re-review. Mark ran the merge
+himself; the auto-mode classifier blocks `gh pr merge` in-session.
+Verified criteria distilled into docs/acceptance.md; the plan doc is
+deleted with this commit (history: `git log -- docs/tasks/index-excerpt-extraction.md`).
+Retrospective, one line: a new top-level file needs a gem-contents check —
+the exclusion regex does not update itself.

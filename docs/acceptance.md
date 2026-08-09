@@ -55,3 +55,26 @@ PR that proved them; the full reviews live in git history under
 - The pure `bundle add shoreditch` install route is proven: with shoreditch
   1.1.0 live on RubyGems, the `EXERCISE_PRESEED=0` run passed all three answer
   paths against the real registry (2026-08-08).
+
+## Index excerpts extract by block (`fix/index-excerpt-extraction`, PR #5, 2026-08-09)
+
+- Index excerpts are balanced HTML whatever block a post opens with.
+  `Shoreditch::Excerpt.extract` returns the first top-level prose block —
+  a `<p>` or a `<blockquote>` — parsed with kramdown's own HTML parser
+  (`input: "html"`); Bridgetown 2 ships no HTML parser gem, and kramdown
+  rendered the input, so this adds no dependency.
+- A post opening with a fenced code block is previewed by its first
+  paragraph: the built demo index shows the code-fence fixture post's
+  excerpt as its paragraph with no `highlight` or `<pre>` markup, and the
+  blockquote fixture post's excerpt with equal open/close blockquote tags.
+- `<!--more-->` still wins, and the pre-marker chunk is re-rendered, so a
+  marker placed mid-paragraph yields closed tags.
+- The gem has a unit test suite: `bundle exec rake test` (minitest) runs
+  eight excerpt cases — 8 runs, 38 assertions, 0 failures at merge — with
+  fixtures rendered through the real kramdown GFM + Rouge pipeline.
+- The built gem ships no development files: the gemspec exclusions cover
+  `demo/`, `test/`, `docs/`, `scripts/` and the top-level `Rakefile`
+  (the review's one finding, fixed in `e5fc930`).
+- The demo builds clean without the four orphaned starter files, and the
+  "What's Bridgetown?" opening paragraph uses "alternative" once, in the
+  source, the built post, and the built index.
