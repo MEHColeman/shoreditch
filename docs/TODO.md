@@ -74,6 +74,9 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       non-http(s) scheme is dropped.
 
 - [ ] Fix index excerpt extraction for posts opening with a blockquote or code fence
+    - **Plan:** [[index-excerpt-extraction]] — queued 2026-08-09; amends this
+      item's done-when (a code-fence opener excerpts its first *paragraph*,
+      not the block) and seeds the minitest suite. Pick up via /task-plan.
     - Why: `components/shoreditch/post_summary.rb` (~20–36) cuts the rendered
       post at the first `</p>` (or `<!--more-->`) and marks it `html_safe`. A
       post opening with a blockquote stops at the *inner* `</p>`, emitting an
@@ -96,6 +99,7 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
       verified in the built index.
 
 - [ ] Delete the orphaned demo starter files
+    - **Plan:** rides along on [[index-excerpt-extraction]] (queued 2026-08-09).
     - Why: the demo layouts that rendered them were deleted when the demo
       moved onto the theme's layouts, but
       `demo/src/_components/shared/navbar.{erb,rb}` and
@@ -105,6 +109,7 @@ Obsidian checkboxes: `- [ ]` open, `- [x]` done.
     - Done when: the files are gone and the demo builds clean.
 
 - [ ] Tidy the "What's Bridgetown?" demo post
+    - **Plan:** rides along on [[index-excerpt-extraction]] (queued 2026-08-09).
     - Why: it says "is an alternative _Jamstack_ alternative to Jekyll" and then
       "created an excellent alternative" two lines later — three uses of the
       word in three lines, one of them a duplication.
