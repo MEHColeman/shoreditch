@@ -104,8 +104,8 @@ indefinitely. `demo/.nvmrc` pins it; nvm's global default may not.
 | | |
 | --- | --- |
 | `docs/seed.md` | This file — orientation |
-| `docs/TODO.md` | Outstanding work, each item with its own context block |
-| `docs/journal.md` | What happened and why, append-only |
+| GitHub issues | Outstanding work, each issue with its own context block (`task-store`) |
+| `docs/journal/` | What happened and why, one file per entry |
 | `docs/acceptance.md` | Facts proven by review at merge time |
 | `README.md` | Theme documentation for users |
 | `CHANGELOG.md` | What changed and what was removed, per release |
