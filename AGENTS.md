@@ -3,7 +3,7 @@ Read `docs/seed.md` first, when it exists: what this project is, the directory m
 # shoreditch — agent instructions
 
 This is a software-delivery project at `personal/shoreditch`. Tasks are tracked in GitHub issues (`task-store.sh` in coding_agents).
-The session journal is `docs/journal.md`. `CLAUDE.md` is a symlink to this
+The session journal is `docs/journal/`, one file per entry. `CLAUDE.md` is a symlink to this
 file, so both harnesses read the same instructions.
 
 ## How to write
