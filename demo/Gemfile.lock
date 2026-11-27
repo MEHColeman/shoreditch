@@ -179,7 +179,7 @@ GEM
       rack (>= 1.0)
     protocol-url (0.10.0)
     public_suffix (7.0.5)
-    rack (3.2.6)
+    rack (3.2.9)
     rackup (2.3.1)
       rack (>= 3)
     rake (13.4.2)
